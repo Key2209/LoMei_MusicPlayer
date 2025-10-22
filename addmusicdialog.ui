@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>addmusicdialog</class>
+ <widget class="QDialog" name="addmusicdialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>640</width>
+    <height>520</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>640</width>
+    <height>520</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>640</width>
+    <height>520</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QWidget" name="widget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>9</x>
+     <y>9</y>
+     <width>621</width>
+     <height>501</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QWidget {
+    background-color: #FFFFFF;
+	color:#FFFFFF;
+    border-radius: 15px;
+}
+</string>
+   </property>
+   <widget class="QLabel" name="lblTip">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>60</y>
+      <width>130</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel#lblTip {
+
+    color: #000000;
+    font-size: 14px;
+background-color: transparent; /* 确保容器也是透明的 */
+}</string>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;勾选需要添加的文件夹&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>-60</x>
+      <y>50</y>
+      <width>751</width>
+      <height>1</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+QFrame {
+    background-color: #EFEFEF; /* 线的颜色 */
+    max-height: 1px;           /* 线宽 */
+    min-height: 1px;
+}
+</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Shape::HLine</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Raised</enum>
+    </property>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>591</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QLabel" name="lblTip_2">
+       <property name="styleSheet">
+        <string notr="true">QLabel {
+background-color: transparent; /* 确保容器也是透明的 */
+    color: #000000;
+    font-size: 14px;
+}</string>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;添加本地音乐&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Orientation::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_close">
+       <property name="minimumSize">
+        <size>
+         <width>15</width>
+         <height>15</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>15</width>
+         <height>15</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">/* 播放按钮 */
+QPushButton {
+    /* 替换 background-image */
+    border-image: url(:/player/images/player/btn_closeMainWindow_50.png); 
+    qproperty-cursor: pointinghand; /* 鼠标悬停变手掌 */
+    border: none; /* 确保没有边框，否则 border-image 可能会受到影响 */
+    background-color: transparent; /* 保持透明背景色 */
+}
+
+QPushButton:hover, 
+QPushButton:pressed {    
+border-image: url(:/player/images/player/btn_closeMainWindow_100.png); 
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>90</y>
+      <width>591</width>
+      <height>381</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Orientation::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnAddFolder">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+background-color: transparent; /* 确保容器也是透明的 */
+    color: black;
+	border-color:#F2F2F2;
+	border: 1px solid black; /* 简写：同时设置粗细、样式和颜色 */
+    border-radius: 2px;
+    padding: 6px 15px;
+}
+
+QPushButton:hover {
+    background-color: #FBFBFB;
+}</string>
+         </property>
+         <property name="text">
+          <string>添加文件夹</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QListWidget" name="listFolders">
+       <property name="styleSheet">
+        <string notr="true">QListWidget {
+    background-color: #F5F5F5;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+
+/* 核心：选中项的样式 */
+QListWidget::item:selected {
+    background-color: transparent; /* 选中时背景完全透明 */
+    border: none;                  /* 移除任何边框 */
+    color: inherit;                /* 保持文本颜色不变 */
+}
+
+/* 核心：选中项，但窗口或控件未获得焦点时的样式 */
+QListWidget::item:selected:!active {
+    background-color: transparent;
+    border: none;
+    color: inherit;
+}</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="100,20">
+       <item>
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Orientation::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnOK">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    background-color: #2ECC71;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 8px 15px;
+}
+
+QPushButton:hover {
+    background-color: #00A555;
+
+}
+</string>
+         </property>
+         <property name="text">
+          <string>确认</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,14 @@
+debug/addmusicdialog.o
+debug/main.o
+debug/mainwidget.o
+debug/music_widget.o
+debug/musicmanage.o
+debug/myslider.o
+debug/mytoolclass.o
+debug/playercontrolwidget.o
+debug/qrc_myResources.o
+debug/moc_addmusicdialog.o
+debug/moc_mainwidget.o
+debug/moc_music_widget.o
+debug/moc_myslider.o
+debug/moc_playercontrolwidget.o
