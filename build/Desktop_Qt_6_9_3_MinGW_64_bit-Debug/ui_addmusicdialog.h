@@ -29,12 +29,12 @@ public:
     QWidget *widget;
     QLabel *lblTip;
     QFrame *frame;
-    QWidget *widget1;
+    QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout_3;
     QLabel *lblTip_2;
     QSpacerItem *horizontalSpacer_3;
     QPushButton *pushButton_close;
-    QWidget *widget2;
+    QWidget *layoutWidget1;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout;
     QSpacerItem *horizontalSpacer;
@@ -82,13 +82,13 @@ public:
 ""));
         frame->setFrameShape(QFrame::Shape::HLine);
         frame->setFrameShadow(QFrame::Shadow::Raised);
-        widget1 = new QWidget(widget);
-        widget1->setObjectName("widget1");
-        widget1->setGeometry(QRect(10, 10, 591, 31));
-        horizontalLayout_3 = new QHBoxLayout(widget1);
+        layoutWidget = new QWidget(widget);
+        layoutWidget->setObjectName("layoutWidget");
+        layoutWidget->setGeometry(QRect(10, 10, 591, 31));
+        horizontalLayout_3 = new QHBoxLayout(layoutWidget);
         horizontalLayout_3->setObjectName("horizontalLayout_3");
         horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
-        lblTip_2 = new QLabel(widget1);
+        lblTip_2 = new QLabel(layoutWidget);
         lblTip_2->setObjectName("lblTip_2");
         lblTip_2->setStyleSheet(QString::fromUtf8("QLabel {\n"
 "background-color: transparent; /* \347\241\256\344\277\235\345\256\271\345\231\250\344\271\237\346\230\257\351\200\217\346\230\216\347\232\204 */\n"
@@ -102,7 +102,7 @@ public:
 
         horizontalLayout_3->addItem(horizontalSpacer_3);
 
-        pushButton_close = new QPushButton(widget1);
+        pushButton_close = new QPushButton(layoutWidget);
         pushButton_close->setObjectName("pushButton_close");
         pushButton_close->setMinimumSize(QSize(15, 15));
         pushButton_close->setMaximumSize(QSize(15, 15));
@@ -122,10 +122,10 @@ public:
 
         horizontalLayout_3->addWidget(pushButton_close);
 
-        widget2 = new QWidget(widget);
-        widget2->setObjectName("widget2");
-        widget2->setGeometry(QRect(10, 90, 591, 381));
-        verticalLayout = new QVBoxLayout(widget2);
+        layoutWidget1 = new QWidget(widget);
+        layoutWidget1->setObjectName("layoutWidget1");
+        layoutWidget1->setGeometry(QRect(10, 90, 591, 381));
+        verticalLayout = new QVBoxLayout(layoutWidget1);
         verticalLayout->setObjectName("verticalLayout");
         verticalLayout->setContentsMargins(0, 0, 0, 0);
         horizontalLayout = new QHBoxLayout();
@@ -134,7 +134,7 @@ public:
 
         horizontalLayout->addItem(horizontalSpacer);
 
-        btnAddFolder = new QPushButton(widget2);
+        btnAddFolder = new QPushButton(layoutWidget1);
         btnAddFolder->setObjectName("btnAddFolder");
         btnAddFolder->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "background-color: transparent; /* \347\241\256\344\277\235\345\256\271\345\231\250\344\271\237\346\230\257\351\200\217\346\230\216\347\232\204 */\n"
@@ -154,7 +154,7 @@ public:
 
         verticalLayout->addLayout(horizontalLayout);
 
-        listFolders = new QListWidget(widget2);
+        listFolders = new QListWidget(layoutWidget1);
         listFolders->setObjectName("listFolders");
         listFolders->setStyleSheet(QString::fromUtf8("QListWidget {\n"
 "    background-color: #F5F5F5;\n"
@@ -187,7 +187,7 @@ public:
 
         horizontalLayout_2->addItem(horizontalSpacer_2);
 
-        btnOK = new QPushButton(widget2);
+        btnOK = new QPushButton(layoutWidget1);
         btnOK->setObjectName("btnOK");
         btnOK->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    background-color: #2ECC71;\n"

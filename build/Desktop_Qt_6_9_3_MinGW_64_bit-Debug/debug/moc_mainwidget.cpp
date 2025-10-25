@@ -39,16 +39,31 @@ template <> constexpr inline auto MainWidget::qt_create_metaobjectdata<qt_meta_t
     namespace QMC = QtMocConstants;
     QtMocHelpers::StringRefStorage qt_stringData {
         "MainWidget",
-        "on_pushButton_clicked",
+        "windowMaximizedStateChanged",
         "",
-        "on_pushButton_2_clicked"
+        "isMaximized",
+        "on_pushButton_clicked",
+        "createPlaylist",
+        "PageButton*",
+        "button",
+        "switchPlaylist"
     };
 
     QtMocHelpers::UintData qt_methods {
+        // Signal 'windowMaximizedStateChanged'
+        QtMocHelpers::SignalData<void(bool)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::Bool, 3 },
+        }}),
         // Slot 'on_pushButton_clicked'
-        QtMocHelpers::SlotData<void()>(1, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'on_pushButton_2_clicked'
-        QtMocHelpers::SlotData<void()>(3, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(4, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'createPlaylist'
+        QtMocHelpers::SlotData<void(PageButton *)>(5, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { 0x80000000 | 6, 7 },
+        }}),
+        // Slot 'switchPlaylist'
+        QtMocHelpers::SlotData<void(PageButton *)>(8, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { 0x80000000 | 6, 7 },
+        }}),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -72,12 +87,36 @@ void MainWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
     auto *_t = static_cast<MainWidget *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: _t->on_pushButton_clicked(); break;
-        case 1: _t->on_pushButton_2_clicked(); break;
+        case 0: _t->windowMaximizedStateChanged((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 1: _t->on_pushButton_clicked(); break;
+        case 2: _t->createPlaylist((*reinterpret_cast< std::add_pointer_t<PageButton*>>(_a[1]))); break;
+        case 3: _t->switchPlaylist((*reinterpret_cast< std::add_pointer_t<PageButton*>>(_a[1]))); break;
         default: ;
         }
     }
-    (void)_a;
+    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        switch (_id) {
+        default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+        case 2:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+            case 0:
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< PageButton* >(); break;
+            }
+            break;
+        case 3:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+            case 0:
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< PageButton* >(); break;
+            }
+            break;
+        }
+    }
+    if (_c == QMetaObject::IndexOfMethod) {
+        if (QtMocHelpers::indexOfMethod<void (MainWidget::*)(bool )>(_a, &MainWidget::windowMaximizedStateChanged, 0))
+            return;
+    }
 }
 
 const QMetaObject *MainWidget::metaObject() const
@@ -99,15 +138,21 @@ int MainWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 4;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 2)
-            *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 2;
+        if (_id < 4)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 4;
     }
     return _id;
+}
+
+// SIGNAL 0
+void MainWidget::windowMaximizedStateChanged(bool _t1)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 0, nullptr, _t1);
 }
 QT_WARNING_POP

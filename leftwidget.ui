@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>leftwidget</class>
+ <widget class="QWidget" name="leftwidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>317</width>
+    <height>736</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color:#F0F0F0;
+</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_5">
+   <item row="0" column="0">
+    <widget class="QLabel" name="label">
+     <property name="minimumSize">
+      <size>
+       <width>200</width>
+       <height>50</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>200</width>
+       <height>50</height>
+      </size>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="myResources.qrc">:/player/images/player/mylogo2.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QWidget" name="widget_home" native="true">
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="PageButton" name="pushButton_home">
+            <property name="minimumSize">
+             <size>
+              <width>95</width>
+              <height>55</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>95</width>
+              <height>55</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">        background-color:#E9E9E9;
+        border-radius:12px;
+        color: black;
+        font-size: 12px;</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="myResources.qrc">
+              <normaloff>:/player/images/player/home.png</normaloff>:/player/images/player/home.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>18</width>
+              <height>18</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="PageButton" name="pushButton_recommend">
+            <property name="minimumSize">
+             <size>
+              <width>95</width>
+              <height>55</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>95</width>
+              <height>55</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    background-color: #E9E9E9;
+    color: black;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+
+}
+QPushButton:hover {
+ 
+}
+QPushButton:pressed {
+
+}
+</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="myResources.qrc">
+              <normaloff>:/player/images/player/recommend.png</normaloff>:/player/images/player/recommend.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>18</width>
+              <height>18</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QWidget" name="widget_like" native="true">
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="0">
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <widget class="PageButton" name="pushButton_like">
+            <property name="minimumSize">
+             <size>
+              <width>200</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>200</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>喜欢</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="PageButton" name="pushButton_history">
+            <property name="minimumSize">
+             <size>
+              <width>200</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>200</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>最近播放</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="PageButton" name="pushButton_download">
+            <property name="minimumSize">
+             <size>
+              <width>200</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>200</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>本地和下载</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="2" column="0">
+    <widget class="QWidget" name="widget_new" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>200</width>
+       <height>65</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>200</width>
+       <height>65</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>1</pointsize>
+      </font>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_4">
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <item row="0" column="0">
+       <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="65,50,10,50,30">
+        <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_2">
+          <property name="styleSheet">
+           <string notr="true">color: rgb(0, 0, 0);</string>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:700;&quot;&gt;我的歌单 |&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_3">
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btnAddPlaylist">
+          <property name="minimumSize">
+           <size>
+            <width>85</width>
+            <height>25</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>85</width>
+            <height>25</height>
+           </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color: #E9E9E9;
+    color: black;
+    border-radius: 6px;
+    font-size: 16px;
+    
+   
+}
+QPushButton:hover {
+    background-color: #D4D4D4;
+}
+QPushButton:pressed {
+    background-color: #D4D4D4;
+}
+</string>
+          </property>
+          <property name="text">
+           <string>新建歌单</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>297</width>
+        <height>264</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <widget class="QWidget" name="widget_bottom" native="true">
+     <property name="styleSheet">
+      <string notr="true">background-color:#F0F0F0;
+</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <widget class="QPushButton" name="pushButton_2">
+        <property name="minimumSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">/* 播放按钮 */
+QPushButton {
+    /* 替换 background-image */
+    border-image: url(:/player/images/player/setting.png); 
+    qproperty-cursor: pointinghand; /* 鼠标悬停变手掌 */
+    border: none; /* 确保没有边框，否则 border-image 可能会受到影响 */
+    background-color: transparent; /* 保持透明背景色 */
+}
+
+QPushButton:hover, 
+ {  
+	border-image: url(:/player/images/player/setting1.png); 
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QPushButton" name="pushButton_3">
+        <property name="minimumSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">/* 播放按钮 */
+QPushButton {
+    /* 替换 background-image */
+    border-image: url(:/player/images/player/skin.png); 
+    qproperty-cursor: pointinghand; /* 鼠标悬停变手掌 */
+    border: none; /* 确保没有边框，否则 border-image 可能会受到影响 */
+    background-color: transparent; /* 保持透明背景色 */
+}
+
+QPushButton:hover, 
+ {  
+	border-image: url(:/player/images/player/skin1.png); 
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QPushButton" name="pushButton_4">
+        <property name="minimumSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">/* 播放按钮 */
+QPushButton {
+    /* 替换 background-image */
+    border-image: url(:/player/images/player/game.png); 
+    qproperty-cursor: pointinghand; /* 鼠标悬停变手掌 */
+    border: none; /* 确保没有边框，否则 border-image 可能会受到影响 */
+    background-color: transparent; /* 保持透明背景色 */
+}
+
+QPushButton:hover, 
+ {  
+	border-image: url(:/player/images/player/game1.png); 
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PageButton</class>
+   <extends>QPushButton</extends>
+   <header>pagebutton.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="myResources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

@@ -29,7 +29,8 @@ private:
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
     void mouseReleaseEvent(QMouseEvent *event) override;
-    int dx=0;int dy=0;
+    QPoint m_dragOffset;     // 鼠标按下时，鼠标位置与窗口左上角的偏移量
+    bool m_isDragging = false; // 拖动状态标志
 
 };
 

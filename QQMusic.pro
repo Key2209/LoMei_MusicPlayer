@@ -10,28 +10,36 @@ CONFIG += c++17
 
 SOURCES += \
     addmusicdialog.cpp \
+    leftwidget.cpp \
     main.cpp \
     mainwidget.cpp \
     music_widget.cpp \
     musicmanage.cpp \
     myslider.cpp \
     mytoolclass.cpp \
-    playercontrolwidget.cpp
+    pagebutton.cpp \
+    playercontrolwidget.cpp \
+    topwidget.cpp
 
 HEADERS += \
     addmusicdialog.h \
+    leftwidget.h \
     mainwidget.h \
     music_widget.h \
     musicmanage.h \
     myslider.h \
     mytoolclass.h \
-    playercontrolwidget.h
+    pagebutton.h \
+    playercontrolwidget.h \
+    topwidget.h
 
 FORMS += \
     addmusicdialog.ui \
+    leftwidget.ui \
     mainwidget.ui \
     music_widget.ui \
-    playercontrolwidget.ui
+    playercontrolwidget.ui \
+    topwidget.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

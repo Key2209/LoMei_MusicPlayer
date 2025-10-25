@@ -10,26 +10,33 @@
 #define UI_MAINWIDGET_H
 
 #include <QtCore/QVariant>
-#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QCheckBox>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QPushButton>
+#include <QtWidgets/QGridLayout>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QWidget>
+#include "leftwidget.h"
+#include "music_widget.h"
 #include "playercontrolwidget.h"
+#include "topwidget.h"
 
 QT_BEGIN_NAMESPACE
 
 class Ui_MainWidget
 {
 public:
-    playerControlWidget *widget_bottom;
-    QPushButton *pushButton;
-    QPushButton *pushButton_2;
-    QCheckBox *checkBox;
-    QLabel *label_songImage;
-    QPushButton *pushButton_3;
-    QPushButton *pushButton_edit;
+    QGridLayout *gridLayout;
+    QSpacerItem *verticalSpacer;
+    QSpacerItem *horizontalSpacer;
+    QWidget *widget_realwindow;
+    QGridLayout *gridLayout_3;
+    leftwidget *left_widget;
+    QWidget *widget_4;
+    QGridLayout *gridLayout_2;
+    topWidget *top_window;
+    music_widget *music_main_widget;
+    playerControlWidget *ctlr_music_widget;
+    QSpacerItem *horizontalSpacer_2;
+    QSpacerItem *verticalSpacer_2;
 
     void setupUi(QWidget *MainWidget)
     {
@@ -37,82 +44,97 @@ public:
             MainWidget->setObjectName("MainWidget");
         MainWidget->resize(1050, 700);
         MainWidget->setMinimumSize(QSize(1050, 700));
-        MainWidget->setStyleSheet(QString::fromUtf8("background-color: rgb(246, 246, 246);"));
-        widget_bottom = new playerControlWidget(MainWidget);
-        widget_bottom->setObjectName("widget_bottom");
-        widget_bottom->setGeometry(QRect(230, 590, 811, 91));
-        widget_bottom->setMinimumSize(QSize(0, 91));
-        widget_bottom->setMaximumSize(QSize(16777215, 91));
-        widget_bottom->setStyleSheet(QString::fromUtf8("color: rgb(253, 253, 253);\n"
-"background-color: rgb(255, 251, 251);\n"
+        MainWidget->setStyleSheet(QString::fromUtf8("background-color: rgb(246, 246, 246);\n"
+"background-color: rgb(170, 0, 0);\n"
+"\n"
+"\n"
+"background-color: #F0F0F0;\n"
+"border-radius:12px;"));
+        gridLayout = new QGridLayout(MainWidget);
+        gridLayout->setSpacing(0);
+        gridLayout->setObjectName("gridLayout");
+        gridLayout->setContentsMargins(0, 0, 0, 0);
+        verticalSpacer = new QSpacerItem(20, 321, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
+
+        gridLayout->addItem(verticalSpacer, 0, 1, 1, 1);
+
+        horizontalSpacer = new QSpacerItem(496, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer, 1, 0, 1, 1);
+
+        widget_realwindow = new QWidget(MainWidget);
+        widget_realwindow->setObjectName("widget_realwindow");
+        widget_realwindow->setStyleSheet(QString::fromUtf8("background-color: #F0F0F0;\n"
+"border-radius:12px;"));
+        gridLayout_3 = new QGridLayout(widget_realwindow);
+        gridLayout_3->setSpacing(0);
+        gridLayout_3->setObjectName("gridLayout_3");
+        gridLayout_3->setContentsMargins(0, 0, 0, 0);
+        left_widget = new leftwidget(widget_realwindow);
+        left_widget->setObjectName("left_widget");
+        left_widget->setMinimumSize(QSize(240, 0));
+        left_widget->setMaximumSize(QSize(240, 16777215));
+        left_widget->setStyleSheet(QString::fromUtf8("border:none;"));
+
+        gridLayout_3->addWidget(left_widget, 0, 0, 1, 1);
+
+        widget_4 = new QWidget(widget_realwindow);
+        widget_4->setObjectName("widget_4");
+        widget_4->setMinimumSize(QSize(0, 70));
+        widget_4->setStyleSheet(QString::fromUtf8("border:none;\n"
+"background-color: transparent;"));
+        gridLayout_2 = new QGridLayout(widget_4);
+        gridLayout_2->setObjectName("gridLayout_2");
+        gridLayout_2->setContentsMargins(0, -1, -1, -1);
+        top_window = new topWidget(widget_4);
+        top_window->setObjectName("top_window");
+        top_window->setMinimumSize(QSize(0, 50));
+        top_window->setMaximumSize(QSize(16777215, 50));
+        top_window->setStyleSheet(QString::fromUtf8("/* \351\222\210\345\257\271\346\217\220\345\215\207\347\232\204\346\216\247\344\273\266\345\256\236\344\276\213 */\n"
+"QWidget#top_window { /* \345\201\207\350\256\276\344\275\240\345\234\250 Designer \344\270\255\350\256\276\347\275\256\344\272\206 Object Name \344\270\272 topBar */\n"
+"    background-color: #F6F6F6;\n"
+"    border-radius: 8px;\n"
+"}"));
+
+        gridLayout_2->addWidget(top_window, 0, 0, 1, 1);
+
+        music_main_widget = new music_widget(widget_4);
+        music_main_widget->setObjectName("music_main_widget");
+        music_main_widget->setStyleSheet(QString::fromUtf8("background-color: #F6F6F6;\n"
+"\n"
 "border-radius:8px;"));
-        pushButton = new QPushButton(MainWidget);
-        pushButton->setObjectName("pushButton");
-        pushButton->setGeometry(QRect(700, 150, 81, 24));
-        pushButton->setStyleSheet(QString::fromUtf8(""));
-        pushButton_2 = new QPushButton(MainWidget);
-        pushButton_2->setObjectName("pushButton_2");
-        pushButton_2->setGeometry(QRect(820, 250, 161, 71));
-        checkBox = new QCheckBox(MainWidget);
-        checkBox->setObjectName("checkBox");
-        checkBox->setGeometry(QRect(560, 220, 41, 51));
-        checkBox->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 0, 0);"));
-        checkBox->setChecked(true);
-        label_songImage = new QLabel(MainWidget);
-        label_songImage->setObjectName("label_songImage");
-        label_songImage->setGeometry(QRect(200, 180, 130, 130));
-        label_songImage->setMinimumSize(QSize(130, 130));
-        label_songImage->setMaximumSize(QSize(130, 130));
-        label_songImage->setStyleSheet(QString::fromUtf8("\n"
-"border-radius: 12px;"));
-        label_songImage->setPixmap(QPixmap(QString::fromUtf8(":/player/images/player/pretty_crazy.jpg")));
-        label_songImage->setScaledContents(true);
-        pushButton_3 = new QPushButton(MainWidget);
-        pushButton_3->setObjectName("pushButton_3");
-        pushButton_3->setGeometry(QRect(400, 100, 90, 30));
-        pushButton_3->setMinimumSize(QSize(90, 30));
-        pushButton_3->setMaximumSize(QSize(90, 30));
-        pushButton_3->setStyleSheet(QString::fromUtf8("QPushButton {\n"
-"    background-color: #E3E3E3;\n"
-"    color: black;\n"
-"    border-radius: 12px;\n"
-"    font-size: 15px;\n"
-"    font-weight: bold;\n"
-"    padding-left: 12px;\n"
-"}\n"
-"QPushButton:hover {\n"
-"    background-color: #D4D4D4;\n"
-"}\n"
-"QPushButton:pressed {\n"
-"    background-color: #D4D4D4;\n"
-"}\n"
-""));
-        QIcon icon;
-        icon.addFile(QString::fromUtf8(":/player/images/player/play_button.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
-        pushButton_3->setIcon(icon);
-        pushButton_edit = new QPushButton(MainWidget);
-        pushButton_edit->setObjectName("pushButton_edit");
-        pushButton_edit->setGeometry(QRect(530, 110, 90, 30));
-        pushButton_edit->setMinimumSize(QSize(90, 30));
-        pushButton_edit->setMaximumSize(QSize(90, 30));
-        pushButton_edit->setStyleSheet(QString::fromUtf8("QPushButton {\n"
-"    background-color: #E3E3E3;\n"
-"    color: black;\n"
-"    border-radius: 12px;\n"
-"    font-size: 15px;\n"
-"    font-weight: bold;\n"
-"    padding-left: 12px;\n"
-"}\n"
-"QPushButton:hover {\n"
-"    background-color: #D4D4D4;\n"
-"}\n"
-"QPushButton:pressed {\n"
-"    background-color: #D4D4D4;\n"
-"}\n"
-""));
-        QIcon icon1;
-        icon1.addFile(QString::fromUtf8(":/player/images/player/edit_button1.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
-        pushButton_edit->setIcon(icon1);
+
+        gridLayout_2->addWidget(music_main_widget, 1, 0, 1, 1);
+
+        ctlr_music_widget = new playerControlWidget(widget_4);
+        ctlr_music_widget->setObjectName("ctlr_music_widget");
+        ctlr_music_widget->setMinimumSize(QSize(0, 91));
+        ctlr_music_widget->setMaximumSize(QSize(16777215, 91));
+        ctlr_music_widget->setStyleSheet(QString::fromUtf8("background-color: #F6F6F6;\n"
+"border-radius:8px;"));
+
+        gridLayout_2->addWidget(ctlr_music_widget, 2, 0, 1, 1);
+
+
+        gridLayout_3->addWidget(widget_4, 0, 1, 1, 1);
+
+
+        gridLayout->addWidget(widget_realwindow, 1, 1, 1, 1);
+
+        horizontalSpacer_2 = new QSpacerItem(495, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer_2, 1, 2, 1, 1);
+
+        verticalSpacer_2 = new QSpacerItem(20, 320, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
+
+        gridLayout->addItem(verticalSpacer_2, 2, 1, 1, 1);
+
+        gridLayout->setRowStretch(0, 1);
+        gridLayout->setRowStretch(1, 500);
+        gridLayout->setRowStretch(2, 1);
+        gridLayout->setColumnStretch(0, 1);
+        gridLayout->setColumnStretch(1, 500);
+        gridLayout->setColumnStretch(2, 1);
 
         retranslateUi(MainWidget);
 
@@ -122,12 +144,6 @@ public:
     void retranslateUi(QWidget *MainWidget)
     {
         MainWidget->setWindowTitle(QCoreApplication::translate("MainWidget", "MainWidget", nullptr));
-        pushButton->setText(QCoreApplication::translate("MainWidget", "\346\267\273\345\212\240\351\237\263\344\271\220", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("MainWidget", "PushButton", nullptr));
-        checkBox->setText(QString());
-        label_songImage->setText(QString());
-        pushButton_3->setText(QCoreApplication::translate("MainWidget", "\346\222\255\346\224\276", nullptr));
-        pushButton_edit->setText(QCoreApplication::translate("MainWidget", "\347\274\226\350\276\221", nullptr));
     } // retranslateUi
 
 };

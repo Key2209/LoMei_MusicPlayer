@@ -30,7 +30,7 @@
 
 已知bug:
 1.路径复选框背景颜色不对
-2.拖动窗口时，点击按钮位置拖动也能拖动，但会很奇怪
+2.拖动窗口时，点击按钮位置拖动也能拖动，但会很奇怪      /已解决
 3.路径重复问题没有处理
 
 
@@ -234,49 +234,113 @@ QCheckBox::indicator:checked {
 
 }
 
+// void addmusicdialog::mousePressEvent(QMouseEvent *event)
+// {
+//     QDialog::mousePressEvent(event);
+// }
+
+// void addmusicdialog::mouseReleaseEvent(QMouseEvent *event)
+// {
+//     dx = 0;
+//     dy = 0;
+//     QWidget::mouseReleaseEvent(event);
+// }
+// void addmusicdialog::mouseMoveEvent(QMouseEvent *event)
+// {
+//     QWidget *child = childAt(event->position().toPoint());
+//     qDebug()<<"child"<<child;
+//     if(child)qDebug()<<"childyyyyyyyyyy"<<child;
+
+//     // qDebug()<<"mouse"<<event->position().x()<<event->position().y();
+//     // qDebug()<<"dx dy"<<dx<<dy<<event->button();
+
+//     if(event->buttons()==Qt::LeftButton)
+//     {
+//         QWidget *child = childAt(event->position().toPoint());
+//         qDebug()<<"child"<<child;
+//         if(child)qDebug()<<"childyyyyyyyyyy"<<child;
+//         //qDebug()<<"left"<<event->position().x()<<event->position().y();
+//         if(dx==0&&dy==0)
+//         {
+//             dx=event->position().x();
+//             dy=event->position().y();
+
+//         }
+//         else
+//         {
+//             // 判断点击的是否是空白区域（不是子控件）
+//             move(event->globalPosition().x() - dx,
+//                  event->globalPosition().y() - dy
+//                  );
+//             return;
+//         }
+//     }
+//     QDialog::mouseMoveEvent(event);
+// }
+
+
 void addmusicdialog::mousePressEvent(QMouseEvent *event)
 {
+    if (event->button() == Qt::LeftButton) {
+
+        // 检查点击位置是否有子控件
+        QWidget *child = childAt(event->pos());
+        qDebug()<<"child"<<child;
+        // 如果 child 不为 nullptr，说明点击在了某个子控件上。
+        // 如果您想允许在除了按钮/列表之外的区域拖动，
+        // 您需要检查 child 是否是交互控件（如 QPushButton, QListWidget）
+        if(!(qobject_cast<QPushButton*>(child)))
+        {
+            m_isDragging = true;
+
+            // 计算鼠标按下时的全局位置与窗口左上角位置的偏移
+            m_dragOffset = event->globalPosition().toPoint() - frameGeometry().topLeft();
+
+            event->accept();
+            return;
+        }
+        // 简化判断：如果点击在任何子控件上，我们不开始拖动
+        // 只有当 child 为 nullptr (即点击在窗口空白区域) 时才启动拖动。
+        // 或者，如果您的 UI 结构中有一个顶层的 QWidget 包含所有内容 (例如 'mainBodyWidget')
+
+        // **最安全的做法：只在窗口的非交互区域启动拖动。**
+        // if (child == nullptr || child == this) // 如果点击在 Dialog 自身（无子控件区域）
+        // {
+        //     m_isDragging = true;
+
+        //     // 计算鼠标按下时的全局位置与窗口左上角位置的偏移
+        //     m_dragOffset = event->globalPosition().toPoint() - frameGeometry().topLeft();
+
+        //     event->accept();
+        //     return;
+        // }
+
+        // 如果点击在子控件上，不开始拖动，让事件继续传递给子控件
+    }
+
     QDialog::mousePressEvent(event);
 }
-
-
 void addmusicdialog::mouseReleaseEvent(QMouseEvent *event)
 {
-    dx = 0;
-    dy = 0;
-    QWidget::mouseReleaseEvent(event);
+    m_isDragging = false; // 鼠标抬起时，结束拖动
+
+    // 注意：您之前重置了 dx/dy，现在我们只需要重置布尔标志。
+
+    QDialog::mouseReleaseEvent(event);
 }
 
 void addmusicdialog::mouseMoveEvent(QMouseEvent *event)
 {
-    QWidget *child = childAt(event->position().toPoint());
-    qDebug()<<"child"<<child;
-    if(child)qDebug()<<"childyyyyyyyyyy"<<child;
+    // 只有在左键按下且处于拖动状态时才执行移动
+    if (event->buttons() & Qt::LeftButton && m_isDragging) {
 
-    // qDebug()<<"mouse"<<event->position().x()<<event->position().y();
-    // qDebug()<<"dx dy"<<dx<<dy<<event->button();
+        // 移动窗口到新位置
+        move(event->globalPosition().toPoint() - m_dragOffset);
 
-    if(event->buttons()==Qt::LeftButton)
-    {
-        QWidget *child = childAt(event->position().toPoint());
-        qDebug()<<"child"<<child;
-        if(child)qDebug()<<"childyyyyyyyyyy"<<child;
-        //qDebug()<<"left"<<event->position().x()<<event->position().y();
-        if(dx==0&&dy==0)
-        {
-            dx=event->position().x();
-            dy=event->position().y();
-
-        }
-        else
-        {
-            // 判断点击的是否是空白区域（不是子控件）
-            move(event->globalPosition().x() - dx,
-                 event->globalPosition().y() - dy
-                 );
-            return;
-        }
+        event->accept();
+        return;
     }
+
     QDialog::mouseMoveEvent(event);
 }
 

@@ -91,7 +91,7 @@ QFrame {
      <enum>QFrame::Shadow::Raised</enum>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -164,7 +164,7 @@ border-image: url(:/player/images/player/btn_closeMainWindow_100.png);
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>

@@ -92,6 +92,7 @@ public:
 ""));
         gridLayout = new QGridLayout(playerControlWidget);
         gridLayout->setObjectName("gridLayout");
+        gridLayout->setContentsMargins(0, -1, 0, -1);
         verticalSpacer_4 = new QSpacerItem(20, 0, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
 
         gridLayout->addItem(verticalSpacer_4, 0, 1, 1, 1);

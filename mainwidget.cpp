@@ -2,8 +2,18 @@
 #include "ui_mainwidget.h"
 #include "addmusicdialog.h"
 #include <QFile>
+#include <QGraphicsDropShadowEffect>
 #include <QMessageBox>
-//#include "mytoolclass.h"
+#include <QMouseEvent>
+#include <QPushButton>
+
+
+/*
+已知bug:
+1.最大化窗口后拖动,窗口缩小,但鼠标位置会很奇怪
+
+
+ */
 MainWidget::MainWidget(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::MainWidget)
@@ -11,7 +21,25 @@ MainWidget::MainWidget(QWidget *parent)
     ui->setupUi(this);
 
 
+    this->setWindowFlags(Qt::FramelessWindowHint | Qt::Dialog);//去掉系统标题栏
+    //允许半透明
+    setAttribute(Qt::WA_TranslucentBackground, true);
+    // 创建阴影效果
+    QGraphicsDropShadowEffect *shadow = new QGraphicsDropShadowEffect(this);
+    shadow->setBlurRadius(10);              // 阴影模糊度
+    shadow->setColor(QColor(0, 0, 0, 100)); // 阴影颜色（带透明度）
+    shadow->setOffset(0, 0);                // 阴影偏移（x, y）
 
+    // 应用到最外层widget（你界面中最外层的背景widget）
+    ui->widget_realwindow->setGraphicsEffect(shadow);
+
+    this->setMouseTracking(true);//时刻追踪鼠标,时刻触发mousemoveevent
+    for (auto child : findChildren<QWidget*>()) {
+        child->setMouseTracking(true);
+    }
+
+
+    connectAll();
 }
 
 MainWidget::~MainWidget()
@@ -29,9 +57,270 @@ void MainWidget::on_pushButton_clicked()
     dlg.exec();
 }
 
-
-void MainWidget::on_pushButton_2_clicked()
+void MainWidget::createPlaylist(PageButton *button)
 {
-    qDebug()<<"hello";
+
 }
 
+void MainWidget::switchPlaylist(PageButton *button)
+{
+
+}
+
+
+
+void MainWidget::connectAll()
+{
+    //重写窗口控制按钮 绑定
+    connect(ui->top_window,&topWidget::exitRequested,this,&QApplication::quit);
+    connect(ui->top_window,&topWidget::minRequested,this,&QWidget::showMinimized);
+    connect(ui->top_window,&topWidget::maxRequested,this,[=]{
+        if(this->isMaximized()){
+            this->showNormal();
+        }else{
+            this->showMaximized();
+        }
+    });
+
+    //当前窗口 发出"窗口改变信号" 顶部窗口接收并调用更新图标函数
+    connect(this,&MainWidget::windowMaximizedStateChanged,ui->top_window,&topWidget::updateMaxIcon);
+
+
+
+
+
+
+    // connect(ui->left_widget,&leftwidget::new_playList,this,)
+
+
+
+
+}
+
+DragRegion MainWidget::getResizeRegion(const QPoint &point)
+{
+    int x=point.x();
+    int y=point.y();
+    int w=width();
+    int h=height();
+    int bw=BORDER_WIDTH;
+
+    // 检查四个角
+    if (x < bw && y < bw) return TopLeft;
+    if (x > w - bw && y < bw) return TopRight;
+    if (x < bw && y > h - bw) return BottomLeft;
+    if (x > w - bw && y > h - bw) return BottomRight;
+
+    // 检查四条边
+    if (x < bw) return Left;
+    if (x > w - bw) return Right;
+    if (y < bw) return Top;
+    if (y > h - bw) return Bottom;
+
+    return NoResize; // 不在边缘区域
+
+}
+
+void MainWidget::setCursorShape(DragRegion region)
+{
+    Qt::CursorShape shape=Qt::ArrowCursor;
+
+    switch (region) {
+    case Top:
+    case Bottom:
+        shape = Qt::SizeVerCursor;
+        break;
+    case Left:
+    case Right:
+        shape = Qt::SizeHorCursor;
+        break;
+    case TopLeft:
+    case BottomRight:
+        shape = Qt::SizeFDiagCursor;
+        break;
+    case TopRight:
+    case BottomLeft:
+        shape = Qt::SizeBDiagCursor;
+        break;
+    default:
+        break; // 保持默认箭头
+    }
+    setCursor(shape);
+}
+
+
+void MainWidget::mousePressEvent(QMouseEvent *event)
+{
+    if (event->button() == Qt::LeftButton) {
+
+        //缩放窗口逻辑
+        //判断是否在边缘
+
+
+
+        if(!this->isMaximized())//最大化时候不能缩放
+        {
+
+            m_dragRegion=getResizeRegion(event->pos());
+            if(m_dragRegion!=NoResize)
+            {
+                m_isResizing = true;   // 锁定缩放状态
+                m_isDragging = false; // 确保移动状态被清除
+                m_startPos=event->globalPosition();//鼠标点击时候的位置
+                m_startGeometry=geometry();//当前窗口的大小
+                event->accept();
+                return;
+            }
+        }
+
+
+
+
+        //拖动窗口逻辑
+        // 检查点击位置是否有子控件
+        QWidget *child = childAt(event->pos());
+        qDebug()<<"child"<<child;
+        // 如果 child 不为 nullptr，说明点击在了某个子控件上。
+        // 如果您想允许在除了按钮/列表之外的区域拖动，
+        // 您需要检查 child 是否是交互控件（如 QPushButton, QListWidget）
+        if(!(qobject_cast<QPushButton*>(child)))
+        {
+            m_isDragging = true;
+            m_isResizing = false;   // 锁定缩放状态
+
+            m_dragRegion = NoResize; // 确保缩放状态被清除
+            // 计算鼠标按下时的全局位置与窗口左上角位置的偏移
+            m_dragOffset = event->globalPosition().toPoint() - frameGeometry().topLeft();
+
+            event->accept();
+            return;
+        }
+    }
+
+    QWidget::mousePressEvent(event);
+}
+void MainWidget::mouseReleaseEvent(QMouseEvent *event)
+{
+    m_isDragging = false; // 鼠标抬起时，结束拖动
+    m_isResizing = false;
+    m_dragRegion = NoResize;
+    setCursorShape(getResizeRegion(event->pos()));//在边缘时候改变光标
+    QWidget::mouseReleaseEvent(event);
+}
+
+
+void MainWidget::mouseMoveEvent(QMouseEvent *event)
+{
+    qDebug()<<"mouseMoveEvent:"+QString::number((int)m_dragRegion);
+
+    qDebug()<<"m_isDragging"<<m_isDragging;
+    // //m_dragRegion=getResizeRegion(event->pos());
+    if(!this->isMaximized()&&m_dragRegion == NoResize)
+    {
+        setCursorShape(getResizeRegion(event->pos()));//在边缘时候改变光标
+    }
+
+
+
+    // 1. 正在缩放
+    if (m_isResizing&&m_dragRegion != NoResize&& (event->buttons() & Qt::LeftButton)) {
+        QPointF delta = event->globalPosition() - m_startPos;//当前鼠标在屏幕上位置-第一次点击时候的位置
+        QRect newGeometry = m_startGeometry;
+
+        // 根据拖动区域调整新的几何尺寸
+        switch (m_dragRegion)
+        {
+        case TopLeft:
+            newGeometry.setTop(m_startGeometry.top() + delta.y());
+            newGeometry.setLeft(m_startGeometry.left() + delta.x());
+            break;
+        case TopRight:
+            newGeometry.setTop(m_startGeometry.top() + delta.y());
+            newGeometry.setRight(m_startGeometry.right() + delta.x());
+            break;
+        case BottomLeft:
+            newGeometry.setBottom(m_startGeometry.bottom() + delta.y());
+            newGeometry.setLeft(m_startGeometry.left() + delta.x());
+            break;
+        case BottomRight:
+            newGeometry.setBottom(m_startGeometry.bottom() + delta.y());
+            newGeometry.setRight(m_startGeometry.right() + delta.x());
+            break;
+        case Left:
+            newGeometry.setLeft(m_startGeometry.left() + delta.x());
+            break;
+        case Right:
+            newGeometry.setRight(m_startGeometry.right() + delta.x());
+            break;
+        case Top:
+            newGeometry.setTop(m_startGeometry.top() + delta.y());
+            break;
+        case Bottom:
+            newGeometry.setBottom(m_startGeometry.bottom() + delta.y());
+            break;
+        default:
+            break;
+        }
+
+        // 🚧 修正逻辑：防止缩放到最小尺寸时窗口被推走
+        if (newGeometry.width() < minimumWidth())
+        {
+            int diff = minimumWidth() - newGeometry.width();
+
+            // 如果是从左侧缩放，则抵消 X 方向移动
+            if (m_dragRegion == Left || m_dragRegion == TopLeft || m_dragRegion == BottomLeft)
+                newGeometry.setLeft(newGeometry.left() - diff);
+
+            newGeometry.setWidth(minimumWidth());
+        }
+
+        if (newGeometry.height() < minimumHeight())
+        {
+            int diff = minimumHeight() - newGeometry.height();
+
+            // 如果是从上方缩放，则抵消 Y 方向移动
+            if (m_dragRegion == Top || m_dragRegion == TopLeft || m_dragRegion == TopRight)
+                newGeometry.setTop(newGeometry.top() - diff);
+
+            newGeometry.setHeight(minimumHeight());
+        }
+
+        setGeometry(newGeometry);
+        event->accept();
+        return;
+    }
+    // 只有在左键按下且处于拖动状态时才执行移动
+    else if (event->buttons() & Qt::LeftButton && m_isDragging) {
+
+
+        if(this->isMaximized())//窗口最大化时候拖动,先要把窗口缩小
+        {
+            this->showNormal();
+            emit windowMaximizedStateChanged(false);
+        }
+        else
+        {
+            // 移动窗口到新位置,move():把窗口的左上角移动到()
+            move(event->globalPosition().toPoint() - m_dragOffset);
+        }
+
+
+
+
+        event->accept();
+        return;
+    }
+
+    QWidget::mouseMoveEvent(event);
+}
+
+
+void MainWidget::changeEvent(QEvent *event)
+{
+    // 检查事件类型是否是窗口状态改变
+    if (event->type() == QEvent::WindowStateChange) {
+        // 发送信号，报告当前窗口是否处于最大化状态
+        emit windowMaximizedStateChanged(this->isMaximized());
+    }
+    QWidget::changeEvent(event);
+}

@@ -78,6 +78,28 @@
         <file>images/player/edit_button.png</file>
         <file>images/player/play_button.png</file>
         <file>images/player/edit_button1.png</file>
+        <file>images/player/add_path.png</file>
+        <file>images/player/add_path1.png</file>
+        <file>images/player/mylogo.png</file>
+        <file>images/player/mylogo2.png</file>
+        <file>images/player/home.png</file>
+        <file>images/player/recommend.png</file>
+        <file>images/player/download.png</file>
+        <file>images/player/download_black.png</file>
+        <file>images/player/game.png</file>
+        <file>images/player/game1.png</file>
+        <file>images/player/like_left.png</file>
+        <file>images/player/like_left_black.png</file>
+        <file>images/player/setting.png</file>
+        <file>images/player/setting1.png</file>
+        <file>images/player/skin.png</file>
+        <file>images/player/skin1.png</file>
+        <file>images/player/time.png</file>
+        <file>images/player/time_black.png</file>
+        <file>images/player/home_black.png</file>
+        <file>images/player/recommend_black.png</file>
+        <file>images/player/DUO.jpg</file>
+        <file>images/player/joey.jpg</file>
     </qresource>
     <qresource prefix="/styles"/>
 </RCC>

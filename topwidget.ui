@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>topWidget</class>
+ <widget class="QWidget" name="topWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1036</width>
+    <height>67</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: #F6F6F6;
+
+border-radius:8px;</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_2">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <item row="0" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QPushButton" name="pushButton_back">
+         <property name="minimumSize">
+          <size>
+           <width>35</width>
+           <height>35</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>35</width>
+           <height>35</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">/* 播放按钮 */
+QPushButton {
+    /* 替换 background-image */
+    border-image: url(:/player/images/player/back.png); 
+    qproperty-cursor: pointinghand; /* 鼠标悬停变手掌 */
+    border: none; /* 确保没有边框，否则 border-image 可能会受到影响 */
+    background-color: transparent; /* 保持透明背景色 */
+}
+
+QPushButton:hover, 
+QPushButton:pressed {    
+border-image: url(:/player/images/player/back1.png); 
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_ahead">
+         <property name="minimumSize">
+          <size>
+           <width>35</width>
+           <height>35</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>35</width>
+           <height>35</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">/* 播放按钮 */
+QPushButton {
+    /* 替换 background-image */
+    border-image: url(:/player/images/player/back.png); 
+    qproperty-cursor: pointinghand; /* 鼠标悬停变手掌 */
+    border: none; /* 确保没有边框，否则 border-image 可能会受到影响 */
+    background-color: transparent; /* 保持透明背景色 */
+}
+
+QPushButton:hover, 
+QPushButton:pressed {    
+border-image: url(:/player/images/player/back1.png); 
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEdit">
+       <property name="minimumSize">
+        <size>
+         <width>250</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>450</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #E3E3E3;
+border-raidus:3px;
+</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_min_6">
+       <property name="minimumSize">
+        <size>
+         <width>35</width>
+         <height>35</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>35</width>
+         <height>35</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">/* 播放按钮 */
+QPushButton {
+    /* 替换 background-image */
+    border-image: url(:/player/images/player/listen.png); 
+    qproperty-cursor: pointinghand; /* 鼠标悬停变手掌 */
+    border: none; /* 确保没有边框，否则 border-image 可能会受到影响 */
+    background-color: transparent; /* 保持透明背景色 */
+}
+
+QPushButton:hover, 
+QPushButton:pressed {    
+border-image: url(:/player/images/player/listen1.png); 
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Orientation::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QWidget" name="widget" native="true">
+       <property name="minimumSize">
+        <size>
+         <width>120</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>120</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #F6F6F6;
+background-color: transparent;</string>
+       </property>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="0" column="2">
+         <widget class="QPushButton" name="pushButton_max">
+          <property name="minimumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">/* 播放按钮 */
+QPushButton {
+    /* 替换 background-image */
+    border-image: url(:/player/images/player/Maximize1.png); 
+    qproperty-cursor: pointinghand; /* 鼠标悬停变手掌 */
+    border: none; /* 确保没有边框，否则 border-image 可能会受到影响 */
+    background-color: transparent; /* 保持透明背景色 */
+}
+
+QPushButton:hover, 
+QPushButton:pressed {    
+border-image: url(:/player/images/player/Maximize2.png); 
+}</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QPushButton" name="pushButton_min">
+          <property name="minimumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">/* 播放按钮 */
+QPushButton {
+    /* 替换 background-image */
+    border-image: url(:/player/images/player/Minimize.png); 
+    qproperty-cursor: pointinghand; /* 鼠标悬停变手掌 */
+    border: none; /* 确保没有边框，否则 border-image 可能会受到影响 */
+    background-color: transparent; /* 保持透明背景色 */
+}
+
+QPushButton:hover, 
+QPushButton:pressed {    
+border-image: url(:/player/images/player/Minimize1.png); 
+}</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="3">
+         <spacer name="horizontalSpacer_7">
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="0" column="4">
+         <widget class="QPushButton" name="pushButton_close">
+          <property name="minimumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">/* 播放按钮 */
+QPushButton {
+    /* 替换 background-image */
+    border-image: url(:/player/images/player/Shut_down.png); 
+    qproperty-cursor: pointinghand; /* 鼠标悬停变手掌 */
+    border: none; /* 确保没有边框，否则 border-image 可能会受到影响 */
+    background-color: transparent; /* 保持透明背景色 */
+}
+
+QPushButton:hover, 
+QPushButton:pressed {    
+border-image: url(:/player/images/player/Shut_down1.png); 
+}</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <spacer name="horizontalSpacer_6">
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -20,210 +20,197 @@
    <string>MainWidget</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(246, 246, 246);</string>
+   <string notr="true">background-color: rgb(246, 246, 246);
+background-color: rgb(170, 0, 0);
+
+
+background-color: #F0F0F0;
+border-radius:12px;</string>
   </property>
-  <widget class="playerControlWidget" name="widget_bottom" native="true">
-   <property name="geometry">
-    <rect>
-     <x>230</x>
-     <y>590</y>
-     <width>811</width>
-     <height>91</height>
-    </rect>
+  <layout class="QGridLayout" name="gridLayout" rowstretch="1,500,1" columnstretch="1,500,1">
+   <property name="leftMargin">
+    <number>0</number>
    </property>
-   <property name="minimumSize">
-    <size>
-     <width>0</width>
-     <height>91</height>
-    </size>
+   <property name="topMargin">
+    <number>0</number>
    </property>
-   <property name="maximumSize">
-    <size>
-     <width>16777215</width>
-     <height>91</height>
-    </size>
+   <property name="rightMargin">
+    <number>0</number>
    </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(253, 253, 253);
-background-color: rgb(255, 251, 251);
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <item row="0" column="1">
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Orientation::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>321</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="1" column="0">
+    <spacer name="horizontalSpacer">
+     <property name="orientation">
+      <enum>Qt::Orientation::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>496</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="1" column="1">
+    <widget class="QWidget" name="widget_realwindow" native="true">
+     <property name="styleSheet">
+      <string notr="true">background-color: #F0F0F0;
+border-radius:12px;</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_3">
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <item row="0" column="0">
+       <widget class="leftwidget" name="left_widget" native="true">
+        <property name="minimumSize">
+         <size>
+          <width>240</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>240</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border:none;</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QWidget" name="widget_4" native="true">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>70</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border:none;
+background-color: transparent;</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_2">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <item row="0" column="0">
+          <widget class="topWidget" name="top_window" native="true">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">/* 针对提升的控件实例 */
+QWidget#top_window { /* 假设你在 Designer 中设置了 Object Name 为 topBar */
+    background-color: #F6F6F6;
+    border-radius: 8px;
+}</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="music_widget" name="music_main_widget" native="true">
+           <property name="styleSheet">
+            <string notr="true">background-color: #F6F6F6;
+
 border-radius:8px;</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton">
-   <property name="geometry">
-    <rect>
-     <x>700</x>
-     <y>150</y>
-     <width>81</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true"/>
-   </property>
-   <property name="text">
-    <string>添加音乐</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_2">
-   <property name="geometry">
-    <rect>
-     <x>820</x>
-     <y>250</y>
-     <width>161</width>
-     <height>71</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>PushButton</string>
-   </property>
-  </widget>
-  <widget class="QCheckBox" name="checkBox">
-   <property name="geometry">
-    <rect>
-     <x>560</x>
-     <y>220</y>
-     <width>41</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(0, 0, 0);</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="checked">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_songImage">
-   <property name="geometry">
-    <rect>
-     <x>200</x>
-     <y>180</y>
-     <width>130</width>
-     <height>130</height>
-    </rect>
-   </property>
-   <property name="minimumSize">
-    <size>
-     <width>130</width>
-     <height>130</height>
-    </size>
-   </property>
-   <property name="maximumSize">
-    <size>
-     <width>130</width>
-     <height>130</height>
-    </size>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">
-border-radius: 12px;</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap resource="myResources.qrc">:/player/images/player/pretty_crazy.jpg</pixmap>
-   </property>
-   <property name="scaledContents">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_3">
-   <property name="geometry">
-    <rect>
-     <x>400</x>
-     <y>100</y>
-     <width>90</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="minimumSize">
-    <size>
-     <width>90</width>
-     <height>30</height>
-    </size>
-   </property>
-   <property name="maximumSize">
-    <size>
-     <width>90</width>
-     <height>30</height>
-    </size>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QPushButton {
-    background-color: #E3E3E3;
-    color: black;
-    border-radius: 12px;
-    font-size: 15px;
-    font-weight: bold;
-    padding-left: 12px;
-}
-QPushButton:hover {
-    background-color: #D4D4D4;
-}
-QPushButton:pressed {
-    background-color: #D4D4D4;
-}
-</string>
-   </property>
-   <property name="text">
-    <string>播放</string>
-   </property>
-   <property name="icon">
-    <iconset resource="myResources.qrc">
-     <normaloff>:/player/images/player/play_button.png</normaloff>:/player/images/player/play_button.png</iconset>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_edit">
-   <property name="geometry">
-    <rect>
-     <x>530</x>
-     <y>110</y>
-     <width>90</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="minimumSize">
-    <size>
-     <width>90</width>
-     <height>30</height>
-    </size>
-   </property>
-   <property name="maximumSize">
-    <size>
-     <width>90</width>
-     <height>30</height>
-    </size>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QPushButton {
-    background-color: #E3E3E3;
-    color: black;
-    border-radius: 12px;
-    font-size: 15px;
-    font-weight: bold;
-    padding-left: 12px;
-}
-QPushButton:hover {
-    background-color: #D4D4D4;
-}
-QPushButton:pressed {
-    background-color: #D4D4D4;
-}
-</string>
-   </property>
-   <property name="text">
-    <string>编辑</string>
-   </property>
-   <property name="icon">
-    <iconset resource="myResources.qrc">
-     <normaloff>:/player/images/player/edit_button1.png</normaloff>:/player/images/player/edit_button1.png</iconset>
-   </property>
-  </widget>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="playerControlWidget" name="ctlr_music_widget" native="true">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>91</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>91</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: #F6F6F6;
+border-radius:8px;</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <spacer name="horizontalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Orientation::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>495</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="2" column="1">
+    <spacer name="verticalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Orientation::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>320</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
  </widget>
  <customwidgets>
   <customwidget>
@@ -232,9 +219,25 @@ QPushButton:pressed {
    <header>playercontrolwidget.h</header>
    <container>1</container>
   </customwidget>
+  <customwidget>
+   <class>music_widget</class>
+   <extends>QWidget</extends>
+   <header>music_widget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>topWidget</class>
+   <extends>QWidget</extends>
+   <header>topwidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>leftwidget</class>
+   <extends>QWidget</extends>
+   <header>leftwidget.h</header>
+   <container>1</container>
+  </customwidget>
  </customwidgets>
- <resources>
-  <include location="myResources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
