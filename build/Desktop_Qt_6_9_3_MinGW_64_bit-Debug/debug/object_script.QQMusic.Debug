@@ -8,6 +8,7 @@ debug/myslider.o
 debug/mytoolclass.o
 debug/pagebutton.o
 debug/playercontrolwidget.o
+debug/songwidget.o
 debug/topwidget.o
 debug/qrc_myResources.o
 debug/moc_addmusicdialog.o
@@ -17,4 +18,5 @@ debug/moc_music_widget.o
 debug/moc_myslider.o
 debug/moc_pagebutton.o
 debug/moc_playercontrolwidget.o
+debug/moc_songwidget.o
 debug/moc_topwidget.o

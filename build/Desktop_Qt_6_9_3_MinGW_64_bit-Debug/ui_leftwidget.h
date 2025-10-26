@@ -53,9 +53,9 @@ public:
     QWidget *scrollAreaWidgetContents;
     QWidget *widget_bottom;
     QGridLayout *gridLayout;
-    QPushButton *pushButton_2;
-    QPushButton *pushButton_3;
-    QPushButton *pushButton_4;
+    QPushButton *pushButton_setting;
+    QPushButton *pushButton_skin;
+    QPushButton *pushButton_game;
 
     void setupUi(QWidget *leftwidget)
     {
@@ -247,11 +247,12 @@ public:
 ""));
         gridLayout = new QGridLayout(widget_bottom);
         gridLayout->setObjectName("gridLayout");
-        pushButton_2 = new QPushButton(widget_bottom);
-        pushButton_2->setObjectName("pushButton_2");
-        pushButton_2->setMinimumSize(QSize(30, 30));
-        pushButton_2->setMaximumSize(QSize(30, 30));
-        pushButton_2->setStyleSheet(QString::fromUtf8("/* \346\222\255\346\224\276\346\214\211\351\222\256 */\n"
+        pushButton_setting = new QPushButton(widget_bottom);
+        pushButton_setting->setObjectName("pushButton_setting");
+        pushButton_setting->setMinimumSize(QSize(30, 30));
+        pushButton_setting->setMaximumSize(QSize(30, 30));
+        pushButton_setting->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        pushButton_setting->setStyleSheet(QString::fromUtf8("/* \346\222\255\346\224\276\346\214\211\351\222\256 */\n"
 "QPushButton {\n"
 "    /* \346\233\277\346\215\242 background-image */\n"
 "    border-image: url(:/player/images/player/setting.png); \n"
@@ -260,18 +261,19 @@ public:
 "    background-color: transparent; /* \344\277\235\346\214\201\351\200\217\346\230\216\350\203\214\346\231\257\350\211\262 */\n"
 "}\n"
 "\n"
-"QPushButton:hover, \n"
+"QPushButton:hover\n"
 " {  \n"
 "	border-image: url(:/player/images/player/setting1.png); \n"
 "}"));
 
-        gridLayout->addWidget(pushButton_2, 0, 0, 1, 1);
+        gridLayout->addWidget(pushButton_setting, 0, 0, 1, 1);
 
-        pushButton_3 = new QPushButton(widget_bottom);
-        pushButton_3->setObjectName("pushButton_3");
-        pushButton_3->setMinimumSize(QSize(30, 30));
-        pushButton_3->setMaximumSize(QSize(30, 30));
-        pushButton_3->setStyleSheet(QString::fromUtf8("/* \346\222\255\346\224\276\346\214\211\351\222\256 */\n"
+        pushButton_skin = new QPushButton(widget_bottom);
+        pushButton_skin->setObjectName("pushButton_skin");
+        pushButton_skin->setMinimumSize(QSize(30, 30));
+        pushButton_skin->setMaximumSize(QSize(30, 30));
+        pushButton_skin->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        pushButton_skin->setStyleSheet(QString::fromUtf8("/* \346\222\255\346\224\276\346\214\211\351\222\256 */\n"
 "QPushButton {\n"
 "    /* \346\233\277\346\215\242 background-image */\n"
 "    border-image: url(:/player/images/player/skin.png); \n"
@@ -280,18 +282,19 @@ public:
 "    background-color: transparent; /* \344\277\235\346\214\201\351\200\217\346\230\216\350\203\214\346\231\257\350\211\262 */\n"
 "}\n"
 "\n"
-"QPushButton:hover, \n"
+"QPushButton:hover\n"
 " {  \n"
 "	border-image: url(:/player/images/player/skin1.png); \n"
 "}"));
 
-        gridLayout->addWidget(pushButton_3, 0, 1, 1, 1);
+        gridLayout->addWidget(pushButton_skin, 0, 1, 1, 1);
 
-        pushButton_4 = new QPushButton(widget_bottom);
-        pushButton_4->setObjectName("pushButton_4");
-        pushButton_4->setMinimumSize(QSize(30, 30));
-        pushButton_4->setMaximumSize(QSize(30, 30));
-        pushButton_4->setStyleSheet(QString::fromUtf8("/* \346\222\255\346\224\276\346\214\211\351\222\256 */\n"
+        pushButton_game = new QPushButton(widget_bottom);
+        pushButton_game->setObjectName("pushButton_game");
+        pushButton_game->setMinimumSize(QSize(30, 30));
+        pushButton_game->setMaximumSize(QSize(30, 30));
+        pushButton_game->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        pushButton_game->setStyleSheet(QString::fromUtf8("/* \346\222\255\346\224\276\346\214\211\351\222\256 */\n"
 "QPushButton {\n"
 "    /* \346\233\277\346\215\242 background-image */\n"
 "    border-image: url(:/player/images/player/game.png); \n"
@@ -300,12 +303,12 @@ public:
 "    background-color: transparent; /* \344\277\235\346\214\201\351\200\217\346\230\216\350\203\214\346\231\257\350\211\262 */\n"
 "}\n"
 "\n"
-"QPushButton:hover, \n"
+"QPushButton:hover\n"
 " {  \n"
 "	border-image: url(:/player/images/player/game1.png); \n"
 "}"));
 
-        gridLayout->addWidget(pushButton_4, 0, 2, 1, 1);
+        gridLayout->addWidget(pushButton_game, 0, 2, 1, 1);
 
 
         gridLayout_5->addWidget(widget_bottom, 4, 0, 1, 1);
@@ -327,9 +330,9 @@ public:
         pushButton_download->setText(QCoreApplication::translate("leftwidget", "\346\234\254\345\234\260\345\222\214\344\270\213\350\275\275", nullptr));
         label_2->setText(QCoreApplication::translate("leftwidget", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:700;\">\346\210\221\347\232\204\346\255\214\345\215\225 |</span></p></body></html>", nullptr));
         btnAddPlaylist->setText(QCoreApplication::translate("leftwidget", "\346\226\260\345\273\272\346\255\214\345\215\225", nullptr));
-        pushButton_2->setText(QString());
-        pushButton_3->setText(QString());
-        pushButton_4->setText(QString());
+        pushButton_setting->setText(QString());
+        pushButton_skin->setText(QString());
+        pushButton_game->setText(QString());
     } // retranslateUi
 
 };

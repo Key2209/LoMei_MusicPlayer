@@ -43,19 +43,6 @@ border-radius:12px;</string>
    <property name="spacing">
     <number>0</number>
    </property>
-   <item row="0" column="1">
-    <spacer name="verticalSpacer">
-     <property name="orientation">
-      <enum>Qt::Orientation::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>321</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
    <item row="1" column="0">
     <spacer name="horizontalSpacer">
      <property name="orientation">
@@ -65,6 +52,45 @@ border-radius:12px;</string>
       <size>
        <width>496</width>
        <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="1" column="2">
+    <spacer name="horizontalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Orientation::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>495</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="2" column="1">
+    <spacer name="verticalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Orientation::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>320</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="0" column="1">
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Orientation::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>321</height>
       </size>
      </property>
     </spacer>
@@ -120,10 +146,15 @@ border-radius:12px;</string>
         </property>
         <property name="styleSheet">
          <string notr="true">border:none;
-background-color: transparent;</string>
+
+background-color: transparent;
+</string>
         </property>
         <layout class="QGridLayout" name="gridLayout_2">
          <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="horizontalSpacing">
           <number>0</number>
          </property>
          <item row="0" column="0">
@@ -150,12 +181,20 @@ QWidget#top_window { /* 假设你在 Designer 中设置了 Object Name 为 topBa
           </widget>
          </item>
          <item row="1" column="0">
-          <widget class="music_widget" name="music_main_widget" native="true">
+          <widget class="QStackedWidget" name="stackedWidget_music">
            <property name="styleSheet">
-            <string notr="true">background-color: #F6F6F6;
-
+            <string notr="true">background-color: #f6f6f6;
 border-radius:8px;</string>
            </property>
+           <property name="currentIndex">
+            <number>0</number>
+           </property>
+           <widget class="music_widget" name="pushButton_like">
+            <property name="styleSheet">
+             <string notr="true">background-color: #f6f6f6;</string>
+            </property>
+           </widget>
+           <widget class="music_widget" name="page_download"/>
           </widget>
          </item>
          <item row="2" column="0">
@@ -183,32 +222,6 @@ border-radius:8px;</string>
       </item>
      </layout>
     </widget>
-   </item>
-   <item row="1" column="2">
-    <spacer name="horizontalSpacer_2">
-     <property name="orientation">
-      <enum>Qt::Orientation::Horizontal</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>495</width>
-       <height>20</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="2" column="1">
-    <spacer name="verticalSpacer_2">
-     <property name="orientation">
-      <enum>Qt::Orientation::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>320</height>
-      </size>
-     </property>
-    </spacer>
    </item>
   </layout>
  </widget>

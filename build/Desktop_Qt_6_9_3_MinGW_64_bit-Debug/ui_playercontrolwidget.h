@@ -165,7 +165,7 @@ public:
         pushButton_play_prev_2->setObjectName("pushButton_play_prev_2");
         pushButton_play_prev_2->setMinimumSize(QSize(30, 30));
         pushButton_play_prev_2->setMaximumSize(QSize(30, 30));
-        pushButton_play_prev_2->setCursor(QCursor(Qt::CursorShape::ArrowCursor));
+        pushButton_play_prev_2->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         pushButton_play_prev_2->setStyleSheet(QString::fromUtf8("/* \346\222\255\346\224\276\346\214\211\351\222\256 */\n"
 "QPushButton {\n"
 "    /* \346\233\277\346\215\242 background-image */\n"
@@ -175,7 +175,7 @@ public:
 "    background-color: transparent; /* \344\277\235\346\214\201\351\200\217\346\230\216\350\203\214\346\231\257\350\211\262 */\n"
 "}\n"
 "\n"
-"QPushButton:hover, \n"
+"QPushButton:hover\n"
 " {  \n"
 "	border-image: url(:/player/images/player/like1.png); \n"
 "}"));
@@ -186,7 +186,7 @@ public:
         pushButton_play_prev_3->setObjectName("pushButton_play_prev_3");
         pushButton_play_prev_3->setMinimumSize(QSize(30, 30));
         pushButton_play_prev_3->setMaximumSize(QSize(30, 30));
-        pushButton_play_prev_3->setCursor(QCursor(Qt::CursorShape::ArrowCursor));
+        pushButton_play_prev_3->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         pushButton_play_prev_3->setStyleSheet(QString::fromUtf8("/* \346\222\255\346\224\276\346\214\211\351\222\256 */\n"
 "QPushButton {\n"
 "    /* \346\233\277\346\215\242 background-image */\n"
@@ -207,7 +207,7 @@ public:
         pushButton_play_prev_4->setObjectName("pushButton_play_prev_4");
         pushButton_play_prev_4->setMinimumSize(QSize(30, 30));
         pushButton_play_prev_4->setMaximumSize(QSize(30, 30));
-        pushButton_play_prev_4->setCursor(QCursor(Qt::CursorShape::ArrowCursor));
+        pushButton_play_prev_4->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         pushButton_play_prev_4->setStyleSheet(QString::fromUtf8("/* \346\222\255\346\224\276\346\214\211\351\222\256 */\n"
 "QPushButton {\n"
 "    /* \346\233\277\346\215\242 background-image */\n"
@@ -269,6 +269,7 @@ public:
         pushButton_playOrder->setObjectName("pushButton_playOrder");
         pushButton_playOrder->setMinimumSize(QSize(30, 30));
         pushButton_playOrder->setMaximumSize(QSize(30, 30));
+        pushButton_playOrder->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         pushButton_playOrder->setStyleSheet(QString::fromUtf8("/* \346\222\255\346\224\276\346\214\211\351\222\256 */\n"
 "QPushButton {\n"
 "    /* \346\233\277\346\215\242 background-image */\n"
@@ -289,7 +290,7 @@ public:
         pushButton_play_prev->setObjectName("pushButton_play_prev");
         pushButton_play_prev->setMinimumSize(QSize(30, 30));
         pushButton_play_prev->setMaximumSize(QSize(30, 30));
-        pushButton_play_prev->setCursor(QCursor(Qt::CursorShape::ArrowCursor));
+        pushButton_play_prev->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         pushButton_play_prev->setStyleSheet(QString::fromUtf8("/* \346\222\255\346\224\276\346\214\211\351\222\256 */\n"
 "QPushButton {\n"
 "    /* \346\233\277\346\215\242 background-image */\n"
@@ -313,7 +314,7 @@ public:
         pushButton_play->setObjectName("pushButton_play");
         pushButton_play->setMinimumSize(QSize(35, 35));
         pushButton_play->setMaximumSize(QSize(35, 35));
-        pushButton_play->setCursor(QCursor(Qt::CursorShape::ArrowCursor));
+        pushButton_play->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         pushButton_play->setStyleSheet(QString::fromUtf8("/* \346\222\255\346\224\276\346\214\211\351\222\256 */\n"
 "QPushButton {\n"
 "    /* \346\233\277\346\215\242 background-image */\n"
@@ -336,7 +337,7 @@ public:
         pushButton_play_next->setObjectName("pushButton_play_next");
         pushButton_play_next->setMinimumSize(QSize(30, 30));
         pushButton_play_next->setMaximumSize(QSize(30, 30));
-        pushButton_play_next->setCursor(QCursor(Qt::CursorShape::ArrowCursor));
+        pushButton_play_next->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         pushButton_play_next->setStyleSheet(QString::fromUtf8("/* \346\222\255\346\224\276\346\214\211\351\222\256 */\n"
 "QPushButton {\n"
 "    /* \346\233\277\346\215\242 background-image */\n"
@@ -361,6 +362,7 @@ public:
         pushButton_volume->setObjectName("pushButton_volume");
         pushButton_volume->setMinimumSize(QSize(30, 30));
         pushButton_volume->setMaximumSize(QSize(30, 30));
+        pushButton_volume->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         pushButton_volume->setStyleSheet(QString::fromUtf8("/* \346\222\255\346\224\276\346\214\211\351\222\256 */\n"
 "QPushButton {\n"
 "    /* \346\233\277\346\215\242 background-image */\n"
@@ -474,7 +476,7 @@ public:
         pushButton_play_3->setObjectName("pushButton_play_3");
         pushButton_play_3->setMinimumSize(QSize(40, 40));
         pushButton_play_3->setMaximumSize(QSize(40, 40));
-        pushButton_play_3->setCursor(QCursor(Qt::CursorShape::ArrowCursor));
+        pushButton_play_3->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         pushButton_play_3->setStyleSheet(QString::fromUtf8("/* \346\222\255\346\224\276\346\214\211\351\222\256 */\n"
 "QPushButton {\n"
 "    /* \346\233\277\346\215\242 background-image */\n"
@@ -493,7 +495,7 @@ public:
         pushButton_play_2->setObjectName("pushButton_play_2");
         pushButton_play_2->setMinimumSize(QSize(30, 30));
         pushButton_play_2->setMaximumSize(QSize(30, 30));
-        pushButton_play_2->setCursor(QCursor(Qt::CursorShape::ArrowCursor));
+        pushButton_play_2->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         pushButton_play_2->setStyleSheet(QString::fromUtf8("/* \346\222\255\346\224\276\346\214\211\351\222\256 */\n"
 "QPushButton {\n"
 "    /* \346\233\277\346\215\242 background-image */\n"
@@ -578,7 +580,7 @@ public:
     {
         playerControlWidget->setWindowTitle(QCoreApplication::translate("playerControlWidget", "Form", nullptr));
         label_songImage->setText(QString());
-        label_songName->setText(QCoreApplication::translate("playerControlWidget", "<html><head/><body><p align=\"center\"><span style=\" font-size:14pt; font-weight:700;\">\345\244\251\351\252\204\344\271\213\345\245\263</span></p></body></html>", nullptr));
+        label_songName->setText(QCoreApplication::translate("playerControlWidget", "<html><head/><body><p align=\"center\"><span style=\" font-size:14pt; font-weight:700;\">\345\244\251\344\271\213\351\252\204\345\245\263</span></p></body></html>", nullptr));
         label_singerName->setText(QCoreApplication::translate("playerControlWidget", "<html><head/><body><p align=\"center\"><span style=\" font-size:11pt; font-weight:700;\">-</span><span style=\" font-size:11pt;\"> \345\256\271\347\245\226\345\204\277</span></p></body></html>", nullptr));
         pushButton_play_prev_2->setText(QString());
         pushButton_play_prev_3->setText(QString());

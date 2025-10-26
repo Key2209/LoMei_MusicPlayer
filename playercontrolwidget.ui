@@ -141,7 +141,7 @@ border-radius: 12px;</string>
 background: transparent;</string>
                    </property>
                    <property name="text">
-                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:700;&quot;&gt;天骄之女&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:700;&quot;&gt;天之骄女&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
                   </widget>
                  </item>
@@ -188,7 +188,7 @@ background: transparent;</string>
                     </size>
                    </property>
                    <property name="cursor">
-                    <cursorShape>ArrowCursor</cursorShape>
+                    <cursorShape>PointingHandCursor</cursorShape>
                    </property>
                    <property name="styleSheet">
                     <string notr="true">/* 播放按钮 */
@@ -200,7 +200,7 @@ QPushButton {
     background-color: transparent; /* 保持透明背景色 */
 }
 
-QPushButton:hover, 
+QPushButton:hover
  {  
 	border-image: url(:/player/images/player/like1.png); 
 }</string>
@@ -225,7 +225,7 @@ QPushButton:hover,
                     </size>
                    </property>
                    <property name="cursor">
-                    <cursorShape>ArrowCursor</cursorShape>
+                    <cursorShape>PointingHandCursor</cursorShape>
                    </property>
                    <property name="styleSheet">
                     <string notr="true">/* 播放按钮 */
@@ -262,7 +262,7 @@ border-image: url(:/player/images/player/comment_press.png);
                     </size>
                    </property>
                    <property name="cursor">
-                    <cursorShape>ArrowCursor</cursorShape>
+                    <cursorShape>PointingHandCursor</cursorShape>
                    </property>
                    <property name="styleSheet">
                     <string notr="true">/* 播放按钮 */
@@ -375,6 +375,9 @@ border-image: url(:/player/images/player/more2.png);
                  <height>30</height>
                 </size>
                </property>
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
                <property name="styleSheet">
                 <string notr="true">/* 播放按钮 */
 QPushButton {
@@ -419,7 +422,7 @@ QPushButton {
                 </size>
                </property>
                <property name="cursor">
-                <cursorShape>ArrowCursor</cursorShape>
+                <cursorShape>PointingHandCursor</cursorShape>
                </property>
                <property name="styleSheet">
                 <string notr="true">/* 播放按钮 */
@@ -468,7 +471,7 @@ QPushButton:pressed {    border-image: url(:/player/images/player/btn_playPrev_5
                 </size>
                </property>
                <property name="cursor">
-                <cursorShape>ArrowCursor</cursorShape>
+                <cursorShape>PointingHandCursor</cursorShape>
                </property>
                <property name="styleSheet">
                 <string notr="true">/* 播放按钮 */
@@ -516,7 +519,7 @@ border-image: url(:/player/images/player/btn_playing.png);
                 </size>
                </property>
                <property name="cursor">
-                <cursorShape>ArrowCursor</cursorShape>
+                <cursorShape>PointingHandCursor</cursorShape>
                </property>
                <property name="styleSheet">
                 <string notr="true">/* 播放按钮 */
@@ -564,6 +567,9 @@ cursor: pointinghand;
                  <width>30</width>
                  <height>30</height>
                 </size>
+               </property>
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
                </property>
                <property name="styleSheet">
                 <string notr="true">/* 播放按钮 */
@@ -718,7 +724,7 @@ background: transparent;</string>
                 </size>
                </property>
                <property name="cursor">
-                <cursorShape>ArrowCursor</cursorShape>
+                <cursorShape>PointingHandCursor</cursorShape>
                </property>
                <property name="styleSheet">
                 <string notr="true">/* 播放按钮 */
@@ -753,7 +759,7 @@ border-image: url(:/player/images/player/MV_press.png);
                 </size>
                </property>
                <property name="cursor">
-                <cursorShape>ArrowCursor</cursorShape>
+                <cursorShape>PointingHandCursor</cursorShape>
                </property>
                <property name="styleSheet">
                 <string notr="true">/* 播放按钮 */

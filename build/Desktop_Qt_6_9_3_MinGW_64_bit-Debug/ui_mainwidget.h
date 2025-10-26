@@ -13,6 +13,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QWidget>
 #include "leftwidget.h"
 #include "music_widget.h"
@@ -25,18 +26,20 @@ class Ui_MainWidget
 {
 public:
     QGridLayout *gridLayout;
-    QSpacerItem *verticalSpacer;
     QSpacerItem *horizontalSpacer;
+    QSpacerItem *horizontalSpacer_2;
+    QSpacerItem *verticalSpacer_2;
+    QSpacerItem *verticalSpacer;
     QWidget *widget_realwindow;
     QGridLayout *gridLayout_3;
     leftwidget *left_widget;
     QWidget *widget_4;
     QGridLayout *gridLayout_2;
     topWidget *top_window;
-    music_widget *music_main_widget;
+    QStackedWidget *stackedWidget_music;
+    music_widget *pushButton_like;
+    music_widget *page_download;
     playerControlWidget *ctlr_music_widget;
-    QSpacerItem *horizontalSpacer_2;
-    QSpacerItem *verticalSpacer_2;
 
     void setupUi(QWidget *MainWidget)
     {
@@ -54,13 +57,21 @@ public:
         gridLayout->setSpacing(0);
         gridLayout->setObjectName("gridLayout");
         gridLayout->setContentsMargins(0, 0, 0, 0);
-        verticalSpacer = new QSpacerItem(20, 321, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
-
-        gridLayout->addItem(verticalSpacer, 0, 1, 1, 1);
-
         horizontalSpacer = new QSpacerItem(496, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
         gridLayout->addItem(horizontalSpacer, 1, 0, 1, 1);
+
+        horizontalSpacer_2 = new QSpacerItem(495, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+
+        gridLayout->addItem(horizontalSpacer_2, 1, 2, 1, 1);
+
+        verticalSpacer_2 = new QSpacerItem(20, 320, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
+
+        gridLayout->addItem(verticalSpacer_2, 2, 1, 1, 1);
+
+        verticalSpacer = new QSpacerItem(20, 321, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
+
+        gridLayout->addItem(verticalSpacer, 0, 1, 1, 1);
 
         widget_realwindow = new QWidget(MainWidget);
         widget_realwindow->setObjectName("widget_realwindow");
@@ -82,9 +93,12 @@ public:
         widget_4->setObjectName("widget_4");
         widget_4->setMinimumSize(QSize(0, 70));
         widget_4->setStyleSheet(QString::fromUtf8("border:none;\n"
-"background-color: transparent;"));
+"\n"
+"background-color: transparent;\n"
+""));
         gridLayout_2 = new QGridLayout(widget_4);
         gridLayout_2->setObjectName("gridLayout_2");
+        gridLayout_2->setHorizontalSpacing(0);
         gridLayout_2->setContentsMargins(0, -1, -1, -1);
         top_window = new topWidget(widget_4);
         top_window->setObjectName("top_window");
@@ -98,13 +112,19 @@ public:
 
         gridLayout_2->addWidget(top_window, 0, 0, 1, 1);
 
-        music_main_widget = new music_widget(widget_4);
-        music_main_widget->setObjectName("music_main_widget");
-        music_main_widget->setStyleSheet(QString::fromUtf8("background-color: #F6F6F6;\n"
-"\n"
+        stackedWidget_music = new QStackedWidget(widget_4);
+        stackedWidget_music->setObjectName("stackedWidget_music");
+        stackedWidget_music->setStyleSheet(QString::fromUtf8("background-color: #f6f6f6;\n"
 "border-radius:8px;"));
+        pushButton_like = new music_widget();
+        pushButton_like->setObjectName("pushButton_like");
+        pushButton_like->setStyleSheet(QString::fromUtf8("background-color: #f6f6f6;"));
+        stackedWidget_music->addWidget(pushButton_like);
+        page_download = new music_widget();
+        page_download->setObjectName("page_download");
+        stackedWidget_music->addWidget(page_download);
 
-        gridLayout_2->addWidget(music_main_widget, 1, 0, 1, 1);
+        gridLayout_2->addWidget(stackedWidget_music, 1, 0, 1, 1);
 
         ctlr_music_widget = new playerControlWidget(widget_4);
         ctlr_music_widget->setObjectName("ctlr_music_widget");
@@ -121,14 +141,6 @@ public:
 
         gridLayout->addWidget(widget_realwindow, 1, 1, 1, 1);
 
-        horizontalSpacer_2 = new QSpacerItem(495, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
-
-        gridLayout->addItem(horizontalSpacer_2, 1, 2, 1, 1);
-
-        verticalSpacer_2 = new QSpacerItem(20, 320, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
-
-        gridLayout->addItem(verticalSpacer_2, 2, 1, 1, 1);
-
         gridLayout->setRowStretch(0, 1);
         gridLayout->setRowStretch(1, 500);
         gridLayout->setRowStretch(2, 1);
@@ -137,6 +149,9 @@ public:
         gridLayout->setColumnStretch(2, 1);
 
         retranslateUi(MainWidget);
+
+        stackedWidget_music->setCurrentIndex(0);
+
 
         QMetaObject::connectSlotsByName(MainWidget);
     } // setupUi

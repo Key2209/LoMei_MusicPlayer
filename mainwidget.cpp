@@ -20,23 +20,8 @@ MainWidget::MainWidget(QWidget *parent)
 {
     ui->setupUi(this);
 
+    widgetInit();
 
-    this->setWindowFlags(Qt::FramelessWindowHint | Qt::Dialog);//去掉系统标题栏
-    //允许半透明
-    setAttribute(Qt::WA_TranslucentBackground, true);
-    // 创建阴影效果
-    QGraphicsDropShadowEffect *shadow = new QGraphicsDropShadowEffect(this);
-    shadow->setBlurRadius(10);              // 阴影模糊度
-    shadow->setColor(QColor(0, 0, 0, 100)); // 阴影颜色（带透明度）
-    shadow->setOffset(0, 0);                // 阴影偏移（x, y）
-
-    // 应用到最外层widget（你界面中最外层的背景widget）
-    ui->widget_realwindow->setGraphicsEffect(shadow);
-
-    this->setMouseTracking(true);//时刻追踪鼠标,时刻触发mousemoveevent
-    for (auto child : findChildren<QWidget*>()) {
-        child->setMouseTracking(true);
-    }
 
 
     connectAll();
@@ -59,11 +44,32 @@ void MainWidget::on_pushButton_clicked()
 
 void MainWidget::createPlaylist(PageButton *button)
 {
+    music_widget* musicWidget=new music_widget;
 
+    QString displayName=button->property("displayName").toString();
+    musicWidget->setPlaylistName(displayName);//设置歌单名字
+
+    QString objName=button->objectName();//设置页面object名字
+    musicWidget->setObjectName(objName);
+
+
+
+    ui->stackedWidget_music->addWidget(musicWidget);
+    qDebug()<<musicWidget;
 }
 
 void MainWidget::switchPlaylist(PageButton *button)
 {
+
+    QString objName=button->objectName();//设置页面object名字
+
+    music_widget *page=ui->stackedWidget_music->findChild<music_widget*>(objName);
+
+    if(page)
+    {
+        ui->stackedWidget_music->setCurrentWidget(page);
+        qDebug()<<objName;
+    }
 
 }
 
@@ -89,8 +95,47 @@ void MainWidget::connectAll()
 
 
 
+    //新建/切换歌单等
+    connect(ui->left_widget,&leftwidget::new_playList,this,&MainWidget::createPlaylist);
+    connect(ui->left_widget,&leftwidget::switch_playList,this,&MainWidget::switchPlaylist);
 
-    // connect(ui->left_widget,&leftwidget::new_playList,this,)
+
+
+}
+
+void MainWidget::widgetInit()
+{
+    //重写窗口
+    this->setWindowFlags(Qt::FramelessWindowHint | Qt::Dialog);//去掉系统标题栏
+    //允许半透明
+    setAttribute(Qt::WA_TranslucentBackground, true);
+    // 创建阴影效果
+    QGraphicsDropShadowEffect *shadow = new QGraphicsDropShadowEffect(this);
+    shadow->setBlurRadius(10);              // 阴影模糊度
+    shadow->setColor(QColor(0, 0, 0, 100)); // 阴影颜色（带透明度）
+    shadow->setOffset(0, 0);                // 阴影偏移（x, y）
+
+    // 应用到最外层widget（你界面中最外层的背景widget）,实际上已设置透明
+    ui->widget_realwindow->setGraphicsEffect(shadow);
+
+    this->setMouseTracking(true);//时刻追踪鼠标,时刻触发mousemoveevent,不然鼠标触控到控件不会追踪(moveEvent)
+    for (QWidget* &child : findChildren<QWidget*>()) {
+        child->setMouseTracking(true);
+    }
+
+
+    //初始化喜欢,最近播放,本地和下载界面
+    QVector<QString> musicWidgetName={"pushButton_history","pushButton_download","pushButton_home","pushButton_recommend"};
+    QVector<QString> listName={"最近播放","本地和下载","推荐","乐馆"};
+    int count = qMin(musicWidgetName.size(), listName.size());
+    for (int i = 0; i < count; ++i)
+    {
+        music_widget* musicWidget = new music_widget;
+        musicWidget->setPlaylistName(listName[i]);  // 设置中文歌单名字
+        musicWidget->setObjectName(musicWidgetName[i]); // 设置对象名
+        ui->stackedWidget_music->addWidget(musicWidget);
+        qDebug() << "创建:" << musicWidgetName[i] << "=>" << listName[i];
+    }
 
 
 

@@ -28,21 +28,23 @@ QT_BEGIN_NAMESPACE
 class Ui_music_widget
 {
 public:
-    QGridLayout *gridLayout_4;
-    QVBoxLayout *verticalLayout_2;
-    QStackedWidget *stackedWidget;
-    QWidget *page;
     QGridLayout *gridLayout_3;
-    QHBoxLayout *horizontalLayout_6;
+    QVBoxLayout *verticalLayout_3;
+    QHBoxLayout *horizontalLayout_2;
     QLabel *label_songImage;
     QVBoxLayout *verticalLayout;
     QLabel *label_Playlist;
     QLabel *label_Introduction;
-    QHBoxLayout *horizontalLayout_5;
+    QWidget *widget;
+    QGridLayout *gridLayout_2;
+    QHBoxLayout *horizontalLayout;
     QPushButton *pushButton_title_play;
+    QSpacerItem *horizontalSpacer;
     QPushButton *pushButton_add;
+    QSpacerItem *horizontalSpacer_6;
     QPushButton *pushButton_edit;
     QSpacerItem *horizontalSpacer_9;
+    QVBoxLayout *verticalLayout_2;
     QHBoxLayout *horizontalLayout_8;
     QPushButton *pushButton_title_songName;
     QPushButton *pushButton_title_comment;
@@ -62,31 +64,21 @@ public:
     QSpacerItem *horizontalSpacer_4;
     QListWidget *listWidget;
     QWidget *comment;
-    QWidget *page_2;
 
     void setupUi(QWidget *music_widget)
     {
         if (music_widget->objectName().isEmpty())
             music_widget->setObjectName("music_widget");
-        music_widget->resize(941, 618);
+        music_widget->resize(1057, 728);
         music_widget->setStyleSheet(QString::fromUtf8("border-radius:8px;\n"
 "background-color: rgb(255, 255, 255);"));
-        gridLayout_4 = new QGridLayout(music_widget);
-        gridLayout_4->setSpacing(0);
-        gridLayout_4->setObjectName("gridLayout_4");
-        gridLayout_4->setContentsMargins(0, 0, 0, 9);
-        verticalLayout_2 = new QVBoxLayout();
-        verticalLayout_2->setObjectName("verticalLayout_2");
-        stackedWidget = new QStackedWidget(music_widget);
-        stackedWidget->setObjectName("stackedWidget");
-        stackedWidget->setStyleSheet(QString::fromUtf8("boder:none;"));
-        page = new QWidget();
-        page->setObjectName("page");
-        gridLayout_3 = new QGridLayout(page);
+        gridLayout_3 = new QGridLayout(music_widget);
         gridLayout_3->setObjectName("gridLayout_3");
-        horizontalLayout_6 = new QHBoxLayout();
-        horizontalLayout_6->setObjectName("horizontalLayout_6");
-        label_songImage = new QLabel(page);
+        verticalLayout_3 = new QVBoxLayout();
+        verticalLayout_3->setObjectName("verticalLayout_3");
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setObjectName("horizontalLayout_2");
+        label_songImage = new QLabel(music_widget);
         label_songImage->setObjectName("label_songImage");
         label_songImage->setMinimumSize(QSize(130, 130));
         label_songImage->setMaximumSize(QSize(130, 130));
@@ -95,27 +87,37 @@ public:
         label_songImage->setPixmap(QPixmap(QString::fromUtf8(":/player/images/player/pretty_crazy.jpg")));
         label_songImage->setScaledContents(true);
 
-        horizontalLayout_6->addWidget(label_songImage);
+        horizontalLayout_2->addWidget(label_songImage);
 
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName("verticalLayout");
-        label_Playlist = new QLabel(page);
+        label_Playlist = new QLabel(music_widget);
         label_Playlist->setObjectName("label_Playlist");
         label_Playlist->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
 "background: transparent;"));
 
         verticalLayout->addWidget(label_Playlist);
 
-        label_Introduction = new QLabel(page);
+        label_Introduction = new QLabel(music_widget);
         label_Introduction->setObjectName("label_Introduction");
         label_Introduction->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
 "background: transparent;"));
 
         verticalLayout->addWidget(label_Introduction);
 
-        horizontalLayout_5 = new QHBoxLayout();
-        horizontalLayout_5->setObjectName("horizontalLayout_5");
-        pushButton_title_play = new QPushButton(page);
+        widget = new QWidget(music_widget);
+        widget->setObjectName("widget");
+        widget->setMinimumSize(QSize(300, 30));
+        widget->setMaximumSize(QSize(300, 30));
+        widget->setStyleSheet(QString::fromUtf8("background-color: #F6F6F6;"));
+        gridLayout_2 = new QGridLayout(widget);
+        gridLayout_2->setSpacing(0);
+        gridLayout_2->setObjectName("gridLayout_2");
+        gridLayout_2->setContentsMargins(0, 0, 0, 0);
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setSpacing(0);
+        horizontalLayout->setObjectName("horizontalLayout");
+        pushButton_title_play = new QPushButton(widget);
         pushButton_title_play->setObjectName("pushButton_title_play");
         pushButton_title_play->setMinimumSize(QSize(90, 30));
         pushButton_title_play->setMaximumSize(QSize(90, 30));
@@ -138,12 +140,17 @@ public:
         icon.addFile(QString::fromUtf8(":/player/images/player/play_button.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         pushButton_title_play->setIcon(icon);
 
-        horizontalLayout_5->addWidget(pushButton_title_play);
+        horizontalLayout->addWidget(pushButton_title_play);
 
-        pushButton_add = new QPushButton(page);
+        horizontalSpacer = new QSpacerItem(13, 45, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer);
+
+        pushButton_add = new QPushButton(widget);
         pushButton_add->setObjectName("pushButton_add");
         pushButton_add->setMinimumSize(QSize(90, 30));
         pushButton_add->setMaximumSize(QSize(90, 30));
+        pushButton_add->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         pushButton_add->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    background-color: #E3E3E3;\n"
 "    color: black;\n"
@@ -163,12 +170,17 @@ public:
         icon1.addFile(QString::fromUtf8(":/player/images/player/add_path.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         pushButton_add->setIcon(icon1);
 
-        horizontalLayout_5->addWidget(pushButton_add);
+        horizontalLayout->addWidget(pushButton_add);
 
-        pushButton_edit = new QPushButton(page);
+        horizontalSpacer_6 = new QSpacerItem(13, 45, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer_6);
+
+        pushButton_edit = new QPushButton(widget);
         pushButton_edit->setObjectName("pushButton_edit");
         pushButton_edit->setMinimumSize(QSize(90, 30));
         pushButton_edit->setMaximumSize(QSize(90, 30));
+        pushButton_edit->setCursor(QCursor(Qt::CursorShape::OpenHandCursor));
         pushButton_edit->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    background-color: #E3E3E3;\n"
 "    color: black;\n"
@@ -188,27 +200,38 @@ public:
         icon2.addFile(QString::fromUtf8(":/player/images/player/edit_button1.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         pushButton_edit->setIcon(icon2);
 
-        horizontalLayout_5->addWidget(pushButton_edit);
+        horizontalLayout->addWidget(pushButton_edit);
+
+        horizontalLayout->setStretch(0, 300);
+        horizontalLayout->setStretch(1, 1);
+        horizontalLayout->setStretch(2, 300);
+        horizontalLayout->setStretch(3, 1);
+        horizontalLayout->setStretch(4, 300);
+
+        gridLayout_2->addLayout(horizontalLayout, 0, 0, 1, 1);
 
 
-        verticalLayout->addLayout(horizontalLayout_5);
+        verticalLayout->addWidget(widget);
 
 
-        horizontalLayout_6->addLayout(verticalLayout);
+        horizontalLayout_2->addLayout(verticalLayout);
 
         horizontalSpacer_9 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
-        horizontalLayout_6->addItem(horizontalSpacer_9);
+        horizontalLayout_2->addItem(horizontalSpacer_9);
 
 
-        gridLayout_3->addLayout(horizontalLayout_6, 0, 0, 1, 1);
+        verticalLayout_3->addLayout(horizontalLayout_2);
 
+        verticalLayout_2 = new QVBoxLayout();
+        verticalLayout_2->setObjectName("verticalLayout_2");
         horizontalLayout_8 = new QHBoxLayout();
         horizontalLayout_8->setObjectName("horizontalLayout_8");
-        pushButton_title_songName = new QPushButton(page);
+        pushButton_title_songName = new QPushButton(music_widget);
         pushButton_title_songName->setObjectName("pushButton_title_songName");
         pushButton_title_songName->setMinimumSize(QSize(90, 30));
         pushButton_title_songName->setMaximumSize(QSize(90, 30));
+        pushButton_title_songName->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         pushButton_title_songName->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "            border: none;\n"
 "			color:black;\n"
@@ -225,10 +248,11 @@ public:
 
         horizontalLayout_8->addWidget(pushButton_title_songName);
 
-        pushButton_title_comment = new QPushButton(page);
+        pushButton_title_comment = new QPushButton(music_widget);
         pushButton_title_comment->setObjectName("pushButton_title_comment");
         pushButton_title_comment->setMinimumSize(QSize(90, 30));
         pushButton_title_comment->setMaximumSize(QSize(90, 30));
+        pushButton_title_comment->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         pushButton_title_comment->setStyleSheet(QString::fromUtf8("\n"
 "        QPushButton:hover {\n"
 "\n"
@@ -254,7 +278,7 @@ public:
 
         horizontalLayout_7 = new QHBoxLayout();
         horizontalLayout_7->setObjectName("horizontalLayout_7");
-        lineEdit_search = new QLineEdit(page);
+        lineEdit_search = new QLineEdit(music_widget);
         lineEdit_search->setObjectName("lineEdit_search");
         lineEdit_search->setMinimumSize(QSize(0, 30));
         lineEdit_search->setMaximumSize(QSize(230, 30));
@@ -272,10 +296,12 @@ public:
         horizontalLayout_8->addLayout(horizontalLayout_7);
 
 
-        gridLayout_3->addLayout(horizontalLayout_8, 1, 0, 1, 1);
+        verticalLayout_2->addLayout(horizontalLayout_8);
 
-        stackedWidget_song_comment = new QStackedWidget(page);
+        stackedWidget_song_comment = new QStackedWidget(music_widget);
         stackedWidget_song_comment->setObjectName("stackedWidget_song_comment");
+        stackedWidget_song_comment->setStyleSheet(QString::fromUtf8("background-color:#F6F6F6;\n"
+""));
         song = new QWidget();
         song->setObjectName("song");
         gridLayout = new QGridLayout(song);
@@ -317,11 +343,19 @@ public:
 
         horizontalLayout_10->addItem(horizontalSpacer_4);
 
+        horizontalLayout_10->setStretch(0, 10);
+        horizontalLayout_10->setStretch(1, 160);
+        horizontalLayout_10->setStretch(2, 10);
+        horizontalLayout_10->setStretch(3, 170);
+        horizontalLayout_10->setStretch(4, 10);
+        horizontalLayout_10->setStretch(5, 20);
 
         verticalLayout_4->addLayout(horizontalLayout_10);
 
         listWidget = new QListWidget(song);
         listWidget->setObjectName("listWidget");
+        listWidget->setStyleSheet(QString::fromUtf8("background-color:#F6F6F6;\n"
+""));
 
         verticalLayout_4->addWidget(listWidget);
 
@@ -333,22 +367,18 @@ public:
         comment->setObjectName("comment");
         stackedWidget_song_comment->addWidget(comment);
 
-        gridLayout_3->addWidget(stackedWidget_song_comment, 2, 0, 1, 1);
-
-        stackedWidget->addWidget(page);
-        page_2 = new QWidget();
-        page_2->setObjectName("page_2");
-        stackedWidget->addWidget(page_2);
-
-        verticalLayout_2->addWidget(stackedWidget);
+        verticalLayout_2->addWidget(stackedWidget_song_comment);
 
 
-        gridLayout_4->addLayout(verticalLayout_2, 0, 0, 1, 1);
+        verticalLayout_3->addLayout(verticalLayout_2);
+
+
+        gridLayout_3->addLayout(verticalLayout_3, 0, 0, 1, 1);
 
 
         retranslateUi(music_widget);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget_song_comment->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(music_widget);
@@ -358,7 +388,14 @@ public:
     {
         music_widget->setWindowTitle(QCoreApplication::translate("music_widget", "Form", nullptr));
         label_songImage->setText(QString());
-        label_Playlist->setText(QCoreApplication::translate("music_widget", "<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">\345\243\253\345\244\232\345\225\244\346\242\250\345\225\244\346\242\250\345\206\232\345\256\266\346\251\231\347\232\204\346\255\214\345\215\225</span></p></body></html>", nullptr));
+        label_Playlist->setText(QCoreApplication::translate("music_widget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"hr { height: 1px; border-width: 0; }\n"
+"li.unchecked::marker { content: \"\\2610\"; }\n"
+"li.checked::marker { content: \"\\2612\"; }\n"
+"</style></head><body style=\" font-family:'Microsoft YaHei UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:16pt; font-weight:700;\">\345\243\253\345\244\232\345\225\244\346\242\250\345\225\244\346\242\250\345\206\232\345\256\266\346\251\231\344\270\255\346\204\217\345\230\205\346\255\214</span></p></body></html>", nullptr));
         label_Introduction->setText(QCoreApplication::translate("music_widget", "<html><head/><body><p>\347\256\200\345\215\225\344\273\213\347\273\215\344\270\213\344\275\240\350\207\252\345\267\261</p></body></html>", nullptr));
         pushButton_title_play->setText(QCoreApplication::translate("music_widget", "\346\222\255\346\224\276", nullptr));
         pushButton_add->setText(QCoreApplication::translate("music_widget", "\346\267\273\345\212\240", nullptr));

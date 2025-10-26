@@ -23,6 +23,10 @@ public:
     ~music_widget();
 
 
+    void setPlaylistName(const QString &name);
+    void setPlaylistIntroduction(const QString &Introduction);
+    void setPlaylistCover(const QPixmap &pixmap);
+
 public slots:
     // void createPlaylist(PageButton *button);
     // void switchPlaylist(PageButton *button);

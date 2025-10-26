@@ -59,6 +59,7 @@ public:
         pushButton_back->setObjectName("pushButton_back");
         pushButton_back->setMinimumSize(QSize(35, 35));
         pushButton_back->setMaximumSize(QSize(35, 35));
+        pushButton_back->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         pushButton_back->setStyleSheet(QString::fromUtf8("/* \346\222\255\346\224\276\346\214\211\351\222\256 */\n"
 "QPushButton {\n"
 "    /* \346\233\277\346\215\242 background-image */\n"
@@ -79,6 +80,7 @@ public:
         pushButton_ahead->setObjectName("pushButton_ahead");
         pushButton_ahead->setMinimumSize(QSize(35, 35));
         pushButton_ahead->setMaximumSize(QSize(35, 35));
+        pushButton_ahead->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         pushButton_ahead->setStyleSheet(QString::fromUtf8("/* \346\222\255\346\224\276\346\214\211\351\222\256 */\n"
 "QPushButton {\n"
 "    /* \346\233\277\346\215\242 background-image */\n"
@@ -103,7 +105,7 @@ public:
         lineEdit->setMinimumSize(QSize(250, 30));
         lineEdit->setMaximumSize(QSize(450, 30));
         lineEdit->setStyleSheet(QString::fromUtf8("background-color: #E3E3E3;\n"
-"border-raidus:3px;\n"
+"border-raidus:2px;\n"
 ""));
 
         horizontalLayout->addWidget(lineEdit);
@@ -112,6 +114,7 @@ public:
         pushButton_min_6->setObjectName("pushButton_min_6");
         pushButton_min_6->setMinimumSize(QSize(35, 35));
         pushButton_min_6->setMaximumSize(QSize(35, 35));
+        pushButton_min_6->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         pushButton_min_6->setStyleSheet(QString::fromUtf8("/* \346\222\255\346\224\276\346\214\211\351\222\256 */\n"
 "QPushButton {\n"
 "    /* \346\233\277\346\215\242 background-image */\n"
@@ -144,6 +147,7 @@ public:
         pushButton_max->setObjectName("pushButton_max");
         pushButton_max->setMinimumSize(QSize(20, 20));
         pushButton_max->setMaximumSize(QSize(20, 20));
+        pushButton_max->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         pushButton_max->setStyleSheet(QString::fromUtf8("/* \346\222\255\346\224\276\346\214\211\351\222\256 */\n"
 "QPushButton {\n"
 "    /* \346\233\277\346\215\242 background-image */\n"
@@ -164,6 +168,7 @@ public:
         pushButton_min->setObjectName("pushButton_min");
         pushButton_min->setMinimumSize(QSize(20, 20));
         pushButton_min->setMaximumSize(QSize(20, 20));
+        pushButton_min->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         pushButton_min->setStyleSheet(QString::fromUtf8("/* \346\222\255\346\224\276\346\214\211\351\222\256 */\n"
 "QPushButton {\n"
 "    /* \346\233\277\346\215\242 background-image */\n"
@@ -188,6 +193,7 @@ public:
         pushButton_close->setObjectName("pushButton_close");
         pushButton_close->setMinimumSize(QSize(20, 20));
         pushButton_close->setMaximumSize(QSize(20, 20));
+        pushButton_close->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         pushButton_close->setStyleSheet(QString::fromUtf8("/* \346\222\255\346\224\276\346\214\211\351\222\256 */\n"
 "QPushButton {\n"
 "    /* \346\233\277\346\215\242 background-image */\n"

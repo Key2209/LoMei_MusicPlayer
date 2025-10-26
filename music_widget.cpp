@@ -5,19 +5,59 @@
 
 #include <QMessageBox>
 #include <QPropertyAnimation>
-
+#include <songwidget.h>
+#include <QListWidget>
 music_widget::music_widget(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::music_widget)
 {
     ui->setupUi(this);
     buttonInit();
+
+    //ui->stackedWidget_song_comment->currentWidget();
+
+    QListWidgetItem *item=new QListWidgetItem();
+    item->setSizeHint(QSize(0,60));
+    ui->listWidget->addItem(item);
+
+
+    songwidget* widget=new songwidget;
+
+    ui->listWidget->setItemWidget(item,widget);
 }
 
 music_widget::~music_widget()
 {
     delete ui;
 }
+
+void music_widget::setPlaylistName(const QString &name)
+{
+    QFont font;
+    font.setFamily("Microsoft YaHei"); // 设置字体族
+    font.setPointSize(16);             // 设置字号
+    font.setBold(true);                // 加粗
+    font.setItalic(false);             // 斜体
+    ui->label_Playlist->setFont(font);
+
+
+    ui->label_Playlist->setText(name);
+
+
+
+}
+
+void music_widget::setPlaylistIntroduction(const QString &Introduction)
+{
+    ui->label_Introduction->setText(Introduction);
+}
+
+void music_widget::setPlaylistCover(const QPixmap &pixmap)
+{
+    ui->label_songImage->setPixmap(pixmap);
+}
+
+
 
 
 
@@ -122,6 +162,6 @@ QPushButton {
 
 
 
-    ui->lineEdit_search->setPlaceholderText("搜索歌单");
+    ui->lineEdit_search->setPlaceholderText("  搜索歌单");
 }
 

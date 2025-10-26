@@ -100,6 +100,10 @@
         <file>images/player/recommend_black.png</file>
         <file>images/player/DUO.jpg</file>
         <file>images/player/joey.jpg</file>
+        <file>images/player/play_button_green.png</file>
+        <file>images/player/play_button_white.png</file>
+        <file>images/player/stop_button_green.png</file>
+        <file>images/player/stop_button_white.png</file>
     </qresource>
     <qresource prefix="/styles"/>
 </RCC>

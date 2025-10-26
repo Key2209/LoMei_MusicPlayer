@@ -19,6 +19,7 @@ SOURCES += \
     mytoolclass.cpp \
     pagebutton.cpp \
     playercontrolwidget.cpp \
+    songwidget.cpp \
     topwidget.cpp
 
 HEADERS += \
@@ -31,6 +32,7 @@ HEADERS += \
     mytoolclass.h \
     pagebutton.h \
     playercontrolwidget.h \
+    songwidget.h \
     topwidget.h
 
 FORMS += \
@@ -39,6 +41,7 @@ FORMS += \
     mainwidget.ui \
     music_widget.ui \
     playercontrolwidget.ui \
+    songwidget.ui \
     topwidget.ui
 
 # Default rules for deployment.

@@ -7,6 +7,10 @@ topWidget::topWidget(QWidget *parent)
     ui->setupUi(this);
     this->setAttribute(Qt::WA_StyledBackground, true);//强制QSS绘制,不然会导致背景颜色很奇怪,具体原理还不懂
 
+
+
+    ui->lineEdit->setPlaceholderText("  搜索音乐");
+
 }
 
 topWidget::~topWidget()

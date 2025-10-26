@@ -52,6 +52,9 @@ border-radius:8px;</string>
            <height>35</height>
           </size>
          </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
          <property name="styleSheet">
           <string notr="true">/* 播放按钮 */
 QPushButton {
@@ -85,6 +88,9 @@ border-image: url(:/player/images/player/back1.png);
            <width>35</width>
            <height>35</height>
           </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
          </property>
          <property name="styleSheet">
           <string notr="true">/* 播放按钮 */
@@ -124,7 +130,7 @@ border-image: url(:/player/images/player/back1.png);
        </property>
        <property name="styleSheet">
         <string notr="true">background-color: #E3E3E3;
-border-raidus:3px;
+border-raidus:2px;
 </string>
        </property>
       </widget>
@@ -142,6 +148,9 @@ border-raidus:3px;
          <width>35</width>
          <height>35</height>
         </size>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
        </property>
        <property name="styleSheet">
         <string notr="true">/* 播放按钮 */
@@ -209,6 +218,9 @@ background-color: transparent;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
           <property name="styleSheet">
            <string notr="true">/* 播放按钮 */
 QPushButton {
@@ -242,6 +254,9 @@ border-image: url(:/player/images/player/Maximize2.png);
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
           </property>
           <property name="styleSheet">
            <string notr="true">/* 播放按钮 */
@@ -289,6 +304,9 @@ border-image: url(:/player/images/player/Minimize1.png);
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
           </property>
           <property name="styleSheet">
            <string notr="true">/* 播放按钮 */

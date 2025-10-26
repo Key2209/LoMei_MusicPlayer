@@ -70,7 +70,7 @@ protected:
 private:
     Ui::MainWidget *ui;
     void connectAll();
-
+    void widgetInit();
 
 
 

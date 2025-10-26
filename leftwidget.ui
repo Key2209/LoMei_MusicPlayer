@@ -360,7 +360,7 @@ QPushButton:pressed {
      </property>
      <layout class="QGridLayout" name="gridLayout">
       <item row="0" column="0">
-       <widget class="QPushButton" name="pushButton_2">
+       <widget class="QPushButton" name="pushButton_setting">
         <property name="minimumSize">
          <size>
           <width>30</width>
@@ -372,6 +372,9 @@ QPushButton:pressed {
           <width>30</width>
           <height>30</height>
          </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <property name="styleSheet">
          <string notr="true">/* 播放按钮 */
@@ -383,7 +386,7 @@ QPushButton {
     background-color: transparent; /* 保持透明背景色 */
 }
 
-QPushButton:hover, 
+QPushButton:hover
  {  
 	border-image: url(:/player/images/player/setting1.png); 
 }</string>
@@ -394,7 +397,7 @@ QPushButton:hover,
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QPushButton" name="pushButton_3">
+       <widget class="QPushButton" name="pushButton_skin">
         <property name="minimumSize">
          <size>
           <width>30</width>
@@ -406,6 +409,9 @@ QPushButton:hover,
           <width>30</width>
           <height>30</height>
          </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <property name="styleSheet">
          <string notr="true">/* 播放按钮 */
@@ -417,7 +423,7 @@ QPushButton {
     background-color: transparent; /* 保持透明背景色 */
 }
 
-QPushButton:hover, 
+QPushButton:hover
  {  
 	border-image: url(:/player/images/player/skin1.png); 
 }</string>
@@ -428,7 +434,7 @@ QPushButton:hover,
        </widget>
       </item>
       <item row="0" column="2">
-       <widget class="QPushButton" name="pushButton_4">
+       <widget class="QPushButton" name="pushButton_game">
         <property name="minimumSize">
          <size>
           <width>30</width>
@@ -441,6 +447,9 @@ QPushButton:hover,
           <height>30</height>
          </size>
         </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
         <property name="styleSheet">
          <string notr="true">/* 播放按钮 */
 QPushButton {
@@ -451,7 +460,7 @@ QPushButton {
     background-color: transparent; /* 保持透明背景色 */
 }
 
-QPushButton:hover, 
+QPushButton:hover
  {  
 	border-image: url(:/player/images/player/game1.png); 
 }</string>

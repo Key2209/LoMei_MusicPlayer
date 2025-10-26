@@ -47,13 +47,13 @@ leftwidget::leftwidget(QWidget *parent)
                                   QPixmap(":/player/images/player/home.png"),
                                   QPixmap(":/player/images/player/home_black.png")
                                   );
-    ui->pushButton_home->type=1;
+    ui->pushButton_home->setType(1);
     ui->pushButton_home->updateIcon();
     ui->pushButton_recommend->setIcons(QPixmap(":/player/images/player/recommend.png"),
                                   QPixmap(":/player/images/player/recommend.png"),
                                   QPixmap(":/player/images/player/recommend_black.png")
                                   );
-    ui->pushButton_recommend->type=1;
+    ui->pushButton_recommend->setType(1);
     ui->pushButton_recommend->updateIcon();
     ui->pushButton_like->setIcons(QPixmap(":/player/images/player/like_left.png"),
                                   QPixmap(":/player/images/player/like_left.png"),
@@ -68,7 +68,21 @@ leftwidget::leftwidget(QWidget *parent)
                                       QPixmap(":/player/images/player/download_black.png")
                                       );
 
+    //ui->pushButton_home->setObjectName("pushButton_home");
+    ui->pushButton_home->setProperty("dispalyname","pushButton_home");
 
+    //ui->pushButton_recommend->setObjectName("pushButton_recommend");
+    ui->pushButton_recommend->setProperty("dispalyname","pushButton_recommend");
+
+    //ui->pushButton_like->setObjectName("pushButton_like");
+    ui->pushButton_like->setProperty("dispalyname","pushButton_like");
+
+    //ui->pushButton_history->setObjectName("pushButton_history");
+    ui->pushButton_history->setProperty("dispalyname","pushButton_history");
+
+
+    //ui->pushButton_download->setObjectName("pushButton_download");
+    ui->pushButton_download->setProperty("dispalyname","pushButton_download");
 
 
     buttonGroup = new QButtonGroup(this);
@@ -78,7 +92,55 @@ leftwidget::leftwidget(QWidget *parent)
     buttonGroup->addButton(ui->pushButton_like, 2);
     buttonGroup->addButton(ui->pushButton_history, 3);
     buttonGroup->addButton(ui->pushButton_download, 4);
+
+    //切换页面connect
+    //
+
+    /*
+     * QOverload<QAbstractButton*, bool>重载
+     * 因为&QButtonGroup::buttonToggled:
+        void buttonToggled(QAbstractButton *button, bool checked);
+        void buttonToggled(int id, bool checked);
+
+     *
+     *
+     */
+    connect(buttonGroup, QOverload<QAbstractButton*, bool>::of(&QButtonGroup::buttonToggled),
+            this, [=](QAbstractButton *button, bool checked) {
+                if (checked) {
+                    // 只有被选中的时候才触发
+                    PageButton *pageBtn = qobject_cast<PageButton*>(button);
+                    if (pageBtn) {
+                        emit switch_playList(pageBtn);  // 通知主界面切换右侧页面
+                    }
+                }
+            });
+
+
     ui->pushButton_like->setChecked(true);
+
+
+    ui->scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->scrollArea->setStyleSheet(
+        "QScrollBar:vertical {"
+        "    background: transparent;"
+        "    width: 5px;"
+        "    margin: 0px;"
+        "}"
+        "QScrollBar::handle:vertical {"
+        "    background:rgba(216, 216, 216, 0.3);"  // 半透明
+        "    border-radius: 5px;"
+        "    min-height: 20px;"
+        "}"
+        "QScrollBar::handle:vertical:hover {"
+        "    background: rgba(216, 216, 216, 0.5);"
+        "}"
+        "QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {"
+        "    height: 0px;"
+        "}"
+        );
+
 
 }
 
@@ -139,8 +201,7 @@ void leftwidget::on_btnAddPlaylist_clicked()
 
             //加入互斥按钮组
             buttonGroup->addButton(btn);
-            // 自动选中新建的按钮
-            btn->setChecked(true);
+
 
 
             //GPT说这样写好
@@ -149,10 +210,9 @@ void leftwidget::on_btnAddPlaylist_clicked()
             btn->setProperty("displayName", name);   // 显示名（中文、符号都没问题）
 
             emit new_playList(btn);
-            connect(btn,&PageButton::isChecked,this,[=]()
-                    {
-                emit switch_playList(btn);
-            });
+
+            // 自动选中新建的按钮
+            btn->setChecked(true);
         }
 
 
