@@ -434,6 +434,7 @@ Makefile: ../../QQMusic.pro F:/Qt/6.9.3/mingw_64/mkspecs/win32-g++/qmake.conf F:
 		F:/Qt/6.9.3/mingw_64/lib/Qt6Gui.prl \
 		F:/Qt/6.9.3/mingw_64/lib/Qt6Network.prl \
 		F:/Qt/6.9.3/mingw_64/lib/Qt6Sql.prl \
+		F:/Qt/6.9.3/mingw_64/lib/Qt6Concurrent.prl \
 		F:/Qt/6.9.3/mingw_64/lib/Qt6Core.prl \
 		F:/Qt/6.9.3/mingw_64/lib/Qt6EntryPoint.prl \
 		F:/Qt/6.9.3/mingw_64/mkspecs/features/build_pass.prf \
@@ -803,6 +804,7 @@ F:/Qt/6.9.3/mingw_64/lib/Qt6Widgets.prl:
 F:/Qt/6.9.3/mingw_64/lib/Qt6Gui.prl:
 F:/Qt/6.9.3/mingw_64/lib/Qt6Network.prl:
 F:/Qt/6.9.3/mingw_64/lib/Qt6Sql.prl:
+F:/Qt/6.9.3/mingw_64/lib/Qt6Concurrent.prl:
 F:/Qt/6.9.3/mingw_64/lib/Qt6Core.prl:
 F:/Qt/6.9.3/mingw_64/lib/Qt6EntryPoint.prl:
 F:/Qt/6.9.3/mingw_64/mkspecs/features/build_pass.prf:

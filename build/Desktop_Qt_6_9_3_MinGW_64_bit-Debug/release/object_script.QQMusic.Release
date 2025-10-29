@@ -2,7 +2,9 @@ release/addmusicdialog.o
 release/leftwidget.o
 release/main.o
 release/mainwidget.o
+release/metadataworker.o
 release/music_widget.o
+release/musiccontroller.o
 release/musicmanage.o
 release/myslider.o
 release/mytoolclass.o
@@ -14,7 +16,10 @@ release/qrc_myResources.o
 release/moc_addmusicdialog.o
 release/moc_leftwidget.o
 release/moc_mainwidget.o
+release/moc_metadataworker.o
 release/moc_music_widget.o
+release/moc_musiccontroller.o
+release/moc_musicmanage.o
 release/moc_myslider.o
 release/moc_pagebutton.o
 release/moc_playercontrolwidget.o

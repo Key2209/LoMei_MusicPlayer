@@ -108,7 +108,7 @@ QStringList addmusicdialog::getMusicPath()
 
 void addmusicdialog::on_btnAddFolder_clicked()
 {
-    QString folder=QFileDialog::getExistingDirectory(this,"选择音乐文件夹");//获得用户选择的路径
+    QString folder=QFileDialog::getExistingDirectory(this,"选择音乐文件夹","D:/QtProject/RC/musiclist");//获得用户选择的路径
     if(folder.isEmpty())return;
 
     QListWidgetItem *item=new QListWidgetItem(ui->listFolders);//在listFolders添加一行用来显示路径
@@ -347,8 +347,15 @@ void addmusicdialog::mouseMoveEvent(QMouseEvent *event)
 
 void addmusicdialog::on_btnOK_clicked()
 {
+
     QStringList list=getMusicPath();
-    this->close();
+    emit sendPath(list);
+    accept();
+    //this->close();
 
 }
+
+
+
+
 

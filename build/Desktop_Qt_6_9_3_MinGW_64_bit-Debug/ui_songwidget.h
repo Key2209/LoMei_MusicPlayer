@@ -25,12 +25,14 @@ QT_BEGIN_NAMESPACE
 class Ui_songwidget
 {
 public:
-    QGridLayout *gridLayout;
+    QGridLayout *gridLayout_3;
     QHBoxLayout *horizontalLayout_3;
     QHBoxLayout *horizontalLayout;
     QWidget *widget;
     QLabel *label_image;
     PageButton *pushButton_image;
+    QWidget *widget_2;
+    QGridLayout *gridLayout;
     QVBoxLayout *verticalLayout;
     QLabel *song;
     QLabel *singer;
@@ -40,6 +42,8 @@ public:
     QPushButton *pushButton_add;
     QPushButton *pushButton_more;
     QSpacerItem *horizontalSpacer_2;
+    QWidget *widget_3;
+    QGridLayout *gridLayout_2;
     QLabel *label_collection;
     QSpacerItem *horizontalSpacer_3;
     QLabel *label_duration;
@@ -49,12 +53,11 @@ public:
     {
         if (songwidget->objectName().isEmpty())
             songwidget->setObjectName("songwidget");
-        songwidget->resize(1092, 67);
+        songwidget->resize(1181, 67);
         songwidget->setStyleSheet(QString::fromUtf8("background-color:#F1F1F1;\n"
 "border-radius: 8px;"));
-        gridLayout = new QGridLayout(songwidget);
-        gridLayout->setObjectName("gridLayout");
-        gridLayout->setContentsMargins(0, -1, -1, -1);
+        gridLayout_3 = new QGridLayout(songwidget);
+        gridLayout_3->setObjectName("gridLayout_3");
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName("horizontalLayout_3");
         horizontalLayout = new QHBoxLayout();
@@ -71,7 +74,7 @@ public:
         label_image->setMinimumSize(QSize(45, 45));
         label_image->setMaximumSize(QSize(45, 45));
         label_image->setStyleSheet(QString::fromUtf8("border-radius:12px;"));
-        label_image->setPixmap(QPixmap(QString::fromUtf8(":/player/images/player/pretty_crazy.jpg")));
+        label_image->setPixmap(QPixmap(QString::fromUtf8(":/player/images/player/songimagedefault2.png")));
         label_image->setScaledContents(true);
         pushButton_image = new PageButton(widget);
         pushButton_image->setObjectName("pushButton_image");
@@ -94,16 +97,26 @@ public:
 
         horizontalLayout->addWidget(widget);
 
+        widget_2 = new QWidget(songwidget);
+        widget_2->setObjectName("widget_2");
+        widget_2->setMinimumSize(QSize(200, 45));
+        widget_2->setMaximumSize(QSize(200, 45));
+        widget_2->setStyleSheet(QString::fromUtf8("background-color: transparent;"));
+        gridLayout = new QGridLayout(widget_2);
+        gridLayout->setSpacing(0);
+        gridLayout->setObjectName("gridLayout");
+        gridLayout->setContentsMargins(0, 0, 0, 0);
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName("verticalLayout");
-        song = new QLabel(songwidget);
+        song = new QLabel(widget_2);
         song->setObjectName("song");
         song->setStyleSheet(QString::fromUtf8("background-color: transparent;\n"
-"color: #787878;"));
+"color: #787878;\n"
+"color: rgb(0, 0, 0);"));
 
         verticalLayout->addWidget(song);
 
-        singer = new QLabel(songwidget);
+        singer = new QLabel(widget_2);
         singer->setObjectName("singer");
         singer->setStyleSheet(QString::fromUtf8("background-color: transparent;\n"
 "color: #787878;"));
@@ -111,7 +124,10 @@ public:
         verticalLayout->addWidget(singer);
 
 
-        horizontalLayout->addLayout(verticalLayout);
+        gridLayout->addLayout(verticalLayout, 0, 0, 1, 1);
+
+
+        horizontalLayout->addWidget(widget_2);
 
 
         horizontalLayout_3->addLayout(horizontalLayout);
@@ -134,6 +150,7 @@ public:
         pushButton_add->setObjectName("pushButton_add");
         pushButton_add->setMinimumSize(QSize(30, 30));
         pushButton_add->setMaximumSize(QSize(30, 30));
+        pushButton_add->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         pushButton_add->setStyleSheet(QString::fromUtf8("\n"
 "\n"
 "/* \346\222\255\346\224\276\346\214\211\351\222\256 */\n"
@@ -157,6 +174,7 @@ public:
         pushButton_more->setObjectName("pushButton_more");
         pushButton_more->setMinimumSize(QSize(30, 30));
         pushButton_more->setMaximumSize(QSize(30, 30));
+        pushButton_more->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
         pushButton_more->setStyleSheet(QString::fromUtf8("\n"
 "\n"
 "/* \346\222\255\346\224\276\346\214\211\351\222\256 */\n"
@@ -178,16 +196,28 @@ public:
 
         horizontalLayout_3->addLayout(horizontalLayout_2);
 
-        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+        horizontalSpacer_2 = new QSpacerItem(13, 44, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
         horizontalLayout_3->addItem(horizontalSpacer_2);
 
-        label_collection = new QLabel(songwidget);
+        widget_3 = new QWidget(songwidget);
+        widget_3->setObjectName("widget_3");
+        widget_3->setMinimumSize(QSize(400, 45));
+        widget_3->setMaximumSize(QSize(400, 45));
+        widget_3->setStyleSheet(QString::fromUtf8("background-color: transparent;"));
+        gridLayout_2 = new QGridLayout(widget_3);
+        gridLayout_2->setSpacing(0);
+        gridLayout_2->setObjectName("gridLayout_2");
+        gridLayout_2->setContentsMargins(0, 0, 0, 0);
+        label_collection = new QLabel(widget_3);
         label_collection->setObjectName("label_collection");
         label_collection->setStyleSheet(QString::fromUtf8("background-color: transparent;\n"
 "color: #787878;"));
 
-        horizontalLayout_3->addWidget(label_collection);
+        gridLayout_2->addWidget(label_collection, 0, 0, 1, 1);
+
+
+        horizontalLayout_3->addWidget(widget_3);
 
         horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
@@ -204,16 +234,8 @@ public:
 
         horizontalLayout_3->addItem(horizontalSpacer_4);
 
-        horizontalLayout_3->setStretch(0, 10);
-        horizontalLayout_3->setStretch(1, 100);
-        horizontalLayout_3->setStretch(2, 100);
-        horizontalLayout_3->setStretch(3, 10);
-        horizontalLayout_3->setStretch(4, 150);
-        horizontalLayout_3->setStretch(5, 50);
-        horizontalLayout_3->setStretch(6, 10);
-        horizontalLayout_3->setStretch(7, 30);
 
-        gridLayout->addLayout(horizontalLayout_3, 0, 0, 1, 1);
+        gridLayout_3->addLayout(horizontalLayout_3, 0, 0, 1, 1);
 
 
         retranslateUi(songwidget);
@@ -226,12 +248,12 @@ public:
         songwidget->setWindowTitle(QCoreApplication::translate("songwidget", "Form", nullptr));
         label_image->setText(QString());
         pushButton_image->setText(QString());
-        song->setText(QCoreApplication::translate("songwidget", "<html><head/><body><p><span style=\" font-weight:700;\">\345\244\251\344\271\213\351\252\204\345\245\263</span></p></body></html>", nullptr));
-        singer->setText(QCoreApplication::translate("songwidget", "<html><head/><body><p>\345\256\271\347\245\226\345\204\277</p></body></html>", nullptr));
+        song->setText(QCoreApplication::translate("songwidget", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:700;\">\345\244\251\344\271\213\351\252\204\345\245\263</span></p></body></html>", nullptr));
+        singer->setText(QCoreApplication::translate("songwidget", "<html><head/><body><p>\346\234\252\347\237\245\346\255\214\346\211\213</p></body></html>", nullptr));
         pushButton_like->setText(QString());
         pushButton_add->setText(QString());
         pushButton_more->setText(QString());
-        label_collection->setText(QCoreApplication::translate("songwidget", "<html><head/><body><p>PRETTY CRAZY JOEY YUNG CONCERT TOUR \345\256\271\347\245\226\345\204\277\346\274\224\345\224\261\344\274\232</p></body></html>", nullptr));
+        label_collection->setText(QCoreApplication::translate("songwidget", "<html><head/><body><p>\346\234\252\347\237\245</p></body></html>", nullptr));
         label_duration->setText(QCoreApplication::translate("songwidget", "<html><head/><body><p>04:45</p></body></html>", nullptr));
     } // retranslateUi
 

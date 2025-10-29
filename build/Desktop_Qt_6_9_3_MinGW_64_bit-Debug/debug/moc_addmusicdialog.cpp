@@ -39,16 +39,22 @@ template <> constexpr inline auto addmusicdialog::qt_create_metaobjectdata<qt_me
     namespace QMC = QtMocConstants;
     QtMocHelpers::StringRefStorage qt_stringData {
         "addmusicdialog",
-        "on_btnAddFolder_clicked",
+        "sendPath",
         "",
+        "pathList",
+        "on_btnAddFolder_clicked",
         "on_btnOK_clicked"
     };
 
     QtMocHelpers::UintData qt_methods {
+        // Signal 'sendPath'
+        QtMocHelpers::SignalData<void(const QStringList &)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QStringList, 3 },
+        }}),
         // Slot 'on_btnAddFolder_clicked'
-        QtMocHelpers::SlotData<void()>(1, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(4, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_btnOK_clicked'
-        QtMocHelpers::SlotData<void()>(3, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(5, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -72,12 +78,16 @@ void addmusicdialog::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
     auto *_t = static_cast<addmusicdialog *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: _t->on_btnAddFolder_clicked(); break;
-        case 1: _t->on_btnOK_clicked(); break;
+        case 0: _t->sendPath((*reinterpret_cast< std::add_pointer_t<QStringList>>(_a[1]))); break;
+        case 1: _t->on_btnAddFolder_clicked(); break;
+        case 2: _t->on_btnOK_clicked(); break;
         default: ;
         }
     }
-    (void)_a;
+    if (_c == QMetaObject::IndexOfMethod) {
+        if (QtMocHelpers::indexOfMethod<void (addmusicdialog::*)(const QStringList & )>(_a, &addmusicdialog::sendPath, 0))
+            return;
+    }
 }
 
 const QMetaObject *addmusicdialog::metaObject() const
@@ -99,15 +109,21 @@ int addmusicdialog::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 3)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 3;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 2)
+        if (_id < 3)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 2;
+        _id -= 3;
     }
     return _id;
+}
+
+// SIGNAL 0
+void addmusicdialog::sendPath(const QStringList & _t1)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 0, nullptr, _t1);
 }
 QT_WARNING_POP

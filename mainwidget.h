@@ -1,6 +1,10 @@
 #ifndef MAINWIDGET_H
 #define MAINWIDGET_H
 
+#include "music_widget.h"
+
+#include <MusicController.h>
+#include <MusicManage.h>
 #include <PageButton.h>
 #include <QWidget>
 
@@ -35,7 +39,7 @@ public:
     MainWidget(QWidget *parent = nullptr);
     ~MainWidget();
 
-
+    MusicManage *musicManager=nullptr;
 
 
 private slots:
@@ -69,11 +73,13 @@ protected:
 
 private:
     Ui::MainWidget *ui;
-    void connectAll();
+    void connectUI();
     void widgetInit();
 
+    void MusicInit();
+    void addSong(Songstruct song,music_widget *widget);
 
-
+    MusicController *m_controller =nullptr;
 
 
 };

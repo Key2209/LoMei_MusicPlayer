@@ -10,6 +10,10 @@ class addmusicdialog;
 class addmusicdialog : public QDialog
 {
     Q_OBJECT
+signals:
+    // 定义一个信号，用于发送用户选择的路径
+    void sendPath(const QStringList &pathList);
+
 
 public:
     explicit addmusicdialog(QWidget *parent = nullptr);

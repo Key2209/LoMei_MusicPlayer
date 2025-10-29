@@ -1,4 +1,5 @@
-QT       += core gui network multimedia sql
+QT       += core gui network multimedia sql \
+    concurrent
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -13,7 +14,9 @@ SOURCES += \
     leftwidget.cpp \
     main.cpp \
     mainwidget.cpp \
+    metadataworker.cpp \
     music_widget.cpp \
+    musiccontroller.cpp \
     musicmanage.cpp \
     myslider.cpp \
     mytoolclass.cpp \
@@ -24,9 +27,12 @@ SOURCES += \
 
 HEADERS += \
     addmusicdialog.h \
+    dataStruct.h \
     leftwidget.h \
     mainwidget.h \
+    metadataworker.h \
     music_widget.h \
+    musiccontroller.h \
     musicmanage.h \
     myslider.h \
     mytoolclass.h \

@@ -104,6 +104,8 @@
         <file>images/player/play_button_white.png</file>
         <file>images/player/stop_button_green.png</file>
         <file>images/player/stop_button_white.png</file>
+        <file>images/player/songimagedefault.png</file>
+        <file>images/player/songimagedefault2.png</file>
     </qresource>
     <qresource prefix="/styles"/>
 </RCC>

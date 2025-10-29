@@ -43,9 +43,9 @@ public:
     QLabel *label_singerName;
     QSpacerItem *horizontalSpacer_8;
     QHBoxLayout *horizontalLayout_3;
-    QPushButton *pushButton_play_prev_2;
-    QPushButton *pushButton_play_prev_3;
-    QPushButton *pushButton_play_prev_4;
+    QPushButton *pushButton_like;
+    QPushButton *pushButton_commend;
+    QPushButton *pushButton_more;
     QSpacerItem *horizontalSpacer_7;
     QSpacerItem *verticalSpacer_7;
     QSpacerItem *horizontalSpacer_9;
@@ -64,16 +64,16 @@ public:
     QPushButton *pushButton_volume;
     QSpacerItem *horizontalSpacer_6;
     QHBoxLayout *horizontalLayout_2;
-    QLabel *label;
+    QLabel *label_nowtime;
     mySlider *slider_progress;
-    QLabel *label_2;
+    QLabel *label_totaltime;
     QSpacerItem *verticalSpacer_8;
     QSpacerItem *horizontalSpacer_14;
     QVBoxLayout *verticalLayout_5;
     QSpacerItem *verticalSpacer_9;
     QHBoxLayout *horizontalLayout_8;
-    QPushButton *pushButton_play_3;
-    QPushButton *pushButton_play_2;
+    QPushButton *pushButton_mv;
+    QPushButton *pushButton_playlist;
     QSpacerItem *verticalSpacer_10;
     QSpacerItem *horizontalSpacer_15;
     QSpacerItem *verticalSpacer;
@@ -161,12 +161,12 @@ public:
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName("horizontalLayout_3");
-        pushButton_play_prev_2 = new QPushButton(playerControlWidget);
-        pushButton_play_prev_2->setObjectName("pushButton_play_prev_2");
-        pushButton_play_prev_2->setMinimumSize(QSize(30, 30));
-        pushButton_play_prev_2->setMaximumSize(QSize(30, 30));
-        pushButton_play_prev_2->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
-        pushButton_play_prev_2->setStyleSheet(QString::fromUtf8("/* \346\222\255\346\224\276\346\214\211\351\222\256 */\n"
+        pushButton_like = new QPushButton(playerControlWidget);
+        pushButton_like->setObjectName("pushButton_like");
+        pushButton_like->setMinimumSize(QSize(30, 30));
+        pushButton_like->setMaximumSize(QSize(30, 30));
+        pushButton_like->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        pushButton_like->setStyleSheet(QString::fromUtf8("/* \346\222\255\346\224\276\346\214\211\351\222\256 */\n"
 "QPushButton {\n"
 "    /* \346\233\277\346\215\242 background-image */\n"
 "    border-image: url(:/player/images/player/like.png); \n"
@@ -180,14 +180,14 @@ public:
 "	border-image: url(:/player/images/player/like1.png); \n"
 "}"));
 
-        horizontalLayout_3->addWidget(pushButton_play_prev_2);
+        horizontalLayout_3->addWidget(pushButton_like);
 
-        pushButton_play_prev_3 = new QPushButton(playerControlWidget);
-        pushButton_play_prev_3->setObjectName("pushButton_play_prev_3");
-        pushButton_play_prev_3->setMinimumSize(QSize(30, 30));
-        pushButton_play_prev_3->setMaximumSize(QSize(30, 30));
-        pushButton_play_prev_3->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
-        pushButton_play_prev_3->setStyleSheet(QString::fromUtf8("/* \346\222\255\346\224\276\346\214\211\351\222\256 */\n"
+        pushButton_commend = new QPushButton(playerControlWidget);
+        pushButton_commend->setObjectName("pushButton_commend");
+        pushButton_commend->setMinimumSize(QSize(30, 30));
+        pushButton_commend->setMaximumSize(QSize(30, 30));
+        pushButton_commend->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        pushButton_commend->setStyleSheet(QString::fromUtf8("/* \346\222\255\346\224\276\346\214\211\351\222\256 */\n"
 "QPushButton {\n"
 "    /* \346\233\277\346\215\242 background-image */\n"
 "    border-image: url(:/player/images/player/comment.png); \n"
@@ -201,14 +201,14 @@ public:
 "border-image: url(:/player/images/player/comment_press.png); \n"
 "}"));
 
-        horizontalLayout_3->addWidget(pushButton_play_prev_3);
+        horizontalLayout_3->addWidget(pushButton_commend);
 
-        pushButton_play_prev_4 = new QPushButton(playerControlWidget);
-        pushButton_play_prev_4->setObjectName("pushButton_play_prev_4");
-        pushButton_play_prev_4->setMinimumSize(QSize(30, 30));
-        pushButton_play_prev_4->setMaximumSize(QSize(30, 30));
-        pushButton_play_prev_4->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
-        pushButton_play_prev_4->setStyleSheet(QString::fromUtf8("/* \346\222\255\346\224\276\346\214\211\351\222\256 */\n"
+        pushButton_more = new QPushButton(playerControlWidget);
+        pushButton_more->setObjectName("pushButton_more");
+        pushButton_more->setMinimumSize(QSize(30, 30));
+        pushButton_more->setMaximumSize(QSize(30, 30));
+        pushButton_more->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        pushButton_more->setStyleSheet(QString::fromUtf8("/* \346\222\255\346\224\276\346\214\211\351\222\256 */\n"
 "QPushButton {\n"
 "    /* \346\233\277\346\215\242 background-image */\n"
 "    border-image: url(:/player/images/player/more1.png); \n"
@@ -222,7 +222,7 @@ public:
 "border-image: url(:/player/images/player/more2.png); \n"
 "}"));
 
-        horizontalLayout_3->addWidget(pushButton_play_prev_4);
+        horizontalLayout_3->addWidget(pushButton_more);
 
         horizontalSpacer_7 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
@@ -395,12 +395,12 @@ public:
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName("horizontalLayout_2");
-        label = new QLabel(playerControlWidget);
-        label->setObjectName("label");
-        label->setStyleSheet(QString::fromUtf8("color: rgb(100, 100, 100);\n"
+        label_nowtime = new QLabel(playerControlWidget);
+        label_nowtime->setObjectName("label_nowtime");
+        label_nowtime->setStyleSheet(QString::fromUtf8("color: rgb(100, 100, 100);\n"
 "background: transparent;"));
 
-        horizontalLayout_2->addWidget(label);
+        horizontalLayout_2->addWidget(label_nowtime);
 
         slider_progress = new mySlider(playerControlWidget);
         slider_progress->setObjectName("slider_progress");
@@ -436,12 +436,12 @@ public:
 
         horizontalLayout_2->addWidget(slider_progress);
 
-        label_2 = new QLabel(playerControlWidget);
-        label_2->setObjectName("label_2");
-        label_2->setStyleSheet(QString::fromUtf8("color: rgb(100, 100, 100);\n"
+        label_totaltime = new QLabel(playerControlWidget);
+        label_totaltime->setObjectName("label_totaltime");
+        label_totaltime->setStyleSheet(QString::fromUtf8("color: rgb(100, 100, 100);\n"
 "background: transparent;"));
 
-        horizontalLayout_2->addWidget(label_2);
+        horizontalLayout_2->addWidget(label_totaltime);
 
         horizontalLayout_2->setStretch(0, 1);
         horizontalLayout_2->setStretch(1, 100);
@@ -472,12 +472,12 @@ public:
 
         horizontalLayout_8 = new QHBoxLayout();
         horizontalLayout_8->setObjectName("horizontalLayout_8");
-        pushButton_play_3 = new QPushButton(playerControlWidget);
-        pushButton_play_3->setObjectName("pushButton_play_3");
-        pushButton_play_3->setMinimumSize(QSize(40, 40));
-        pushButton_play_3->setMaximumSize(QSize(40, 40));
-        pushButton_play_3->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
-        pushButton_play_3->setStyleSheet(QString::fromUtf8("/* \346\222\255\346\224\276\346\214\211\351\222\256 */\n"
+        pushButton_mv = new QPushButton(playerControlWidget);
+        pushButton_mv->setObjectName("pushButton_mv");
+        pushButton_mv->setMinimumSize(QSize(40, 40));
+        pushButton_mv->setMaximumSize(QSize(40, 40));
+        pushButton_mv->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        pushButton_mv->setStyleSheet(QString::fromUtf8("/* \346\222\255\346\224\276\346\214\211\351\222\256 */\n"
 "QPushButton {\n"
 "    /* \346\233\277\346\215\242 background-image */\n"
 "    border-image: url(:/player/images/player/MV.png); \n"
@@ -489,14 +489,14 @@ public:
 "border-image: url(:/player/images/player/MV_press.png);\n"
 "}"));
 
-        horizontalLayout_8->addWidget(pushButton_play_3);
+        horizontalLayout_8->addWidget(pushButton_mv);
 
-        pushButton_play_2 = new QPushButton(playerControlWidget);
-        pushButton_play_2->setObjectName("pushButton_play_2");
-        pushButton_play_2->setMinimumSize(QSize(30, 30));
-        pushButton_play_2->setMaximumSize(QSize(30, 30));
-        pushButton_play_2->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
-        pushButton_play_2->setStyleSheet(QString::fromUtf8("/* \346\222\255\346\224\276\346\214\211\351\222\256 */\n"
+        pushButton_playlist = new QPushButton(playerControlWidget);
+        pushButton_playlist->setObjectName("pushButton_playlist");
+        pushButton_playlist->setMinimumSize(QSize(30, 30));
+        pushButton_playlist->setMaximumSize(QSize(30, 30));
+        pushButton_playlist->setCursor(QCursor(Qt::CursorShape::PointingHandCursor));
+        pushButton_playlist->setStyleSheet(QString::fromUtf8("/* \346\222\255\346\224\276\346\214\211\351\222\256 */\n"
 "QPushButton {\n"
 "    /* \346\233\277\346\215\242 background-image */\n"
 "    border-image: url(:/player/images/player/playList.png); \n"
@@ -508,7 +508,7 @@ public:
 "border-image: url(:/player/images/player/playList_press.png);\n"
 "}"));
 
-        horizontalLayout_8->addWidget(pushButton_play_2);
+        horizontalLayout_8->addWidget(pushButton_playlist);
 
 
         verticalLayout_5->addLayout(horizontalLayout_8);
@@ -582,18 +582,18 @@ public:
         label_songImage->setText(QString());
         label_songName->setText(QCoreApplication::translate("playerControlWidget", "<html><head/><body><p align=\"center\"><span style=\" font-size:14pt; font-weight:700;\">\345\244\251\344\271\213\351\252\204\345\245\263</span></p></body></html>", nullptr));
         label_singerName->setText(QCoreApplication::translate("playerControlWidget", "<html><head/><body><p align=\"center\"><span style=\" font-size:11pt; font-weight:700;\">-</span><span style=\" font-size:11pt;\"> \345\256\271\347\245\226\345\204\277</span></p></body></html>", nullptr));
-        pushButton_play_prev_2->setText(QString());
-        pushButton_play_prev_3->setText(QString());
-        pushButton_play_prev_4->setText(QString());
+        pushButton_like->setText(QString());
+        pushButton_commend->setText(QString());
+        pushButton_more->setText(QString());
         pushButton_playOrder->setText(QString());
         pushButton_play_prev->setText(QString());
         pushButton_play->setText(QString());
         pushButton_play_next->setText(QString());
         pushButton_volume->setText(QString());
-        label->setText(QCoreApplication::translate("playerControlWidget", "<html><head/><body><p align=\"right\">00\357\274\23200</p></body></html>", nullptr));
-        label_2->setText(QCoreApplication::translate("playerControlWidget", "00\357\274\23200", nullptr));
-        pushButton_play_3->setText(QString());
-        pushButton_play_2->setText(QString());
+        label_nowtime->setText(QCoreApplication::translate("playerControlWidget", "<html><head/><body><p align=\"right\">00\357\274\23200</p></body></html>", nullptr));
+        label_totaltime->setText(QCoreApplication::translate("playerControlWidget", "00\357\274\23200", nullptr));
+        pushButton_mv->setText(QString());
+        pushButton_playlist->setText(QString());
     } // retranslateUi
 
 };

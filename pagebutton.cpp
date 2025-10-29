@@ -8,6 +8,9 @@
 主要适配左半部分歌单选择，用了一个很蠢的方法简单分了type
 暂时够用了，写的很乱，健壮性为九级残废
 
+
+bug:
+1.歌单界面无法停止,有空再修
 */
 
 
@@ -187,7 +190,8 @@ void PageButton::type2_update()//直接写死了，播放按钮专用，不会�
         }
         else
         {
-            // setIcon(m_iconChecked);
+
+            //有bug,先不修先
             playAnimTimer->start(150);
             playing = true;
             setIcon(QPixmap(":/player/images/player/stop_button_white.png"));
@@ -225,6 +229,7 @@ void PageButton::type2_update()//直接写死了，播放按钮专用，不会�
 void PageButton::type3_update()
 {
     if (isChecked()) {
+        qDebug()<<"isChecked";
         if(m_hovered)
         {
 

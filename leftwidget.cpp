@@ -120,7 +120,7 @@ leftwidget::leftwidget(QWidget *parent)
     ui->pushButton_like->setChecked(true);
 
 
-    ui->scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);//关掉滑条
     ui->scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->scrollArea->setStyleSheet(
         "QScrollBar:vertical {"

@@ -19,12 +19,13 @@ MainWidget::MainWidget(QWidget *parent)
     , ui(new Ui::MainWidget)
 {
     ui->setupUi(this);
-
-    widgetInit();
-
+    m_controller =new MusicController(this);//音乐控制类初始化,掌管所有音乐播放功能
 
 
-    connectAll();
+
+    MusicInit();//初始化下载歌单加载本地歌单
+    widgetInit();//初始化几个固定的歌单
+    connectUI();
 }
 
 MainWidget::~MainWidget()
@@ -37,7 +38,7 @@ MainWidget::~MainWidget()
 
 void MainWidget::on_pushButton_clicked()
 {
-    qDebug()<<"addmusicdialog";
+    //qDebug()<<"addmusicdialog";
     addmusicdialog dlg(this);
     dlg.exec();
 }
@@ -55,7 +56,7 @@ void MainWidget::createPlaylist(PageButton *button)
 
 
     ui->stackedWidget_music->addWidget(musicWidget);
-    qDebug()<<musicWidget;
+    //qDebug()<<musicWidget;
 }
 
 void MainWidget::switchPlaylist(PageButton *button)
@@ -68,14 +69,16 @@ void MainWidget::switchPlaylist(PageButton *button)
     if(page)
     {
         ui->stackedWidget_music->setCurrentWidget(page);
-        qDebug()<<objName;
+        //qDebug()<<objName;
     }
+
+
 
 }
 
 
 
-void MainWidget::connectAll()
+void MainWidget::connectUI()
 {
     //重写窗口控制按钮 绑定
     connect(ui->top_window,&topWidget::exitRequested,this,&QApplication::quit);
@@ -101,6 +104,23 @@ void MainWidget::connectAll()
 
 
 
+
+
+    // 让底部 playerbar 订阅 Controller
+    connect(m_controller, &MusicController::currentSongChanged, ui->ctlr_music_widget, &playerControlWidget::setCurrentSong);
+    connect(m_controller, &MusicController::positionChanged, ui->ctlr_music_widget, &playerControlWidget::setPosition);
+    connect(m_controller, &MusicController::durationChanged, ui->ctlr_music_widget, &playerControlWidget::setDuration);
+    connect(m_controller, &MusicController::sendPlayStateChangeTo_PlayerctrlWidge, ui->ctlr_music_widget, &playerControlWidget::ReceivePlayStateChange);
+
+    //connect(ui->ctlr_music_widget, &playerControlWidget::startMusic, m_controller, &MusicController::isPlay);
+    connect(ui->ctlr_music_widget, &playerControlWidget::seekRequested, m_controller, &MusicController::seek);
+    connect(ui->ctlr_music_widget, &playerControlWidget::nextClicked, m_controller, &MusicController::playNext);
+    connect(ui->ctlr_music_widget, &playerControlWidget::prevClicked, m_controller, &MusicController::playPrevious);
+    connect(ui->ctlr_music_widget, &playerControlWidget::startMusic, m_controller, &MusicController::access_UiCommandToStartMusic);
+    connect(ui->ctlr_music_widget, &playerControlWidget::volumeRequested, m_controller, &MusicController::setVolume);
+
+    // music_widget *musicWidget=ui->stackedWidget_music->findChild<music_widget*>("pushButton_download");
+    // connect(musicWidget,&music_widget::songPlayRequested,m_controller,&MusicController::playSong);//连接"本地和下载"歌单与m_controller
 }
 
 void MainWidget::widgetInit()
@@ -125,8 +145,8 @@ void MainWidget::widgetInit()
 
 
     //初始化喜欢,最近播放,本地和下载界面
-    QVector<QString> musicWidgetName={"pushButton_history","pushButton_download","pushButton_home","pushButton_recommend"};
-    QVector<QString> listName={"最近播放","本地和下载","推荐","乐馆"};
+    QVector<QString> musicWidgetName={"pushButton_history","pushButton_home","pushButton_recommend"};
+    QVector<QString> listName={"最近播放","推荐","乐馆"};
     int count = qMin(musicWidgetName.size(), listName.size());
     for (int i = 0; i < count; ++i)
     {
@@ -137,10 +157,51 @@ void MainWidget::widgetInit()
         qDebug() << "创建:" << musicWidgetName[i] << "=>" << listName[i];
     }
 
+    music_widget* musicWidget = new music_widget;
+    musicWidget->setPlaylistName("本地和下载");  // 设置中文歌单名字
+    musicWidget->setObjectName("pushButton_download"); // 设置对象名
+    ui->stackedWidget_music->addWidget(musicWidget);
+    bool ok = connect(musicWidget, &music_widget::sendPathToAddSong,
+                      musicManager, &MusicManage::scanDirectoryAsync);
+
+    qDebug() << "连接状态:" << ok
+             << "musicWidget:" << musicWidget
+             << "musicManager:" << musicManager;
 
 
-
+    connect(musicWidget,&music_widget::songPlayRequested,m_controller,&MusicController::playSong);//连接 歌单与m_controller 的播放音乐功能
+    connect(musicWidget,&music_widget::songListPlayRequested,m_controller,&MusicController::setPlaylist);//连接 歌单与m_controller 添加歌单
 }
+
+void MainWidget::MusicInit()
+{
+    musicManager=new MusicManage(this);
+    // connect(musicManager, &MusicManage::metadataReady, this, [=](const Songstruct &song) {
+    //     // 比如更新 UI 或存入 QVector
+    //     qDebug() << "Metadata ready:" << song.title << song.duration << song.artist;
+    //     // 例如更新歌曲 widget：
+    //     // songwidget *w = findWidgetById(song.id);
+    //     // if (w) musicManage->setSongWidgetInfo(song, *w);
+    // });
+    connect(musicManager, &MusicManage::metadataReady, this, [=](const Songstruct &song,music_widget *widget) {
+
+        qDebug() << "Metadata ready:" << song.title << song.duration << song.artist;
+        Songstruct s=song;
+        widget->addSong(s);
+
+    });
+}
+
+// void MainWidget::addSong(Songstruct song, music_widget *widget)
+// {
+//     if(widget!=nullptr)
+//     {
+//         connect(musicManager,&MusicManage::metadataReady,widget,&music_widget::addSong);
+//     }
+// }
+
+
+
 
 DragRegion MainWidget::getResizeRegion(const QPoint &point)
 {
@@ -224,7 +285,7 @@ void MainWidget::mousePressEvent(QMouseEvent *event)
         //拖动窗口逻辑
         // 检查点击位置是否有子控件
         QWidget *child = childAt(event->pos());
-        qDebug()<<"child"<<child;
+        //qDebug()<<"child"<<child;
         // 如果 child 不为 nullptr，说明点击在了某个子控件上。
         // 如果您想允许在除了按钮/列表之外的区域拖动，
         // 您需要检查 child 是否是交互控件（如 QPushButton, QListWidget）
@@ -256,9 +317,9 @@ void MainWidget::mouseReleaseEvent(QMouseEvent *event)
 
 void MainWidget::mouseMoveEvent(QMouseEvent *event)
 {
-    qDebug()<<"mouseMoveEvent:"+QString::number((int)m_dragRegion);
+    //qDebug()<<"mouseMoveEvent:"+QString::number((int)m_dragRegion);
 
-    qDebug()<<"m_isDragging"<<m_isDragging;
+    //qDebug()<<"m_isDragging"<<m_isDragging;
     // //m_dragRegion=getResizeRegion(event->pos());
     if(!this->isMaximized()&&m_dragRegion == NoResize)
     {

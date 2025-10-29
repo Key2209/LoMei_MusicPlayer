@@ -174,7 +174,7 @@ background: transparent;</string>
                <item>
                 <layout class="QHBoxLayout" name="horizontalLayout_3">
                  <item>
-                  <widget class="QPushButton" name="pushButton_play_prev_2">
+                  <widget class="QPushButton" name="pushButton_like">
                    <property name="minimumSize">
                     <size>
                      <width>30</width>
@@ -211,7 +211,7 @@ QPushButton:hover
                   </widget>
                  </item>
                  <item>
-                  <widget class="QPushButton" name="pushButton_play_prev_3">
+                  <widget class="QPushButton" name="pushButton_commend">
                    <property name="minimumSize">
                     <size>
                      <width>30</width>
@@ -248,7 +248,7 @@ border-image: url(:/player/images/player/comment_press.png);
                   </widget>
                  </item>
                  <item>
-                  <widget class="QPushButton" name="pushButton_play_prev_4">
+                  <widget class="QPushButton" name="pushButton_more">
                    <property name="minimumSize">
                     <size>
                      <width>30</width>
@@ -605,7 +605,7 @@ QPushButton {
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,100,1">
              <item>
-              <widget class="QLabel" name="label">
+              <widget class="QLabel" name="label_nowtime">
                <property name="styleSheet">
                 <string notr="true">color: rgb(100, 100, 100);
 background: transparent;</string>
@@ -652,7 +652,7 @@ background: transparent;</string>
               </widget>
              </item>
              <item>
-              <widget class="QLabel" name="label_2">
+              <widget class="QLabel" name="label_totaltime">
                <property name="styleSheet">
                 <string notr="true">color: rgb(100, 100, 100);
 background: transparent;</string>
@@ -710,7 +710,7 @@ background: transparent;</string>
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_8">
              <item>
-              <widget class="QPushButton" name="pushButton_play_3">
+              <widget class="QPushButton" name="pushButton_mv">
                <property name="minimumSize">
                 <size>
                  <width>40</width>
@@ -745,7 +745,7 @@ border-image: url(:/player/images/player/MV_press.png);
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_play_2">
+              <widget class="QPushButton" name="pushButton_playlist">
                <property name="minimumSize">
                 <size>
                  <width>30</width>
