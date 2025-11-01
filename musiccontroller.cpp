@@ -28,40 +28,34 @@ MusicController::~MusicController()
     stop();
 }
 
-void MusicController::registerWidget(music_widget *w)
+void MusicController::registerWidget(music_widget *musicWidget)
 {
-
-
-    if (!w) return;
+    if (!musicWidget) return;
     // 当 widget 发起播放请求时，controller.playSong() 被调用
-    connect(w, &music_widget::songPlayRequested,
-            this, &MusicController::playSong, Qt::AutoConnection);
+    // connect(w, &music_widget::songPlayRequested,
+    //         this, &MusicController::playSong, Qt::AutoConnection);
+
+    // // controller 通知 widget 当前歌曲改变，widget 可以根据 song.id 高亮或取消高亮
+    // //广播,
+    // connect(this, &MusicController::currentSongChanged,
+    //         w, &music_widget::onCurrentSongChanged, Qt::AutoConnection);
+
+    //连接 歌单与m_controller 的播放音乐功能
+    connect(musicWidget,&music_widget::songPlayRequested,this,&MusicController::playSong);
+    //连接 歌单与m_controller 添加歌单
+    connect(musicWidget,&music_widget::songListPlayRequested,this,&MusicController::setPlaylist);
+    //
+    connect(musicWidget,&music_widget::Play_or_PauseRequested,this,&MusicController::access_UiCommandToStartMusic);
 
 
-    // controller 通知 widget 当前歌曲改变，widget 可以根据 song.id 高亮或取消高亮
-    //广播,
-    connect(this, &MusicController::currentSongChanged,
-            w, &music_widget::onCurrentSongChanged, Qt::AutoConnection);
-
-
-
+    //connect(m_controller,&MusicController::sendPlayStateChangeTo_PlayerctrlWidge,musicWidget,&music_widget::setUiPlay_or_Pause);
+    connect(this,&MusicController::currentSongChanged,musicWidget,&music_widget::onCurrentSongChanged);
 }
 
 
 
 void MusicController::setPlayMode(MusicController::PlayMode m) { m_playMode = m; }
 
-void MusicController::isPlay(bool yes)
-{
-    if(yes)
-    {
-        m_player->play();
-    }
-    else
-    {
-        m_player->stop();
-    }
-}
 
 
 void MusicController::setVolume(int volume) {
@@ -74,7 +68,18 @@ void MusicController::setVolume(int volume) {
 void MusicController::setPlaylist(const QVector<Songstruct> &pl,const QString &widget_objName, int startIndex)
 {
     m_playlist = pl;
-    now_music_widget_objName=widget_objName;
+    qDebug()<<"添加的播放列表如下："<<Qt::endl<<Qt::endl;
+    for(const Songstruct &song:m_playlist)
+    {
+        qDebug() << "Title: " << song.title
+                 << ", ID: " << song.id
+                 << ", Artist: " << song.artist
+                 << ", Album: " << song.album
+                 << ", Duration: " << song.duration
+                 << ", Path: " << song.filePath;
+    }
+    qDebug()<<"MusicController::setPlaylist"<<widget_objName<<startIndex<<Qt::endl<<Qt::endl;
+    current_music_widget_objName=widget_objName;
     if (startIndex >= 0 && startIndex < m_playlist.size()) {
         startPlayingIndex(startIndex);
     }
@@ -97,9 +102,10 @@ void MusicController::playSong(const Songstruct &song, const QString &widget_obj
 
     qDebug()<<"playSong(const Songstruct &song, const QString &widget_objName,bool isPlay)"<<Qt::endl<<
         widget_objName<<isPlay;
-
+    current_music_widget_objName=widget_objName;
     if(isPlay)
     {
+        currentSong=song;
         // 若 song 在当前列表则切换 index，否则把它作为单独播放
         int idx = findIndexById(song.id);
         if (idx >= 0) {//如果该歌曲在播放列表里面,直接跳转到该歌曲
@@ -109,7 +115,7 @@ void MusicController::playSong(const Songstruct &song, const QString &widget_obj
             //临时把 song 设置为当前播放
             m_playlist.clear();
             m_playlist.append(song);
-            startPlayingIndex(0,widget_objName);
+            startPlayingIndex(0);
         }
     }
     else
@@ -128,12 +134,17 @@ void MusicController::play()
 {
     if (m_player->playbackState() == QMediaPlayer::PlayingState) return;
     m_player->play();
+    emit currentSongChanged(currentSong,true,current_music_widget_objName);
 }
 
 void MusicController::pause()
 {
     if (m_player->playbackState() == QMediaPlayer::PlayingState)
+    {
         m_player->pause();
+        emit currentSongChanged(currentSong,false,current_music_widget_objName);
+    }
+
 }
 
 void MusicController::stop()
@@ -159,7 +170,7 @@ void MusicController::seek(qint64 positionMs)
 
 void MusicController::playNext()
 {
-    qDebug()<<"MusicController::playNext()";
+    qDebug()<<"MusicController::playNext():音乐播放器播放下一首";
     // if (!m_queue.isEmpty()) {
     //     // Songstruct s = m_queue.dequeue();
     //     // playSong(s);
@@ -211,9 +222,10 @@ void MusicController::playPrevious()
 
 
 
-void MusicController::startPlayingIndex(int index,const QString &widget_objName)
+void MusicController::startPlayingIndex(int index)
 {
     //if(widget_objName==QString())return;
+
 
 
     if (index < 0 || index >= m_playlist.size()) return;
@@ -222,7 +234,9 @@ void MusicController::startPlayingIndex(int index,const QString &widget_objName)
     qDebug() << "Controller start play:" << s.title << s.filePath;
     m_player->setSource(QUrl::fromLocalFile(s.filePath));
     m_player->play();
-    emit currentSongChanged(s,widget_objName);
+    currentSong=s;
+    qDebug() <<"currentSong=s"<<s.id<<Qt::endl<<"objName:"<<current_music_widget_objName<<Qt::endl;
+    emit currentSongChanged(s,true,current_music_widget_objName);
 }
 
 

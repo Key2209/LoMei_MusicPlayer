@@ -1,11 +1,13 @@
 #ifndef MAINWIDGET_H
 #define MAINWIDGET_H
 
+#include "lyricwidget.h"
 #include "music_widget.h"
 
 #include <MusicController.h>
 #include <MusicManage.h>
 #include <PageButton.h>
+#include <QPropertyAnimation>
 #include <QWidget>
 
 
@@ -47,6 +49,9 @@ private slots:
     void createPlaylist(PageButton *button);
     void switchPlaylist(PageButton *button);
 
+
+    void ShowPlaylistPopup(songwidget* swidget);
+
 signals:
     void windowMaximizedStateChanged(bool isMaximized);//窗口最大化时候通知顶部ui切换图标
 
@@ -71,6 +76,7 @@ protected:
     void setCursorShape(DragRegion region);
 
 
+void resizeEvent(QResizeEvent *event) override;
 private:
     Ui::MainWidget *ui;
     void connectUI();
@@ -80,7 +86,17 @@ private:
     void addSong(Songstruct song,music_widget *widget);
 
     MusicController *m_controller =nullptr;
+    QVector<music_widget*> musicwidgetList;
 
 
+
+
+    bool lyricVisible = false;
+
+
+    LyricWidget *lyricWidget = nullptr;
+    QPropertyAnimation *lyricAnim = nullptr;
+    QGraphicsOpacityEffect *lyricEffect = nullptr;
+    LyricManager *m_LyricManager = nullptr;
 };
 #endif // MAINWIDGET_H

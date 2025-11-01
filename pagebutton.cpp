@@ -1,8 +1,12 @@
 #include "pagebutton.h"
 
+#include <QApplication>
 #include <QGraphicsOpacityEffect>
+#include <QListWidget>
 #include <QPainter>
-
+#include <QStyle>
+#include <QStyleOptionButton>
+#include <QAbstractItemView> // 用于找到 View 的基类
 /*
 一个样式按钮简单的一个类
 主要适配左半部分歌单选择，用了一个很蠢的方法简单分了type
@@ -20,6 +24,7 @@ PageButton::PageButton(QWidget *parent) : QPushButton(parent)
     setCheckable(true); // 可选中
     setCursor(Qt::PointingHandCursor);
     setFlat(true); // 去掉边框
+
 
 
     // 关键：当按钮选中/取消选中时(checked:true/false)时候触发toggled
@@ -53,6 +58,11 @@ void PageButton::updateIcon()
 
 
 
+
+}
+
+void PageButton::forceUpdateView()
+{
 
 }
 
@@ -193,6 +203,7 @@ void PageButton::type2_update()//直接写死了，播放按钮专用，不会�
 
             //有bug,先不修先
             playAnimTimer->start(150);
+            qDebug()<<"按钮播放动画 播放动画";
             playing = true;
             setIcon(QPixmap(":/player/images/player/stop_button_white.png"));
 
@@ -224,6 +235,9 @@ void PageButton::type2_update()//直接写死了，播放按钮专用，不会�
 
 
     setIconSize(QSize(24,24)); // 根据图标大小调整
+
+
+
 }
 
 void PageButton::type3_update()
@@ -268,29 +282,31 @@ void PageButton::type3_update()
 
 void PageButton::paintEvent(QPaintEvent *event)
 {
-    QPushButton::paintEvent(event); // 保留原样式绘制
 
-    if (!playing) return;
+        QPushButton::paintEvent(event); // 保留原样式绘制
+        if (!playing) return;
 
-    QPainter p(this);
-    p.setRenderHint(QPainter::Antialiasing);
+        QPainter p(this);
+        p.setRenderHint(QPainter::Antialiasing);
 
-    QColor barColor("#FFFFFF"); // 白色
-    p.setBrush(barColor);
-    p.setPen(Qt::NoPen);
+        QColor barColor("#FFFFFF"); // 白色
+        p.setBrush(barColor);
+        p.setPen(Qt::NoPen);
 
-    int barCount = barHeights.size();
-    int barWidth = 3;
-    int space = 3;
-    int startX = width() - (barCount * (barWidth + space))-10; // 靠右一点
-    int bottomY = height() -15; // 底部对齐
+        int barCount = barHeights.size();
+        int barWidth = 3;
+        int space = 3;
+        int startX = width() - (barCount * (barWidth + space))-10; // 靠右一点
+        int bottomY = height() -15; // 底部对齐
 
-    for (int i = 0; i < barCount; ++i) {
-        int barHeight = height() * barHeights[i] / 100;
-        int x = startX + i * (barWidth + space);
-        int y = bottomY - barHeight;
-        p.drawRoundedRect(QRectF(x, y, barWidth, barHeight), 2, 2);
-    }
+        for (int i = 0; i < barCount; ++i) {
+            int barHeight = height() * barHeights[i] / 100;
+            int x = startX + i * (barWidth + space);
+            int y = bottomY - barHeight;
+            p.drawRoundedRect(QRectF(x, y, barWidth, barHeight), 2, 2);
+        }
+
+
 }
 
 
@@ -333,6 +349,16 @@ void PageButton::setType(int type)
 bool PageButton::getChecked()
 {
     return isChecked();
+}
+
+void PageButton::setVisualChecked(bool yes)
+{
+    bool oldBlock = signalsBlocked();
+    blockSignals(true);     // 屏蔽信号，不触发逻辑层的播放命令
+    setChecked(yes);        // 改变状态
+    click();
+    blockSignals(oldBlock); // 恢复信号状态
+    updateIcon();           // 手动刷新外观
 }
 
 void PageButton::enterEvent(QEnterEvent *event)

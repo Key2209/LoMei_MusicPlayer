@@ -16,6 +16,13 @@ playerControlWidget::playerControlWidget(QWidget *parent)
 
     UI_Init();
 
+    ui->pushButton_songImage->setCheckable(true);
+    connect(ui->pushButton_songImage,&QPushButton::toggled,this,[=](bool checked)
+            {
+        emit showLyricWidget(checked);
+    });
+
+
     connect(ui->slider_progress,&QSlider::sliderPressed,this,[=]()
             {
         m_isSeeking=true;
@@ -148,14 +155,14 @@ void playerControlWidget::setImage(const QString &path)
 {
 
     if(path==nullptr)return;
-    QPixmap pix;
-    bool success=pix.load(path);
+    // QPixmap pix;
+    // bool success=pix.load(path);
 
-    if(success)//没有图片用默认
-    {
-        ui->label_songImage->setScaledContents(true);
-        ui->label_songImage->setPixmap(pix);
-    }
+    // if(success)//没有图片用默认
+    // {
+    //     ui->label_songImage->setScaledContents(true);
+    //     ui->label_songImage->setPixmap(pix);
+    // }
 }
 
 QString playerControlWidget::duration_ms_to_string(qint64 duration)
@@ -306,7 +313,7 @@ VolumePopup::VolumePopup(QWidget *parent)
 
     // 布局
     QVBoxLayout *layout = new QVBoxLayout(this);
-    layout->setContentsMargins(15, 15, 15, 15);
+    layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(10);
     layout->addWidget(slider, 1, Qt::AlignCenter);
     layout->addWidget(label);
@@ -417,4 +424,72 @@ void VolumePopup::hideEvent(QHideEvent *event)
 
 
 
+
+
+void playerControlWidget::on_pushButton_playOrder_clicked()
+{
+    playmode++;
+    playmode%=3;
+
+    switch (playmode) {
+    case 0:
+        ui->pushButton_playOrder->setStyleSheet(R"(
+QPushButton {
+    /* 替换 background-image */
+    border-image: url(:/player/images/player/playmodel10.png);
+    qproperty-cursor: pointinghand; /* 鼠标悬停变手掌 */
+    border: none; /* 确保没有边框，否则 border-image 可能会受到影响 */
+    background-color: transparent; /* 保持透明背景色 */
+}
+QPushButton:hover {
+border-image: url(:/player/images/player/playmodel11.png);
+}
+        )");
+        emit playmodeRequested(MusicController::PlayMode::Sequential);//顺序
+        break;
+    case 1:
+        ui->pushButton_playOrder->setStyleSheet(R"(
+
+QPushButton {
+    /* 替换 background-image */
+    border-image: url(:/player/images/player/playmodel20.png);
+    qproperty-cursor: pointinghand; /* 鼠标悬停变手掌 */
+    border: none; /* 确保没有边框，否则 border-image 可能会受到影响 */
+    background-color: transparent; /* 保持透明背景色 */
+}
+QPushButton:hover {
+border-image: url(:/player/images/player/playmodel21.png);
+}
+        )");
+        emit playmodeRequested(MusicController::PlayMode::Shuffle);//随机
+        break;
+    case 2:
+        ui->pushButton_playOrder->setStyleSheet(R"(
+
+QPushButton {
+    /* 替换 background-image */
+    border-image: url(:/player/images/player/playmodel30.png);
+    qproperty-cursor: pointinghand; /* 鼠标悬停变手掌 */
+    border: none; /* 确保没有边框，否则 border-image 可能会受到影响 */
+    background-color: transparent; /* 保持透明背景色 */
+}
+QPushButton:hover {
+border-image: url(:/player/images/player/playmodel31.png);
+}
+        )");
+        emit playmodeRequested(MusicController::PlayMode::RepeatOne);//单曲
+        break;
+
+
+    default:
+        break;
+    }
+
+}
+
+
+void playerControlWidget::on_pushButton_songImage_clicked()
+{
+
+}
 

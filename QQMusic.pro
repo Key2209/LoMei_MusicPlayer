@@ -1,5 +1,6 @@
 QT       += core gui network multimedia sql \
-    concurrent
+    concurrent \
+    core5compat
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -12,6 +13,8 @@ CONFIG += c++17
 SOURCES += \
     addmusicdialog.cpp \
     leftwidget.cpp \
+    lyricmanager.cpp \
+    lyricwidget.cpp \
     main.cpp \
     mainwidget.cpp \
     metadataworker.cpp \
@@ -22,6 +25,7 @@ SOURCES += \
     mytoolclass.cpp \
     pagebutton.cpp \
     playercontrolwidget.cpp \
+    playlistpopup.cpp \
     songwidget.cpp \
     topwidget.cpp
 
@@ -29,6 +33,8 @@ HEADERS += \
     addmusicdialog.h \
     dataStruct.h \
     leftwidget.h \
+    lyricmanager.h \
+    lyricwidget.h \
     mainwidget.h \
     metadataworker.h \
     music_widget.h \
@@ -38,12 +44,14 @@ HEADERS += \
     mytoolclass.h \
     pagebutton.h \
     playercontrolwidget.h \
+    playlistpopup.h \
     songwidget.h \
     topwidget.h
 
 FORMS += \
     addmusicdialog.ui \
     leftwidget.ui \
+    lyricwidget.ui \
     mainwidget.ui \
     music_widget.ui \
     playercontrolwidget.ui \

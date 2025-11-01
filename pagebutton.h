@@ -25,6 +25,8 @@ public:
     bool getChecked();
     QGraphicsOpacityEffect *opacityEffect=nullptr;
 
+    void setVisualChecked(bool yes);
+
 protected:
     void enterEvent(QEnterEvent  *event) override;
     void leaveEvent(QEvent *event) override;
@@ -32,7 +34,7 @@ protected:
 
 public slots:
     void updateIcon();
-
+void forceUpdateView();
 private:
 
     void type0_update();
@@ -50,6 +52,10 @@ private:
     bool playing=false;
 
     void paintEvent(QPaintEvent* event) override;
+
+    // --- 手动绘制所需的新成员 ---
+    QColor m_backgroundColor;      // 用于绘制背景的颜色
+    QPixmap m_currentIconPixmap;    // 用于手动绘制的当前图标
 };
 
 #endif // PAGEBUTTON_H

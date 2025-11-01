@@ -2,7 +2,7 @@
 #include "ui_songwidget.h"
 
 #include <QGraphicsOpacityEffect>
-
+#include "pagebutton.h"
 songwidget::songwidget(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::songwidget)
@@ -20,19 +20,41 @@ songwidget::songwidget(QWidget *parent)
                                    );
     updateAppearance();
 
+    // connect(ui->pushButton_like,&QPushButton::toggled,this,[=](bool like)
+    //         {
+    //     emit requestlikeList(this,like);
+    //     isLike=like;
+    // });
+
     // 连接到 toggled 信号。当按钮的选中状态发生变化时，lambda 就会被执行。
-    connect(ui->pushButton_image, &QPushButton::toggled, this, [=](bool checked)
-            {
-                if (checked) {
-                    // 按钮被选中/按下（播放）
-                    qDebug() << "播放按钮被按下 (Checked)";
-                    emit sendSongPlayRequested(mysong,true);
-                } else {
-                    // 按钮被取消选中（暂停）
-                    qDebug() << "播放按钮被释放 (Unchecked)";
-                    emit sendSongPlayRequested(mysong,false);
-                }
-            });
+    // connect(ui->pushButton_image, &QPushButton::toggled, this, [=](bool checked)
+    //         {
+    //             if (checked) {
+    //                 // 按钮被选中/按下（播放）
+    //                 qDebug() << "播放按钮被按下 (Checked)";
+    //                 emit sendSongPlayRequested(mysong,true);
+    //             } else {
+    //                 // 按钮被取消选中（暂停）
+    //                 qDebug() << "播放按钮被释放 (Unchecked)";
+    //                 emit sendSongPlayRequested(mysong,false);
+    //             }
+    //         });
+
+    // connect(ui->pushButton_image, &QPushButton::clicked, this, [=](bool checked)
+    //         {
+    //             if (checked) {
+    //                 // 按钮被选中/按下（播放）
+    //                 qDebug() << "播放按钮被按下 (Checked)";
+    //                 emit sendSongPlayRequested(mysong,true);
+    //             } else {
+    //                 // 按钮被取消选中（暂停）
+    //                 qDebug() << "播放按钮被释放 (Unchecked)";
+    //                 emit sendSongPlayRequested(mysong,false);
+    //             }
+    //         });
+
+
+
 
 
 }
@@ -107,26 +129,42 @@ void songwidget::setSongstruct(Songstruct song)
     mysong=song;
 }
 
-void songwidget::getLike()
+void songwidget::setLike(bool like)
 {
+    this->isLike=like;
+}
 
+bool songwidget::getLike()
+{
+    return isLike;
 }
 
 void songwidget::setPlayChecked(bool yes)
 {
-    if(yes)
-    {
-        ui->pushButton_image->setChecked(true);
-    }
-    else
-    {
-        ui->pushButton_image->setChecked(false);
-    }
+    //QSignalBlocker blocker(ui->pushButton_image);  // ✅ 自动阻止信号发射
+    ui->pushButton_image->setChecked(yes);
 }
 
-QPushButton* songwidget::getImagePushButton()
+PageButton* songwidget::getImagePushButton()
 {
     return ui->pushButton_image;
+}
+
+QPushButton *songwidget::getAddButton()
+{
+    return ui->pushButton_add;
+}
+
+void songwidget::refreshVisual()
+{
+    if (auto btn = getImagePushButton()) {
+        btn->updateIcon();
+        btn->update();
+        btn->repaint();
+    }
+    update();          // 刷新 songwidget 本身
+    repaint();         // 强制立即绘制
+    QCoreApplication::processEvents();
 }
 
 void songwidget::enterEvent(QEnterEvent *event)
@@ -183,3 +221,9 @@ void songwidget::updateAppearance()
 
     }
 }
+
+void songwidget::on_pushButton_add_clicked()
+{
+    emit requestShowPlaylistPopup(this);
+}
+

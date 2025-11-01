@@ -8,7 +8,7 @@
 #include <QSlider>
 #include <QWidget>
 
-
+#include "musiccontroller.h"
 
 // connect(m_controller, &MusicController::currentSongChanged, ui->ctlr_music_widget, &playerControlWidget::setCurrentSong);
 // connect(m_controller, &MusicController::positionChanged, ui->ctlr_music_widget, &playerControlWidget::setPosition);
@@ -34,10 +34,11 @@ signals:
     void prevClicked();
     void startMusic(bool yes);
 
-
+    void showLyricWidget(bool checked);
 
     void seekRequested(qint64 value);//改变进度条
     void volumeRequested(int value);//改变音量
+    void playmodeRequested(MusicController::PlayMode mode);
 public:
     explicit playerControlWidget(QWidget *parent = nullptr);
     ~playerControlWidget();
@@ -61,6 +62,10 @@ private slots:
 
     void on_pushButton_volume_clicked();
 
+    void on_pushButton_playOrder_clicked();
+
+    void on_pushButton_songImage_clicked();
+
 private:
     Ui::playerControlWidget *ui;
     void UI_Init();
@@ -80,6 +85,9 @@ private:
 
     VolumePopup *popup=nullptr;
     void VolumePopupInit();
+
+
+    int playmode=0;//顺序播放，单曲循环等
 };
 
 

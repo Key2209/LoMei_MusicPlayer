@@ -106,6 +106,12 @@
         <file>images/player/stop_button_white.png</file>
         <file>images/player/songimagedefault.png</file>
         <file>images/player/songimagedefault2.png</file>
+        <file>images/player/playmodel10.png</file>
+        <file>images/player/playmodel20.png</file>
+        <file>images/player/playmodel21.png</file>
+        <file>images/player/playmodel30.png</file>
+        <file>images/player/playmodel31.png</file>
+        <file>images/player/playmodel11.png</file>
     </qresource>
     <qresource prefix="/styles"/>
 </RCC>

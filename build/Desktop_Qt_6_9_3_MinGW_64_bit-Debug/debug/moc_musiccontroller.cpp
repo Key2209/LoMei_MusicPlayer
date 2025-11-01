@@ -44,6 +44,7 @@ template <> constexpr inline auto MusicController::qt_create_metaobjectdata<qt_m
         "",
         "Songstruct",
         "song",
+        "isPlay",
         "widget_objName",
         "playbackStateChanged",
         "QMediaPlayer::PlaybackState",
@@ -57,7 +58,6 @@ template <> constexpr inline auto MusicController::qt_create_metaobjectdata<qt_m
         "errorOccurred",
         "err",
         "sendPlayStateChangeTo_PlayerctrlWidge",
-        "isPlay",
         "playSong",
         "setPlaylist",
         "QList<Songstruct>",
@@ -95,44 +95,44 @@ template <> constexpr inline auto MusicController::qt_create_metaobjectdata<qt_m
 
     QtMocHelpers::UintData qt_methods {
         // Signal 'currentSongChanged'
-        QtMocHelpers::SignalData<void(const Songstruct &, const QString &)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 3, 4 }, { QMetaType::QString, 5 },
+        QtMocHelpers::SignalData<void(const Songstruct &, bool, const QString &)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { 0x80000000 | 3, 4 }, { QMetaType::Bool, 5 }, { QMetaType::QString, 6 },
         }}),
         // Signal 'playbackStateChanged'
-        QtMocHelpers::SignalData<void(QMediaPlayer::PlaybackState)>(6, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 7, 8 },
+        QtMocHelpers::SignalData<void(QMediaPlayer::PlaybackState)>(7, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { 0x80000000 | 8, 9 },
         }}),
         // Signal 'positionChanged'
-        QtMocHelpers::SignalData<void(qint64)>(9, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::LongLong, 10 },
+        QtMocHelpers::SignalData<void(qint64)>(10, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::LongLong, 11 },
         }}),
         // Signal 'durationChanged'
-        QtMocHelpers::SignalData<void(qint64)>(11, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::LongLong, 12 },
+        QtMocHelpers::SignalData<void(qint64)>(12, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::LongLong, 13 },
         }}),
         // Signal 'volumeChanged'
-        QtMocHelpers::SignalData<void(int)>(13, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::Int, 14 },
+        QtMocHelpers::SignalData<void(int)>(14, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::Int, 15 },
         }}),
         // Signal 'errorOccurred'
-        QtMocHelpers::SignalData<void(const QString &)>(15, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 16 },
+        QtMocHelpers::SignalData<void(const QString &)>(16, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QString, 17 },
         }}),
         // Signal 'sendPlayStateChangeTo_PlayerctrlWidge'
-        QtMocHelpers::SignalData<void(bool)>(17, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::Bool, 18 },
+        QtMocHelpers::SignalData<void(bool)>(18, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::Bool, 5 },
         }}),
         // Slot 'playSong'
         QtMocHelpers::SlotData<void(const Songstruct &, const QString &, bool)>(19, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 3, 4 }, { QMetaType::QString, 5 }, { QMetaType::Bool, 18 },
+            { 0x80000000 | 3, 4 }, { QMetaType::QString, 6 }, { QMetaType::Bool, 5 },
         }}),
         // Slot 'setPlaylist'
         QtMocHelpers::SlotData<void(const QVector<Songstruct> &, const QString &, int)>(20, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 21, 22 }, { QMetaType::QString, 5 }, { QMetaType::Int, 23 },
+            { 0x80000000 | 21, 22 }, { QMetaType::QString, 6 }, { QMetaType::Int, 23 },
         }}),
         // Slot 'setPlaylist'
         QtMocHelpers::SlotData<void(const QVector<Songstruct> &, const QString &)>(20, 2, QMC::AccessPublic | QMC::MethodCloned, QMetaType::Void, {{
-            { 0x80000000 | 21, 22 }, { QMetaType::QString, 5 },
+            { 0x80000000 | 21, 22 }, { QMetaType::QString, 6 },
         }}),
         // Slot 'access_UiCommandToStartMusic'
         QtMocHelpers::SlotData<void(bool)>(24, 2, QMC::AccessPublic, QMetaType::Void, {{
@@ -160,15 +160,11 @@ template <> constexpr inline auto MusicController::qt_create_metaobjectdata<qt_m
         }}),
         // Slot 'setVolume'
         QtMocHelpers::SlotData<void(int)>(35, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::Int, 14 },
+            { QMetaType::Int, 15 },
         }}),
         // Slot 'setPlayMode'
         QtMocHelpers::SlotData<void(enum PlayMode)>(36, 2, QMC::AccessPublic, QMetaType::Void, {{
             { 0x80000000 | 37, 38 },
-        }}),
-        // Slot 'isPlay'
-        QtMocHelpers::SlotData<void(bool)>(18, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::Bool, 25 },
         }}),
         // Slot 'onMediaPositionChanged'
         QtMocHelpers::SlotData<void(qint64)>(39, 2, QMC::AccessPrivate, QMetaType::Void, {{
@@ -182,11 +178,11 @@ template <> constexpr inline auto MusicController::qt_create_metaobjectdata<qt_m
         QtMocHelpers::SlotData<void()>(43, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onMediaStateChanged'
         QtMocHelpers::SlotData<void(QMediaPlayer::PlaybackState)>(44, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { 0x80000000 | 7, 45 },
+            { 0x80000000 | 8, 45 },
         }}),
         // Slot 'onMediaPlayerMediaStatusChanged'
         QtMocHelpers::SlotData<void(QMediaPlayer::MediaStatus)>(46, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { 0x80000000 | 47, 8 },
+            { 0x80000000 | 47, 9 },
         }}),
     };
     QtMocHelpers::UintData qt_properties {
@@ -218,7 +214,7 @@ void MusicController::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
     auto *_t = static_cast<MusicController *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: _t->currentSongChanged((*reinterpret_cast< std::add_pointer_t<Songstruct>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
+        case 0: _t->currentSongChanged((*reinterpret_cast< std::add_pointer_t<Songstruct>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<bool>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3]))); break;
         case 1: _t->playbackStateChanged((*reinterpret_cast< std::add_pointer_t<QMediaPlayer::PlaybackState>>(_a[1]))); break;
         case 2: _t->positionChanged((*reinterpret_cast< std::add_pointer_t<qint64>>(_a[1]))); break;
         case 3: _t->durationChanged((*reinterpret_cast< std::add_pointer_t<qint64>>(_a[1]))); break;
@@ -239,12 +235,11 @@ void MusicController::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
         case 18: _t->seek((*reinterpret_cast< std::add_pointer_t<qint64>>(_a[1]))); break;
         case 19: _t->setVolume((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         case 20: _t->setPlayMode((*reinterpret_cast< std::add_pointer_t<enum PlayMode>>(_a[1]))); break;
-        case 21: _t->isPlay((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
-        case 22: _t->onMediaPositionChanged((*reinterpret_cast< std::add_pointer_t<qint64>>(_a[1]))); break;
-        case 23: _t->onMediaDurationChanged((*reinterpret_cast< std::add_pointer_t<qint64>>(_a[1]))); break;
-        case 24: _t->onMediaErrorOccurred(); break;
-        case 25: _t->onMediaStateChanged((*reinterpret_cast< std::add_pointer_t<QMediaPlayer::PlaybackState>>(_a[1]))); break;
-        case 26: _t->onMediaPlayerMediaStatusChanged((*reinterpret_cast< std::add_pointer_t<QMediaPlayer::MediaStatus>>(_a[1]))); break;
+        case 21: _t->onMediaPositionChanged((*reinterpret_cast< std::add_pointer_t<qint64>>(_a[1]))); break;
+        case 22: _t->onMediaDurationChanged((*reinterpret_cast< std::add_pointer_t<qint64>>(_a[1]))); break;
+        case 23: _t->onMediaErrorOccurred(); break;
+        case 24: _t->onMediaStateChanged((*reinterpret_cast< std::add_pointer_t<QMediaPlayer::PlaybackState>>(_a[1]))); break;
+        case 25: _t->onMediaPlayerMediaStatusChanged((*reinterpret_cast< std::add_pointer_t<QMediaPlayer::MediaStatus>>(_a[1]))); break;
         default: ;
         }
     }
@@ -289,7 +284,7 @@ void MusicController::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
         }
     }
     if (_c == QMetaObject::IndexOfMethod) {
-        if (QtMocHelpers::indexOfMethod<void (MusicController::*)(const Songstruct & , const QString & )>(_a, &MusicController::currentSongChanged, 0))
+        if (QtMocHelpers::indexOfMethod<void (MusicController::*)(const Songstruct & , bool , const QString & )>(_a, &MusicController::currentSongChanged, 0))
             return;
         if (QtMocHelpers::indexOfMethod<void (MusicController::*)(QMediaPlayer::PlaybackState )>(_a, &MusicController::playbackStateChanged, 1))
             return;
@@ -325,22 +320,22 @@ int MusicController::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 27)
+        if (_id < 26)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 27;
+        _id -= 26;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 27)
+        if (_id < 26)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 27;
+        _id -= 26;
     }
     return _id;
 }
 
 // SIGNAL 0
-void MusicController::currentSongChanged(const Songstruct & _t1, const QString & _t2)
+void MusicController::currentSongChanged(const Songstruct & _t1, bool _t2, const QString & _t3)
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 0, nullptr, _t1, _t2);
+    QMetaObject::activate<void>(this, &staticMetaObject, 0, nullptr, _t1, _t2, _t3);
 }
 
 // SIGNAL 1

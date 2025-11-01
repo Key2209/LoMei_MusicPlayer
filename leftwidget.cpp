@@ -203,6 +203,9 @@ void leftwidget::on_btnAddPlaylist_clicked()
             buttonGroup->addButton(btn);
 
 
+            playlists.append(btn);//加入歌单按钮列表
+
+
 
             //GPT说这样写好
             btn->setObjectName(QString("playlist_%1").arg(QUuid::createUuid().toString(QUuid::WithoutBraces)));

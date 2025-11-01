@@ -1,5 +1,7 @@
 debug/addmusicdialog.o
 debug/leftwidget.o
+debug/lyricmanager.o
+debug/lyricwidget.o
 debug/main.o
 debug/mainwidget.o
 debug/metadataworker.o
@@ -10,11 +12,14 @@ debug/myslider.o
 debug/mytoolclass.o
 debug/pagebutton.o
 debug/playercontrolwidget.o
+debug/playlistpopup.o
 debug/songwidget.o
 debug/topwidget.o
 debug/qrc_myResources.o
 debug/moc_addmusicdialog.o
 debug/moc_leftwidget.o
+debug/moc_lyricmanager.o
+debug/moc_lyricwidget.o
 debug/moc_mainwidget.o
 debug/moc_metadataworker.o
 debug/moc_music_widget.o
@@ -23,5 +28,6 @@ debug/moc_musicmanage.o
 debug/moc_myslider.o
 debug/moc_pagebutton.o
 debug/moc_playercontrolwidget.o
+debug/moc_playlistpopup.o
 debug/moc_songwidget.o
 debug/moc_topwidget.o

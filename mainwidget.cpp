@@ -1,6 +1,7 @@
 #include "mainwidget.h"
 #include "ui_mainwidget.h"
 #include "addmusicdialog.h"
+#include "PlaylistPopup.h"
 #include <QFile>
 #include <QGraphicsDropShadowEffect>
 #include <QMessageBox>
@@ -49,13 +50,15 @@ void MainWidget::createPlaylist(PageButton *button)
 
     QString displayName=button->property("displayName").toString();
     musicWidget->setPlaylistName(displayName);//设置歌单名字
-
+    musicWidget->setProperty("displayName",displayName);
     QString objName=button->objectName();//设置页面object名字
     musicWidget->setObjectName(objName);
 
-
-
+    musicWidget->setLeftWidget(ui->left_widget);
+    musicwidgetList.append(musicWidget);
     ui->stackedWidget_music->addWidget(musicWidget);
+    connect(musicWidget,&music_widget::SendToMainUI_ShowPlaylistPopupRequested,this,&MainWidget::ShowPlaylistPopup);
+    m_controller->registerWidget(musicWidget);
     //qDebug()<<musicWidget;
 }
 
@@ -76,6 +79,43 @@ void MainWidget::switchPlaylist(PageButton *button)
 
 }
 
+void MainWidget::ShowPlaylistPopup(songwidget *swidget)
+{
+    QVector<QString> playlistNames;
+    for(const auto &widget:musicwidgetList)
+    {
+        playlistNames.append(widget->property("displayName").toString());
+    }
+
+    // 创建弹出框
+    PlaylistPopup *popup = new PlaylistPopup(this);
+    popup->setPlaylists(playlistNames);
+
+
+    // 弹出位置在歌曲的“添加”按钮下方
+    QPushButton *addBtn = swidget->getAddButton();
+    QPoint globalPos = addBtn->mapToGlobal(QPoint(0, addBtn->height()));
+    popup->move(globalPos.x() - popup->width()/2 + addBtn->width()/2, globalPos.y() + 5);
+    popup->show();
+
+
+    //用户选择歌单时
+    connect(popup, &PlaylistPopup::playlistSelected, this, [=](const QString &playlistName) {
+        music_widget* m=nullptr;
+        for (music_widget* widget : musicwidgetList)
+        {
+            // 检查当前 widget 的 "displayName" 属性是否与目标名称匹配
+            if (widget && widget->property("displayName").toString() == playlistName)
+            {
+                m=widget;
+                break;
+            }
+        }
+        if(m==nullptr)return;
+        m->addSong(swidget->mysong);
+    });
+}
+
 
 
 void MainWidget::connectUI()
@@ -86,9 +126,11 @@ void MainWidget::connectUI()
     connect(ui->top_window,&topWidget::maxRequested,this,[=]{
         if(this->isMaximized()){
             this->showNormal();
+
         }else{
             this->showMaximized();
         }
+
     });
 
     //当前窗口 发出"窗口改变信号" 顶部窗口接收并调用更新图标函数
@@ -118,7 +160,89 @@ void MainWidget::connectUI()
     connect(ui->ctlr_music_widget, &playerControlWidget::prevClicked, m_controller, &MusicController::playPrevious);
     connect(ui->ctlr_music_widget, &playerControlWidget::startMusic, m_controller, &MusicController::access_UiCommandToStartMusic);
     connect(ui->ctlr_music_widget, &playerControlWidget::volumeRequested, m_controller, &MusicController::setVolume);
+    connect(ui->ctlr_music_widget, &playerControlWidget::playmodeRequested, m_controller, &MusicController::setPlayMode);
 
+
+    // // 创建歌词页面，parent 是 MainWindow
+    // lyricWidget = new LyricWidget(this);
+
+    // // 设置占据主窗口上半部分
+    // int w = this->width();
+    // int h = this->height()*(3.0/4);
+    // lyricWidget->setGeometry(0, 0, w, h);
+    // //lyricWidget->setBackgroundImage(":/player/images/player/pretty_crazy.jpg");
+    // lyricWidget->hide(); // 初始化隐藏
+    // connect(ui->ctlr_music_widget, &playerControlWidget::showLyricWidget, this, [=](bool checked)
+    //         {
+    //             lyricVisible = checked; // 切换状态
+
+    //             if(checked)
+    //             {
+    //                 qDebug()<<"展示歌词";
+    //                 lyricWidget->show();
+    //             }
+
+    //             else
+    //             {
+    //                 lyricWidget->hide();
+    //             }
+
+    //         });
+
+    lyricWidget = new LyricWidget(this);
+    lyricWidget->setGeometry(0, 0, width(), height() * 0.75);
+    //lyricWidget->setBackgroundImage(":/player/images/player/pretty_crazy.jpg");
+    lyricWidget->bindMediaPlayer(m_controller->getMediaPlayer());
+    lyricWidget->hide();
+
+    // 阴影动画设置
+    lyricEffect = new QGraphicsOpacityEffect(lyricWidget);
+    lyricWidget->setGraphicsEffect(lyricEffect);
+
+    lyricAnim = new QPropertyAnimation(lyricEffect, "opacity", this);
+    lyricAnim->setDuration(400);
+    lyricAnim->setEasingCurve(QEasingCurve::InOutQuad);
+
+    // 点击切换歌词显示
+    connect(ui->ctlr_music_widget, &playerControlWidget::showLyricWidget, this, [=](bool checked) {
+        lyricVisible = checked;
+        lyricAnim->stop();
+
+        if (checked) {
+            lyricWidget->show();
+            lyricAnim->setStartValue(0.0);
+            lyricAnim->setEndValue(1.0);
+        } else {
+            lyricAnim->setStartValue(1.0);
+            lyricAnim->setEndValue(0.0);
+        }
+        lyricAnim->start();
+    });
+
+    // 动画结束后隐藏
+    connect(lyricAnim, &QPropertyAnimation::finished, this, [=]() {
+        if (!lyricVisible)
+            lyricWidget->hide();
+    });
+
+
+    m_LyricManager=new LyricManager();
+    connect(m_controller,&MusicController::currentSongChanged,this,[=](const Songstruct &song,bool isPlay,const QString &widget_objName)
+            {
+                if(song.lyricPath!=nullptr)
+                {
+                    bool b =m_LyricManager->loadFromFile(song.lyricPath);
+                    qDebug()<<song.lyricPath<<b;
+                    lyricWidget->setLyricManager(m_LyricManager);
+                }
+                else
+                {
+                    m_LyricManager->loadFromString("[00:00.00]So9rry 冇有歌词文件");
+                    qDebug()<<"[00:00.00]So9rry 冇有歌词文件";
+                    lyricWidget->setLyricManager(m_LyricManager);
+                }
+
+            });
     // music_widget *musicWidget=ui->stackedWidget_music->findChild<music_widget*>("pushButton_download");
     // connect(musicWidget,&music_widget::songPlayRequested,m_controller,&MusicController::playSong);//连接"本地和下载"歌单与m_controller
 }
@@ -151,13 +275,16 @@ void MainWidget::widgetInit()
     for (int i = 0; i < count; ++i)
     {
         music_widget* musicWidget = new music_widget;
+        //musicwidgetList.append(musicWidget);
         musicWidget->setPlaylistName(listName[i]);  // 设置中文歌单名字
         musicWidget->setObjectName(musicWidgetName[i]); // 设置对象名
         ui->stackedWidget_music->addWidget(musicWidget);
+        connect(musicWidget,&music_widget::SendToMainUI_ShowPlaylistPopupRequested,this,&MainWidget::ShowPlaylistPopup);
         qDebug() << "创建:" << musicWidgetName[i] << "=>" << listName[i];
     }
 
     music_widget* musicWidget = new music_widget;
+    //musicwidgetList.append(musicWidget);
     musicWidget->setPlaylistName("本地和下载");  // 设置中文歌单名字
     musicWidget->setObjectName("pushButton_download"); // 设置对象名
     ui->stackedWidget_music->addWidget(musicWidget);
@@ -169,8 +296,18 @@ void MainWidget::widgetInit()
              << "musicManager:" << musicManager;
 
 
-    connect(musicWidget,&music_widget::songPlayRequested,m_controller,&MusicController::playSong);//连接 歌单与m_controller 的播放音乐功能
-    connect(musicWidget,&music_widget::songListPlayRequested,m_controller,&MusicController::setPlaylist);//连接 歌单与m_controller 添加歌单
+
+    m_controller->registerWidget(musicWidget);
+    connect(musicWidget,&music_widget::SendToMainUI_ShowPlaylistPopupRequested,this,&MainWidget::ShowPlaylistPopup);
+    // connect(musicWidget,&music_widget::songPlayRequested,m_controller,&MusicController::playSong);//连接 歌单与m_controller 的播放音乐功能
+    // connect(musicWidget,&music_widget::songListPlayRequested,m_controller,&MusicController::setPlaylist);//连接 歌单与m_controller 添加歌单
+    // connect(musicWidget,&music_widget::Play_or_PauseRequested,m_controller,&MusicController::access_UiCommandToStartMusic);//连接 歌单与m_controller 添加歌单
+
+
+    //connect(m_controller,&MusicController::sendPlayStateChangeTo_PlayerctrlWidge,musicWidget,&music_widget::setUiPlay_or_Pause);
+    //connect(m_controller,&MusicController::currentSongChanged,musicWidget,&music_widget::onCurrentSongChanged);
+
+
 }
 
 void MainWidget::MusicInit()
@@ -254,6 +391,21 @@ void MainWidget::setCursorShape(DragRegion region)
     setCursor(shape);
 }
 
+void MainWidget::resizeEvent(QResizeEvent *event)
+{
+    // 1. 调用基类的实现，确保主窗口的布局和行为正常
+    QWidget::resizeEvent(event); // 如果 MainWidget 继承自 QMainWindow
+    // QWidget::resizeEvent(event);   // 如果 MainWidget 继承自 QWidget
+
+    // 2. 在这里调整 lyricWidget 的尺寸
+    if (lyricWidget) {
+        // 使用新的父窗口尺寸来计算 lyricWidget 的新几何尺寸
+        lyricWidget->setGeometry(0, 0, width(), height()-100);
+        // 或者使用 event->size().width() 和 event->size().height()
+    }
+}
+
+
 
 void MainWidget::mousePressEvent(QMouseEvent *event)
 {
@@ -266,7 +418,6 @@ void MainWidget::mousePressEvent(QMouseEvent *event)
 
         if(!this->isMaximized())//最大化时候不能缩放
         {
-
             m_dragRegion=getResizeRegion(event->pos());
             if(m_dragRegion!=NoResize)
             {
@@ -391,7 +542,10 @@ void MainWidget::mouseMoveEvent(QMouseEvent *event)
             newGeometry.setHeight(minimumHeight());
         }
 
+
+
         setGeometry(newGeometry);
+        //lyricWidget->setGeometry(0, 0, width(), height() -100);//歌词界面也一起缩放
         event->accept();
         return;
     }

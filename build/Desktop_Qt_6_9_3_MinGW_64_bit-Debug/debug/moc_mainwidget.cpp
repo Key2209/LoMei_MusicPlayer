@@ -7,6 +7,7 @@
 *****************************************************************************/
 
 #include "../../../mainwidget.h"
+#include <QtGui/qtextcursor.h>
 #include <QtCore/qmetatype.h>
 
 #include <QtCore/qtmochelpers.h>
@@ -46,7 +47,10 @@ template <> constexpr inline auto MainWidget::qt_create_metaobjectdata<qt_meta_t
         "createPlaylist",
         "PageButton*",
         "button",
-        "switchPlaylist"
+        "switchPlaylist",
+        "ShowPlaylistPopup",
+        "songwidget*",
+        "swidget"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -63,6 +67,10 @@ template <> constexpr inline auto MainWidget::qt_create_metaobjectdata<qt_meta_t
         // Slot 'switchPlaylist'
         QtMocHelpers::SlotData<void(PageButton *)>(8, 2, QMC::AccessPrivate, QMetaType::Void, {{
             { 0x80000000 | 6, 7 },
+        }}),
+        // Slot 'ShowPlaylistPopup'
+        QtMocHelpers::SlotData<void(songwidget *)>(9, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { 0x80000000 | 10, 11 },
         }}),
     };
     QtMocHelpers::UintData qt_properties {
@@ -91,6 +99,7 @@ void MainWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 1: _t->on_pushButton_clicked(); break;
         case 2: _t->createPlaylist((*reinterpret_cast< std::add_pointer_t<PageButton*>>(_a[1]))); break;
         case 3: _t->switchPlaylist((*reinterpret_cast< std::add_pointer_t<PageButton*>>(_a[1]))); break;
+        case 4: _t->ShowPlaylistPopup((*reinterpret_cast< std::add_pointer_t<songwidget*>>(_a[1]))); break;
         default: ;
         }
     }
@@ -109,6 +118,13 @@ void MainWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
             default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
             case 0:
                 *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< PageButton* >(); break;
+            }
+            break;
+        case 4:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+            case 0:
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< songwidget* >(); break;
             }
             break;
         }
@@ -138,14 +154,14 @@ int MainWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 5;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 4)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 5;
     }
     return _id;
 }

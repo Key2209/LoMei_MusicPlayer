@@ -45,7 +45,13 @@ template <> constexpr inline auto songwidget::qt_create_metaobjectdata<qt_meta_t
         "sendSongPlayRequested",
         "Songstruct",
         "song",
-        "isPlay"
+        "isPlay",
+        "requestlikeList",
+        "songwidget*",
+        "self",
+        "like",
+        "requestShowPlaylistPopup",
+        "on_pushButton_add_clicked"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -57,6 +63,16 @@ template <> constexpr inline auto songwidget::qt_create_metaobjectdata<qt_meta_t
         QtMocHelpers::SignalData<void(Songstruct, bool)>(4, 2, QMC::AccessPublic, QMetaType::Void, {{
             { 0x80000000 | 5, 6 }, { QMetaType::Bool, 7 },
         }}),
+        // Signal 'requestlikeList'
+        QtMocHelpers::SignalData<void(songwidget *, bool)>(8, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { 0x80000000 | 9, 10 }, { QMetaType::Bool, 11 },
+        }}),
+        // Signal 'requestShowPlaylistPopup'
+        QtMocHelpers::SignalData<void(songwidget *)>(12, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { 0x80000000 | 9, 10 },
+        }}),
+        // Slot 'on_pushButton_add_clicked'
+        QtMocHelpers::SlotData<void()>(13, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -82,6 +98,9 @@ void songwidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         switch (_id) {
         case 0: _t->widget_hovered((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
         case 1: _t->sendSongPlayRequested((*reinterpret_cast< std::add_pointer_t<Songstruct>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<bool>>(_a[2]))); break;
+        case 2: _t->requestlikeList((*reinterpret_cast< std::add_pointer_t<songwidget*>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<bool>>(_a[2]))); break;
+        case 3: _t->requestShowPlaylistPopup((*reinterpret_cast< std::add_pointer_t<songwidget*>>(_a[1]))); break;
+        case 4: _t->on_pushButton_add_clicked(); break;
         default: ;
         }
     }
@@ -95,12 +114,30 @@ void songwidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
                 *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< Songstruct >(); break;
             }
             break;
+        case 2:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+            case 0:
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< songwidget* >(); break;
+            }
+            break;
+        case 3:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+            case 0:
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< songwidget* >(); break;
+            }
+            break;
         }
     }
     if (_c == QMetaObject::IndexOfMethod) {
         if (QtMocHelpers::indexOfMethod<void (songwidget::*)(bool )>(_a, &songwidget::widget_hovered, 0))
             return;
         if (QtMocHelpers::indexOfMethod<void (songwidget::*)(Songstruct , bool )>(_a, &songwidget::sendSongPlayRequested, 1))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (songwidget::*)(songwidget * , bool )>(_a, &songwidget::requestlikeList, 2))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (songwidget::*)(songwidget * )>(_a, &songwidget::requestShowPlaylistPopup, 3))
             return;
     }
 }
@@ -124,14 +161,14 @@ int songwidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 5;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 2)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 5;
     }
     return _id;
 }
@@ -146,5 +183,17 @@ void songwidget::widget_hovered(bool _t1)
 void songwidget::sendSongPlayRequested(Songstruct _t1, bool _t2)
 {
     QMetaObject::activate<void>(this, &staticMetaObject, 1, nullptr, _t1, _t2);
+}
+
+// SIGNAL 2
+void songwidget::requestlikeList(songwidget * _t1, bool _t2)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 2, nullptr, _t1, _t2);
+}
+
+// SIGNAL 3
+void songwidget::requestShowPlaylistPopup(songwidget * _t1)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 3, nullptr, _t1);
 }
 QT_WARNING_POP
