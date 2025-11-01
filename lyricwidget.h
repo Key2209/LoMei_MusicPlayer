@@ -62,14 +62,12 @@ public:
     // 手动更新当前时间（毫秒). 如果你直接用 player 的 positionChanged，这个由信号驱动。
     void updatePosition(qint64 positionMs);
 
-    // 设置背景图片（会模糊并暗化）
-    void setBackgroundImage(const QString &imgPath);
 
-    // 控制是否显示半透明遮罩
-    void setMaskOpacity(int alpha); // 0..255
+
+
 
 protected:
-    void resizeEvent(QResizeEvent *ev) override;
+
 
 private:
     LyricManager *m_mgr = nullptr;
@@ -77,7 +75,6 @@ private:
 
     // UI
     QLabel *m_bgLabel = nullptr;       // 背景图片（在底层）
-    QLabel *m_maskLabel = nullptr;     // 半透明遮罩
     QScrollArea *m_scroll = nullptr;
     QWidget *m_container = nullptr;
     QVBoxLayout *m_vbox = nullptr;

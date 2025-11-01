@@ -18,6 +18,7 @@ LineLabel::LineLabel(const QString &txt, QWidget *parent)
     f.setStyleStrategy(QFont::PreferAntialias);
     m_baseFont = f;
     setMinimumHeight(36);
+    // 不想让这行接收鼠标事件（歌词只读、不可交互），提高事件传递效率
     setAttribute(Qt::WA_TransparentForMouseEvents);
 }
 
@@ -69,16 +70,11 @@ LyricWidget::LyricWidget(QWidget *parent)
 {
     setAttribute(Qt::WA_StyledBackground);
     setStyleSheet("background: rgba(255,255,255,255);");
-    // setStyleSheet("background: transparent;");
-    // 背景 label（放最底层；setBackgroundImage 会创建并放入）
+     //setStyleSheet("background: transparent;");
+
     m_bgLabel = new QLabel(this);
     m_bgLabel->setScaledContents(true);
     m_bgLabel->hide();
-
-    // 半透明暗化遮罩（使歌词更醒目）
-    m_maskLabel = new QLabel(this);
-    m_maskLabel->setStyleSheet("background: rgba(25,25,25,25);");
-    m_maskLabel->hide();
 
     // scroll area + container
     m_scroll = new QScrollArea(this);
@@ -109,46 +105,7 @@ LyricWidget::~LyricWidget()
     clearLines();
 }
 
-// 在 resize 时更新背景/遮罩 geometry
-void LyricWidget::resizeEvent(QResizeEvent *ev)
-{
-    QWidget::resizeEvent(ev);
-    if (m_bgLabel) {
-        m_bgLabel->setGeometry(rect());
-    }
-    if (m_maskLabel) {
-        m_maskLabel->setGeometry(rect());
-    }
-}
 
-// set background image (cover), apply blur + opacity
-void LyricWidget::setBackgroundImage(const QString &imgPath)
-{
-    QPixmap pix(imgPath);
-    if (pix.isNull()) return;
-
-    // 放到 bgLabel
-    m_bgLabel->setPixmap(pix.scaled(size(), Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation));
-    m_bgLabel->setGeometry(rect());
-    m_bgLabel->show();
-
-    // 模糊效果
-    auto *blur = new QGraphicsBlurEffect(m_bgLabel);
-    blur->setBlurRadius(28);
-    m_bgLabel->setGraphicsEffect(blur);
-
-    // mask to darken
-    m_maskLabel->setStyleSheet("background: rgba(10,10,10,160);");
-    m_maskLabel->setGeometry(rect());
-    m_maskLabel->show();
-}
-
-void LyricWidget::setMaskOpacity(int alpha)
-{
-    alpha = qBound(0, alpha, 255);
-    m_maskLabel->setStyleSheet(QString("background: rgba(10,10,10,%1);").arg(alpha));
-    m_maskLabel->show();
-}
 
 void LyricWidget::setLyricManager(LyricManager *mgr)
 {
@@ -156,7 +113,7 @@ void LyricWidget::setLyricManager(LyricManager *mgr)
     m_mgr = mgr;
     clearLines();
 
-    QStringList texts = m_mgr->allTexts();
+    QStringList texts = m_mgr->allTexts();//获取歌词
     QFont baseFont("Microsoft YaHei", 20);
     for (int i = 0; i < texts.size(); ++i) {
         LineLabel *lbl = new LineLabel(texts[i], m_container);
@@ -164,6 +121,8 @@ void LyricWidget::setLyricManager(LyricManager *mgr)
         lbl->setMinimumHeight(36);
         lbl->setProgress(0.0);
         lbl->setScale(1.0);
+
+        // 将行加入布局并缓存指针，后续通过 m_lineWidgets 操作
         m_vbox->addWidget(lbl);
         m_lineWidgets.append(lbl);
     }
@@ -176,6 +135,7 @@ void LyricWidget::bindMediaPlayer(QMediaPlayer *player)
 {
     if (!player) return;
     if (m_player) {
+        // 如果之前绑定过，要先断开旧连接，避免重复触发
         disconnect(m_player, nullptr, this, nullptr);
     }
     m_player = player;

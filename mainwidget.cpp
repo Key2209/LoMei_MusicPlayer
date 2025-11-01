@@ -34,6 +34,11 @@ MainWidget::~MainWidget()
     delete ui;
 }
 
+void MainWidget::lyricWidgetUpdateSize()
+{
+    lyricWidget->setGeometry(5, 0, width()-10, height() -100);
+}
+
 
 
 
@@ -163,35 +168,9 @@ void MainWidget::connectUI()
     connect(ui->ctlr_music_widget, &playerControlWidget::playmodeRequested, m_controller, &MusicController::setPlayMode);
 
 
-    // // 创建歌词页面，parent 是 MainWindow
-    // lyricWidget = new LyricWidget(this);
-
-    // // 设置占据主窗口上半部分
-    // int w = this->width();
-    // int h = this->height()*(3.0/4);
-    // lyricWidget->setGeometry(0, 0, w, h);
-    // //lyricWidget->setBackgroundImage(":/player/images/player/pretty_crazy.jpg");
-    // lyricWidget->hide(); // 初始化隐藏
-    // connect(ui->ctlr_music_widget, &playerControlWidget::showLyricWidget, this, [=](bool checked)
-    //         {
-    //             lyricVisible = checked; // 切换状态
-
-    //             if(checked)
-    //             {
-    //                 qDebug()<<"展示歌词";
-    //                 lyricWidget->show();
-    //             }
-
-    //             else
-    //             {
-    //                 lyricWidget->hide();
-    //             }
-
-    //         });
-
+    //歌词页面
     lyricWidget = new LyricWidget(this);
-    lyricWidget->setGeometry(0, 0, width(), height() * 0.75);
-    //lyricWidget->setBackgroundImage(":/player/images/player/pretty_crazy.jpg");
+    lyricWidgetUpdateSize();
     lyricWidget->bindMediaPlayer(m_controller->getMediaPlayer());
     lyricWidget->hide();
 
@@ -400,7 +379,7 @@ void MainWidget::resizeEvent(QResizeEvent *event)
     // 2. 在这里调整 lyricWidget 的尺寸
     if (lyricWidget) {
         // 使用新的父窗口尺寸来计算 lyricWidget 的新几何尺寸
-        lyricWidget->setGeometry(0, 0, width(), height()-100);
+        lyricWidgetUpdateSize();
         // 或者使用 event->size().width() 和 event->size().height()
     }
 }

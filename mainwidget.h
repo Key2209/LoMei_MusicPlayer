@@ -43,7 +43,7 @@ public:
 
     MusicManage *musicManager=nullptr;
 
-
+    void lyricWidgetUpdateSize();
 private slots:
     void on_pushButton_clicked();
     void createPlaylist(PageButton *button);

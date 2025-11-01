@@ -27,23 +27,15 @@ music_widget::music_widget(QWidget *parent)
 
 
 
+    //测试用
+    // QListWidgetItem *item=new QListWidgetItem();
+    // item->setSizeHint(QSize(0,60));
+    // ui->listWidget->addItem(item);
+    // songwidget* widget=new songwidget;
+    // widget->setObjectName("testtest");
+    // ui->listWidget->setItemWidget(item,widget);
 
-    QListWidgetItem *item=new QListWidgetItem();
-    item->setSizeHint(QSize(0,60));
-    ui->listWidget->addItem(item);
-    songwidget* widget=new songwidget;
-    widget->setObjectName("testtest");
-    //PageButton *p= widget->getImagePushButton();
 
-    // mytimer=new QTimer(this);
-    // connect(mytimer,&QTimer::timeout,this,[=]()
-    //         {
-    //             p->click();
-    //             update();
-    //         }
-    //         );
-    // mytimer->start(1000);
-    ui->listWidget->setItemWidget(item,widget);
 
 }
 
